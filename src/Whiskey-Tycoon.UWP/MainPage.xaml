@@ -22,15 +22,13 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0" Text="Whiskey Tycoon" Style="{StaticResource MainLogoStyle}" />
             
-            <Button Grid.Row="1" Content="New Game" Style="{StaticResource MainButtonStyle}" />
-            <Button Grid.Row="2" Content="Load Game" Style="{StaticResource MainButtonStyle}" />
-            <Button Grid.Row="3" Content="Options" Style="{StaticResource MainButtonStyle}" />
-            <Button Grid.Row="4" Content="Help" Style="{StaticResource MainButtonStyle}" />
+            <Button Grid.Row="1" Content="New Game" Style="{StaticResource MainButtonStyle}" Click="btnNewGame_Click" />
+            <Button Grid.Row="2" Content="Load Game" Style="{StaticResource MainButtonStyle}" Click="btnLoadGame_Click" />
+            <Button Grid.Row="3" Content="Options" Style="{StaticResource MainButtonStyle}" Click="btnOptions_Click" />
         </Grid>
 
         <TextBlock Grid.Row="1" HorizontalAlignment="Center" Margin="0,0,0,10">
