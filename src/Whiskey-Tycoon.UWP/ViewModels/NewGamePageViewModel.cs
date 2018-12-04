@@ -46,7 +46,7 @@
 
         public NewGamePageViewModel()
         {
-            EnableStartGame = false;
+            UpdateForm();
         }
 
         private void UpdateForm()
