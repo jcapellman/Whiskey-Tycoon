@@ -13,11 +13,41 @@
         <Setter Property="Margin" Value="0,0,0,10" />
     </Style>
 
+    <Style x:Key="PageHeaderStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="40" />
+        <Setter Property="Foreground" Value="{StaticResource MainColor}" />
+        <Setter Property="Margin" Value="10,10,0,10" />
+    </Style>
+
+    <Style x:Key="TextBoxFieldStyle" TargetType="TextBox">
+        <Setter Property="Width" Value="350" />
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Margin" Value="0,0,0,20" />
+    </Style>
+
     <Style x:Key="MainButtonStyle" TargetType="Button">
         <Setter Property="FontSize" Value="50" />
         <Setter Property="HorizontalAlignment" Value="Center" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="Margin" Value="0,10,0,10" />
         <Setter Property="Width" Value="300" />
+    </Style>
+
+    <Style x:Key="BackButtonStyle" TargetType="Button">
+        <Setter Property="FontSize" Value="30" />
+        <Setter Property="Margin" Value="10,10,10,10" />
+        <Setter Property="Width" Value="200" />
+        <Setter Property="Height" Value="50" />
+    </Style>
+
+    <Style x:Key="NextButtonStyle" TargetType="Button">
+        <Setter Property="FontSize" Value="30" />
+        <Setter Property="Margin" Value="0,10,10,10" />
+        <Setter Property="Width" Value="200" />
+        <Setter Property="Height" Value="50" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
     </Style>
 </ResourceDictionary>
