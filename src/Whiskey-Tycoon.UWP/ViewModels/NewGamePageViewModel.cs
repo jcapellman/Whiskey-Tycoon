@@ -13,7 +13,7 @@
                 _masterDistillerName = value;
                 OnPropertyChanged();
 
-                UpdateForm();
+                UpdateForm(); 
             }
         }
 
