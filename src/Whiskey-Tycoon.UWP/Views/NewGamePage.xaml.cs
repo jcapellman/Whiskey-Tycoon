@@ -23,7 +23,7 @@ namespace Whiskey_Tycoon.UWP.Views
 
         private void btnStartGame_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(MainGamePage));
+            Frame.Navigate(typeof(MainGamePage), viewModel.GetGameObject());
         }
     }
 }
