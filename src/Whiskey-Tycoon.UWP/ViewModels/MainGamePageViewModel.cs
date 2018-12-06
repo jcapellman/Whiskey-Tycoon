@@ -1,8 +1,10 @@
-﻿namespace Whiskey_Tycoon.UWP.ViewModels
+﻿using Whiskey_Tycoon.lib.JSONObjects;
+
+namespace Whiskey_Tycoon.UWP.ViewModels
 {
     public class MainGamePageViewModel : BaseViewModel
     {
-        public MainGamePageViewModel()
+        public MainGamePageViewModel(GameObject gameObject)
         {
         }
     }
