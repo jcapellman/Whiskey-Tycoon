@@ -1,4 +1,6 @@
-﻿namespace Whiskey_Tycoon.UWP.ViewModels
+﻿using Whiskey_Tycoon.lib.JSONObjects;
+
+namespace Whiskey_Tycoon.UWP.ViewModels
 {
     public class NewGamePageViewModel : BaseViewModel
     {
@@ -53,5 +55,11 @@
         {
             EnableStartGame = !string.IsNullOrEmpty(MasterDistillerName) && !string.IsNullOrEmpty(DistilleryName);
         }
+
+        public GameObject GetGameObject() => new GameObject
+        {
+            DistillerName = MasterDistillerName,
+            DistilleryName = DistilleryName
+        };
     }
 }
