@@ -3,5 +3,7 @@
     public class OptionsObject
     {
         public bool EnableMusic { get; set; }
+
+        public bool EnableSound { get; set; }
     }
 }
