@@ -8,5 +8,7 @@ namespace Whiskey_Tycoon.UWP.ViewModels
         {
             Game = gameObject;
         }
+
+
     }
 }
