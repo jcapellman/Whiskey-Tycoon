@@ -57,6 +57,7 @@ namespace Whiskey_Tycoon.UWP.ViewModels
                 }
                 catch (JsonException)
                 {
+                    // TODO Log
                     continue;
                 }
             }

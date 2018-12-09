@@ -43,7 +43,6 @@
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0" Style="{StaticResource BackButtonStyle}" Content="Back to Main Menu" Click="btnBackButton_Click" />
