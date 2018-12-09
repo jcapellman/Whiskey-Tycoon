@@ -209,6 +209,9 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.1</Version>
     </PackageReference>
+    <PackageReference Include="NLog">
+      <Version>4.5.11</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Whiskey-Tycoon.lib\Whiskey-Tycoon.lib.csproj">
