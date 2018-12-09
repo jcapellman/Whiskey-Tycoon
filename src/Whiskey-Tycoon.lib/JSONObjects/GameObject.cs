@@ -1,4 +1,6 @@
-﻿namespace Whiskey_Tycoon.lib.JSONObjects
+﻿using System;
+
+namespace Whiskey_Tycoon.lib.JSONObjects
 {
     public class GameObject
     {
@@ -8,5 +10,7 @@
 
         // In thousands
         public int MoneyAvailable { get; set; } = 1000;
+
+        public DateTime SaveDate { get; set; }
     }
 }
