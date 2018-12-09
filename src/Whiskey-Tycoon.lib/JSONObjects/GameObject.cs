@@ -12,5 +12,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
         public int MoneyAvailable { get; set; } = 1000;
 
         public DateTime SaveDate { get; set; }
+
+        public string FileName { get; set; }
     }
 }
