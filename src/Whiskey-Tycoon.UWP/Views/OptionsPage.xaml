@@ -25,10 +25,16 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <TextBlock Grid.Row="0" Text="Enable Music" />
             <ToggleSwitch Grid.Row="1" IsOn="{Binding Options.EnableMusic, Mode=TwoWay}" />
+
+            <TextBlock Grid.Row="2" Text="Enable Sound" />
+            <ToggleSwitch Grid.Row="3" IsOn="{Binding Options.EnableSound, Mode=TwoWay}" />
         </Grid>
 
         <Grid Grid.Row="2">
