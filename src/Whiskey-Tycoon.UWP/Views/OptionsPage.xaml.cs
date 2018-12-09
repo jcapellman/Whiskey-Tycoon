@@ -1,14 +1,10 @@
-﻿using System;
-
-using Windows.UI.Popups;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml;
 
 using Whiskey_Tycoon.UWP.ViewModels;
 
 namespace Whiskey_Tycoon.UWP.Views
 {
-    public sealed partial class OptionsPage : Page
+    public sealed partial class OptionsPage : BasePage
     {
         private OptionsPageViewModel viewModel => (OptionsPageViewModel) DataContext;
 
@@ -28,9 +24,7 @@ namespace Whiskey_Tycoon.UWP.Views
         {
             var result = await viewModel.SaveOptionsAsync();
 
-            MessageDialog md = new MessageDialog("Options saved");
-
-            await md.ShowAsync();
+            ShowMessage(result ? "Options saved successfully" : "Could not save Options");
         }
     }
 }
