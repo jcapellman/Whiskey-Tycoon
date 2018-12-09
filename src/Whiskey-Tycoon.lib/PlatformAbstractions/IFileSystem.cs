@@ -5,7 +5,7 @@ namespace Whiskey_Tycoon.lib.PlatformAbstractions
 {
     public interface IFileSystem
     {
-        bool WriteFile<T>(string fileName, object obj);
+        Task<bool> WriteFileAsync<T>(string fileName, object obj);
 
         T GetFile<T>(string fileName);
 
