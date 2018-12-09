@@ -129,6 +129,7 @@
     <Compile Include="ViewModels\MainGamePageViewModel.cs" />
     <Compile Include="ViewModels\NewGamePageViewModel.cs" />
     <Compile Include="ViewModels\OptionsPageViewModel.cs" />
+    <Compile Include="Views\BasePage.cs" />
     <Compile Include="Views\LoadGamePage.xaml.cs">
       <DependentUpon>LoadGamePage.xaml</DependentUpon>
     </Compile>
