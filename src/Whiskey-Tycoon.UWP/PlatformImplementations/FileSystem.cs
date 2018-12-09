@@ -33,9 +33,20 @@ namespace Whiskey_Tycoon.UWP.PlatformImplementations
             }
         }
 
-        public T GetFile<T>(string fileName)
+        public async Task<T> GetFileAsync<T>(string fileName)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var textResult = await _storageFolder.ReadTextFromFileAsync(fileName);
+
+                return JsonConvert.DeserializeObject<T>(textResult);
+            }
+            catch (Exception ex)
+            {
+                // TODO log
+
+                return default(T);
+            }
         }
 
         public async Task<List<T>> GetFilesAsync<T>(string extension)
