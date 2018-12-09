@@ -1,11 +1,10 @@
 ﻿using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 
 using Whiskey_Tycoon.UWP.ViewModels;
 
 namespace Whiskey_Tycoon.UWP.Views
 {
-    public sealed partial class NewGamePage : Page
+    public sealed partial class NewGamePage : BasePage
     {
         private NewGamePageViewModel viewModel => (NewGamePageViewModel) DataContext;
 
