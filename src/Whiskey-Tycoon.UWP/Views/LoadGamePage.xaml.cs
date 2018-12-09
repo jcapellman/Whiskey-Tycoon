@@ -1,6 +1,7 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
+using Whiskey_Tycoon.lib.JSONObjects;
 using Whiskey_Tycoon.UWP.ViewModels;
 
 namespace Whiskey_Tycoon.UWP.Views
@@ -11,7 +12,9 @@ namespace Whiskey_Tycoon.UWP.Views
 
         public LoadGamePage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+
+            DataContext = new LoadGamePageViewModel();
         }
 
         private void btnBackButton_Click(object sender, RoutedEventArgs e)
@@ -21,7 +24,7 @@ namespace Whiskey_Tycoon.UWP.Views
 
         private void btnLoadGame_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(MainGamePage));
+            Frame.Navigate(typeof(MainGamePage), (GameObject)e.OriginalSource);
         }
     }
 }
