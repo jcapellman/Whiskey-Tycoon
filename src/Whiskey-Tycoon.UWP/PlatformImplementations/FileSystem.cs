@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Search;
 
+using Microsoft.Toolkit.Uwp.Helpers;
+
 using Newtonsoft.Json;
 
 using Whiskey_Tycoon.lib.PlatformAbstractions;
@@ -15,9 +17,20 @@ namespace Whiskey_Tycoon.UWP.PlatformImplementations
     {
         private readonly Windows.Storage.StorageFolder _storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
 
-        public bool WriteFile<T>(string fileName, object obj)
+        public async Task<bool> WriteFileAsync<T>(string fileName, object obj)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var result = await _storageFolder.WriteTextToFileAsync(JsonConvert.SerializeObject(obj), fileName);
+
+                return result != null;
+            }
+            catch (Exception ex)
+            {
+                // TODO log
+
+                return false;
+            }
         }
 
         public T GetFile<T>(string fileName)
