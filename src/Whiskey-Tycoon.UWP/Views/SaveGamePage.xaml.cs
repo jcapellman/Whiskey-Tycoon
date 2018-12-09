@@ -7,7 +7,7 @@ using Whiskey_Tycoon.UWP.ViewModels;
 
 namespace Whiskey_Tycoon.UWP.Views
 {
-    public sealed partial class SaveGamePage : Page
+    public sealed partial class SaveGamePage : BasePage
     {
         private SaveGamePageViewModel viewModel => (SaveGamePageViewModel) DataContext;
 
@@ -25,7 +25,18 @@ namespace Whiskey_Tycoon.UWP.Views
         
         private async void btnSaveGame_Click(object sender, RoutedEventArgs e)
         {
-            await viewModel.SaveGameAsync(((GameObject)e.OriginalSource).FileName);
+            var button = (Button) e.OriginalSource;
+
+            var result = await viewModel.SaveGameAsync(((GameObject)button.DataContext).FileName);
+
+            ShowMessage(result ? "Saved Successfully" : "Save failed");
+
+            Frame.GoBack();
+        }
+
+        private void btnBackGame_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.GoBack();
         }
     }
 }
