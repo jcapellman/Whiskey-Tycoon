@@ -9,12 +9,16 @@ using Microsoft.Toolkit.Uwp.Helpers;
 
 using Newtonsoft.Json;
 
+using NLog;
+
 using Whiskey_Tycoon.lib.PlatformAbstractions;
 
 namespace Whiskey_Tycoon.UWP.PlatformImplementations
 {
     public class FileSystem : IFileSystem
     {
+        private Logger log = NLog.LogManager.GetCurrentClassLogger();
+
         private readonly Windows.Storage.StorageFolder _storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
 
         public async Task<bool> WriteFileAsync<T>(string fileName, object obj)
@@ -27,7 +31,7 @@ namespace Whiskey_Tycoon.UWP.PlatformImplementations
             }
             catch (Exception ex)
             {
-                // TODO log
+                log.Error(ex, $"Error writing to {fileName}, object: {obj}");
 
                 return false;
             }
@@ -43,7 +47,7 @@ namespace Whiskey_Tycoon.UWP.PlatformImplementations
             }
             catch (Exception ex)
             {
-                // TODO log
+                log.Error(ex, $"Error reading from {fileName}");
 
                 return default(T);
             }
@@ -79,8 +83,7 @@ namespace Whiskey_Tycoon.UWP.PlatformImplementations
                 }
                 catch (JsonException)
                 {
-                    // TODO Log
-                    continue;
+                    log.Error($"Error parsing {saveGame.Path} from JSON to Object");
                 }
             }
 
