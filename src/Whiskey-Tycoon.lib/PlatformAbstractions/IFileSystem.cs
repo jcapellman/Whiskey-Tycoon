@@ -7,7 +7,7 @@ namespace Whiskey_Tycoon.lib.PlatformAbstractions
     {
         Task<bool> WriteFileAsync<T>(string fileName, object obj);
 
-        T GetFile<T>(string fileName);
+        Task<T> GetFileAsync<T>(string fileName);
 
         Task<List<T>> GetFilesAsync<T>(string extension);
     }
