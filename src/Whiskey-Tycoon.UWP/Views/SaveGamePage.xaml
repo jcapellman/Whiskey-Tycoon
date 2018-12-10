@@ -18,7 +18,16 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Style="{StaticResource PageHeaderStyle}" Text="Save Game" />
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Style="{StaticResource PageHeaderStyle}" Text="Save Game" />
+
+            <Button Grid.Column="1" Style="{StaticResource ActionButtonStyle}" HorizontalAlignment="Right" Content="Save New Game" Click="btnSaveNewGame_Click" />
+        </Grid>
 
         <ListView Grid.Row="1" ItemsSource="{Binding Games}">
             <ListView.ItemContainerStyle>
