@@ -24,7 +24,9 @@ namespace Whiskey_Tycoon.UWP.Views
 
         private void btnLoadGame_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(MainGamePage), (GameObject)e.OriginalSource);
+            var button = (Button)e.OriginalSource;
+            
+            Frame.Navigate(typeof(MainGamePage), (GameObject)button.DataContext);
         }
     }
 }

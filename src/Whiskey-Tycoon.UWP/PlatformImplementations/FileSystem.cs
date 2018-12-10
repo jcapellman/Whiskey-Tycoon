@@ -34,7 +34,7 @@ namespace Whiskey_Tycoon.UWP.PlatformImplementations
                 log.Error(ex, $"Error writing to {fileName}, object: {obj}");
 
                 return false;
-            }
+            }       
         }
 
         public async Task<T> GetFileAsync<T>(string fileName)
