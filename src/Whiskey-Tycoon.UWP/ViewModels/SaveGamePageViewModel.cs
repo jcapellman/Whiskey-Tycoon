@@ -36,19 +36,20 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             var gameList = await App.FileSystem.GetFilesAsync<GameObject>(Constants.FILE_SAVEGAME_EXTENSION);
 
             Games = new ObservableCollection<GameObject>(gameList);
-
-            _currentGame.FileName = Constants.FILE_SAVEGAME_DEFAULT_NAME;
-
-            Games.Insert(0, _currentGame);
         }
 
-        public async Task<bool> SaveGameAsync(string fileName)
+        public async Task<bool> SaveGameAsync(string fileName = null)
         {
-            if (fileName == Constants.FILE_SAVEGAME_DEFAULT_NAME)
+            // New Game is null
+            if (fileName == null)
             {
                 fileName = $"{DateTime.Now.Ticks}.{Constants.FILE_SAVEGAME_EXTENSION}";
-            }
 
+                _currentGame.SaveDisplayName = $"{_currentGame.DistilleryName} - {_currentGame.DistillerName}";
+            }
+            
+            _currentGame.SaveDate = DateTime.Now;
+            
             return await App.FileSystem.WriteFileAsync<GameObject>(fileName, _currentGame);
         }
     }
