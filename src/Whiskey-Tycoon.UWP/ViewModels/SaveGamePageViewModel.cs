@@ -43,14 +43,18 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             // New Game is null
             if (fileName == null)
             {
-                fileName = $"{DateTime.Now.Ticks}.{Constants.FILE_SAVEGAME_EXTENSION}";
+                _currentGame.FileName = $"{DateTime.Now.Ticks}.{Constants.FILE_SAVEGAME_EXTENSION}";
 
                 _currentGame.SaveDisplayName = $"{_currentGame.DistilleryName} - {_currentGame.DistillerName}";
+            }
+            else
+            {
+                _currentGame.FileName = fileName;
             }
             
             _currentGame.SaveDate = DateTime.Now;
             
-            return await App.FileSystem.WriteFileAsync<GameObject>(fileName, _currentGame);
+            return await App.FileSystem.WriteFileAsync<GameObject>(_currentGame.FileName, _currentGame);
         }
     }
 }
