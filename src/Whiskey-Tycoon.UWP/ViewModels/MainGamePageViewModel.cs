@@ -9,6 +9,19 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             Game = gameObject;
         }
 
+        public void NextQuarter()
+        {
+            if (Game.CurrentQuarter == 4)
+            {
+                Game.CurrentYear++;
+                Game.CurrentQuarter = 1;
+            }
+            else
+            {
+                Game.CurrentQuarter++;
+            }
 
+            Game = Game;
+        }
     }
 }
