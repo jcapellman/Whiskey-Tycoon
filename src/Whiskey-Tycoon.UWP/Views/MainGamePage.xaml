@@ -25,11 +25,7 @@
         </Grid>
 
         <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-            <Button Grid.Column="0" Style="{StaticResource BackButtonStyle}" Content="Save Game" Click="btnSaveGame_Click" />
+            <Button Style="{StaticResource BackButtonStyle}" Content="Options" Click="btnOptions_Click" />
         </Grid>
     </Grid>
 </Page>

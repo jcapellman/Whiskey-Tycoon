@@ -1,4 +1,9 @@
-﻿using Windows.UI.Xaml;
+﻿using System;
+
+using Windows.Foundation;
+
+using Windows.UI.Popups;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -27,9 +32,29 @@ namespace Whiskey_Tycoon.UWP.Views
             DataContext = new MainGamePageViewModel((GameObject)e.Parameter);
         }
 
-        private void btnSaveGame_Click(object sender, RoutedEventArgs e)
+        public static Rect GetElementRect(FrameworkElement element)
         {
-            Frame.Navigate(typeof(SaveGamePage), viewModel.Game);
+            var buttonTransform = element.TransformToVisual(null);
+            var point = buttonTransform.TransformPoint(new Point());
+
+            return new Rect(point, new Size(element.ActualWidth, element.ActualHeight));
+        }
+
+        private async void btnOptions_Click(object sender, RoutedEventArgs e)
+        {
+            var menu = new PopupMenu();
+
+            menu.Commands.Add(new UICommand("Save Game", (command) =>
+            {
+                Frame.Navigate(typeof(SaveGamePage), viewModel.Game);
+            }));
+
+            menu.Commands.Add(new UICommand("Quit Game", (command) =>
+            {
+                Frame.Navigate(typeof(MainPage));
+            }));
+
+            await menu.ShowForSelectionAsync(GetElementRect((FrameworkElement)sender));
         }
     }
 }
