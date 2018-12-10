@@ -56,5 +56,10 @@ namespace Whiskey_Tycoon.UWP.Views
 
             await menu.ShowForSelectionAsync(GetElementRect((FrameworkElement)sender));
         }
+
+        private void btnNextQuarter_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.NextQuarter();
+        }
     }
 }
