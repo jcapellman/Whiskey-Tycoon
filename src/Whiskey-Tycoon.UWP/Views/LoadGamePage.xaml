@@ -33,13 +33,17 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Column="0" Text="{Binding DistilleryName}" />
-                        <TextBlock Grid.Column="1" Text="{Binding SaveDate}" />
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                        <Button Grid.Column="2" Content="Load Game" Style="{StaticResource ListButtonStyle}" Click="btnLoadGame_Click" />
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding DistilleryName}" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding SaveDate}" />
+
+                        <Button Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Center" Grid.Column="1" Content="Load Game" Style="{StaticResource ListButtonStyle}" Click="btnLoadGame_Click" />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
