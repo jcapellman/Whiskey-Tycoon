@@ -21,6 +21,12 @@
         <TextBlock Grid.Row="0" Style="{StaticResource PageHeaderStyle}" Text="Load Game" />
 
         <ListView Grid.Row="1" ItemsSource="{Binding Games}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
