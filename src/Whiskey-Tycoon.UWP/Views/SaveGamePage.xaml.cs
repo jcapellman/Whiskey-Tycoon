@@ -3,6 +3,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 using Whiskey_Tycoon.lib.JSONObjects;
+
 using Whiskey_Tycoon.UWP.ViewModels;
 
 namespace Whiskey_Tycoon.UWP.Views
@@ -23,20 +24,30 @@ namespace Whiskey_Tycoon.UWP.Views
             base.OnNavigatedTo(e);
         }
         
-        private async void btnSaveGame_Click(object sender, RoutedEventArgs e)
+        private void btnSaveGame_Click(object sender, RoutedEventArgs e)
         {
             var button = (Button) e.OriginalSource;
 
-            var result = await viewModel.SaveGameAsync(((GameObject)button.DataContext).FileName);
+            SaveGame(((GameObject)button.DataContext).FileName);
+        }
+
+        private void btnBackGame_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.GoBack();
+        }
+
+        private async void SaveGame(string fileName = null)
+        {
+            var result = await viewModel.SaveGameAsync(fileName);
 
             ShowMessage(result ? "Saved Successfully" : "Save failed");
 
             Frame.GoBack();
         }
 
-        private void btnBackGame_Click(object sender, RoutedEventArgs e)
+        private void btnSaveNewGame_Click(object sender, RoutedEventArgs e)
         {
-            Frame.GoBack();
+            SaveGame();
         }
     }
 }
