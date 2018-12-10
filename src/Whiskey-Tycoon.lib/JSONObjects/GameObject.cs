@@ -14,5 +14,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
         public DateTime SaveDate { get; set; }
 
         public string FileName { get; set; }
+
+        public string SaveDisplayName { get; set; }
     }
 }
