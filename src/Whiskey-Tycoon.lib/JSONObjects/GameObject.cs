@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Whiskey_Tycoon.lib.JSONObjects
 {
     public class GameObject
     {
+        public int ID { get; set; }
+
         public string DistilleryName { get; set; }
 
         public string DistillerName { get; set; }
@@ -22,5 +26,14 @@ namespace Whiskey_Tycoon.lib.JSONObjects
         public string FileName { get; set; }
 
         public string SaveDisplayName { get; set; }
+
+        public List<WarehouseObject> Warehouses { get; set; }
+
+        public int BarrelsAging => Warehouses.Sum(a => a.Barrels.Count);
+
+        public GameObject()
+        {
+            Warehouses = new List<WarehouseObject>();
+        }
     }
 }
