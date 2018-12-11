@@ -29,11 +29,14 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
         public List<WarehouseObject> Warehouses { get; set; }
 
+        public List<EventObject> Events { get; set; }
+
         public int BarrelsAging => Warehouses.Sum(a => a.Barrels.Count);
 
         public GameObject()
         {
             Warehouses = new List<WarehouseObject>();
+            Events = new List<EventObject>();
         }
     }
 }
