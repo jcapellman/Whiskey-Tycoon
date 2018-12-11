@@ -88,7 +88,19 @@
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Style="{StaticResource ListTextBlockStyle}" Text="{Binding EventText}" />
+                        <Grid Margin="0,0,0,10">
+                            <Grid.Background>
+                                <SolidColorBrush Color="Black" Opacity="0.5" />
+                            </Grid.Background>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Margin="0,0,0,0" Style="{StaticResource ListTextBlockSubStyle}" Text="{Binding EventDate}" />
+                            <TextBlock Grid.Row="1" Margin="0,0,0,0" Style="{StaticResource ListTextBlockStyle}" Text="{Binding EventText}" />
+                        </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
