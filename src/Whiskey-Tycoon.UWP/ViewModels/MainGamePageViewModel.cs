@@ -26,6 +26,20 @@ namespace Whiskey_Tycoon.UWP.ViewModels
                 warehouse.AgeBarrels();
             }
 
+            var eventText = "No barrels aged";
+
+            if (Game.BarrelsAging > 0)
+            {
+                eventText = $"{Game.BarrelsAging} barrel(s) were aging, be sure to check the Angel's share.";
+            }
+
+            Game.Events.Insert(0, new EventObject
+            {
+                EventText = eventText,
+                Year = Game.CurrentYear,
+                Quarter = Game.CurrentQuarter
+            });
+
             Game = Game;
         }
     }
