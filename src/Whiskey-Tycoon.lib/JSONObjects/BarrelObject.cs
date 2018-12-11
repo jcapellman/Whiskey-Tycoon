@@ -8,6 +8,13 @@
 
         public int BarrelQuarter { get; set; }
 
-        public float FillAmount { get; set; }
+        public int Quarters { get; set; }
+
+        public int FillAmount { get; set; }
+
+        public void AgeBarrel()
+        {
+            FillAmount = (int) (100 - (Quarters * .25));
+        }
     }
 }
