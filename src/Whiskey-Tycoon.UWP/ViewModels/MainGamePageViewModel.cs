@@ -21,6 +21,11 @@ namespace Whiskey_Tycoon.UWP.ViewModels
                 Game.CurrentQuarter++;
             }
 
+            foreach (var warehouse in Game.Warehouses)
+            {
+                warehouse.AgeBarrels();
+            }
+
             Game = Game;
         }
     }
