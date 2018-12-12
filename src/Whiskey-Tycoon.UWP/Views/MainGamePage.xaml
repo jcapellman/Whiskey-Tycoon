@@ -107,7 +107,14 @@
         </Grid>
 
         <Grid Grid.Row="2">
-            <Button Style="{StaticResource BackButtonStyle}" Content="Options" Click="btnOptions_Click" />
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Style="{StaticResource BackButtonStyle}" Content="Options" Click="btnOptions_Click" />
+            <Button Grid.Column="1" Style="{StaticResource CenterButtonStyle}" HorizontalAlignment="Center" Content="Warehouse Management" Click="btnWarehouseManagement_Click" />
         </Grid>
     </Grid>
 </Page>
