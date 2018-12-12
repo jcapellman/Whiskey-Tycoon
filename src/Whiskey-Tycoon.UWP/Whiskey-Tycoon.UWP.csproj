@@ -29,6 +29,8 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -130,6 +132,7 @@
     <Compile Include="ViewModels\NewGamePageViewModel.cs" />
     <Compile Include="ViewModels\OptionsPageViewModel.cs" />
     <Compile Include="ViewModels\SaveGamePageViewModel.cs" />
+    <Compile Include="ViewModels\WarehouseManagementPageViewModel.cs" />
     <Compile Include="Views\BasePage.cs" />
     <Compile Include="Views\LoadGamePage.xaml.cs">
       <DependentUpon>LoadGamePage.xaml</DependentUpon>
@@ -145,6 +148,9 @@
     </Compile>
     <Compile Include="Views\SaveGamePage.xaml.cs">
       <DependentUpon>SaveGamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WarehouseManagementPage.xaml.cs">
+      <DependentUpon>WarehouseManagementPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -194,6 +200,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SaveGamePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WarehouseManagementPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
