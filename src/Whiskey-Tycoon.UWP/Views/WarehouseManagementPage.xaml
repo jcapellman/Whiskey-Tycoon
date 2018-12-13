@@ -56,7 +56,7 @@
                 <TextBlock Grid.Row="5" Text="Warehouse Cost" Style="{StaticResource PageLabelHeaderStyle}" />
                 <TextBlock Grid.Row="6" Text="{Binding WarehouseCost}" Style="{StaticResource PageHeaderStyle}" />
 
-                <Button Grid.Row="7" Content="Create Warehouse" Style="{StaticResource BackButtonStyle}" Margin="10,10,0,10" />
+                <Button Grid.Row="7" Content="Create Warehouse" Style="{StaticResource BackButtonStyle}" IsEnabled="{Binding EnableCreateButton}" Margin="10,10,0,10" />
             </Grid>
         </Grid>
 
