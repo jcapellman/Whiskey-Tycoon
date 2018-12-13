@@ -61,7 +61,28 @@ namespace Whiskey_Tycoon.UWP.ViewModels
                 _warehouseName = value;
 
                 OnPropertyChanged();
+
+                ValidateForm();
             }
+        }
+
+        private bool _enableCreateButton;
+
+        public bool EnableCreateButton
+        {
+            get => _enableCreateButton;
+
+            set
+            {
+                _enableCreateButton = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private void ValidateForm()
+        {
+            EnableCreateButton = !string.IsNullOrEmpty(WarehouseName);
         }
 
         public WarehouseManagementPageViewModel(GameObject game)
@@ -77,6 +98,8 @@ namespace Whiskey_Tycoon.UWP.ViewModels
         {
             WarehouseName = string.Empty;
             SelectedWarehouseSize = WarehouseSizes.FirstOrDefault();
+
+            ValidateForm();
         }
     }
 }
