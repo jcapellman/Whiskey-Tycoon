@@ -1,4 +1,6 @@
-﻿using Windows.UI.Xaml;
+﻿using System;
+using Windows.UI.Popups;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -9,7 +11,7 @@ namespace Whiskey_Tycoon.UWP.Views
 {
     public sealed partial class WarehouseManagementPage : Page
     {
-        private WarehouseManagementPageViewModel viewModel => (WarehouseManagementPageViewModel) DataContext;
+        private WarehouseManagementPageViewModel ViewModel => (WarehouseManagementPageViewModel) DataContext;
 
         public WarehouseManagementPage()
         {
@@ -35,7 +37,26 @@ namespace Whiskey_Tycoon.UWP.Views
 
         private void btnCreateWarehouse_Click(object sender, RoutedEventArgs e)
         {
-            viewModel.AddWarehouse();
+            ViewModel.AddWarehouse();
+        }
+        
+        private async void btnDemolish_Click(object sender, RoutedEventArgs e)
+        {
+            var warehouse = (WarehouseObject)((Button) sender).DataContext;
+
+            var messageDialog = new MessageDialog($"Are you sure you want to delete the {warehouse.Name} warehouse?");
+
+            messageDialog.Commands.Add(new UICommand("Yes"));
+            messageDialog.Commands.Add(new UICommand("No"));
+
+            var result = await messageDialog.ShowAsync();
+
+            if (result.Label == "No")
+            {
+                return;
+            }
+
+            ViewModel.RemoveWarehouse(warehouse);
         }
     }
 }
