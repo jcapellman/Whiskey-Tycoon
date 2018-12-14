@@ -9,9 +9,9 @@ namespace Whiskey_Tycoon.UWP.ViewModels
 {
     public class WarehouseManagementPageViewModel : BaseViewModel
     {
-        private int _warehouseCost;
+        private ulong _warehouseCost;
 
-        public int WarehouseCost
+        public ulong WarehouseCost
         {
             get => _warehouseCost;
 
