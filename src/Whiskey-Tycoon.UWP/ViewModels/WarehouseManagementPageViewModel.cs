@@ -109,6 +109,8 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             Game.AddWarehouse(WarehouseName, SelectedWarehouseSize, WarehouseCost);
 
             ClearForm();
+
+            Game = Game;
         }
     }
 }
