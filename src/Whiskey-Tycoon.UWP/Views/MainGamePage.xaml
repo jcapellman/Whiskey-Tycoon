@@ -62,12 +62,14 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Text="DATE (YEAR-QUARTER)" Style="{StaticResource PageLabelHeaderStyle}" HorizontalAlignment="Right" />
                 <TextBlock Grid.Row="1" Text="{Binding Game.CurrentDate}" Style="{StaticResource PageLabelHeaderStyle}" HorizontalAlignment="Right" />
 
-                <Button Grid.Row="2" Style="{StaticResource ActionButtonStyle}" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Content="Next Quarter" Click="btnNextQuarter_Click" />
+                <TextBlock Grid.Row="2" Text="BOTTLES SOLD" Style="{StaticResource PageLabelHeaderStyle}" HorizontalAlignment="Right" />
+                <TextBlock Grid.Row="3" Text="{Binding Game.BottlesSold}" Style="{StaticResource PageLabelHeaderStyle}" HorizontalAlignment="Right" />
             </Grid>
         </Grid>
 
@@ -110,11 +112,12 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0" Style="{StaticResource BackButtonStyle}" Content="Options" Click="btnOptions_Click" />
             <Button Grid.Column="1" Style="{StaticResource CenterButtonStyle}" HorizontalAlignment="Center" Content="Warehouse Management" Click="btnWarehouseManagement_Click" />
+            <Button Grid.Column="2" Style="{StaticResource CenterButtonStyle}" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Content="Next Quarter" Click="btnNextQuarter_Click" />
         </Grid>
     </Grid>
 </Page>
