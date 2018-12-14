@@ -112,5 +112,10 @@ namespace Whiskey_Tycoon.UWP.ViewModels
 
             Game = Game;
         }
+
+        public void RemoveWarehouse(WarehouseObject warehouse)
+        {
+            Game.Warehouses.Remove(warehouse);
+        }
     }
 }
