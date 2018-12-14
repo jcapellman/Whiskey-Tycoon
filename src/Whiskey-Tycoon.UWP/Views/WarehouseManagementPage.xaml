@@ -95,7 +95,7 @@
 
                                 <TextBlock Grid.Column="0" Text="{Binding Name}" Style="{StaticResource ListTextBlockSubStyle}" />
                                 <Button Grid.Column="1" Content="View" HorizontalAlignment="Right" Style="{StaticResource ListActionButtonStyle}" />
-                                <Button Grid.Column="2" Content="Delete" HorizontalAlignment="Right" Style="{StaticResource ListActionButtonStyle}" />
+                                <Button Grid.Column="2" Content="Demolish" HorizontalAlignment="Right" Style="{StaticResource ListActionButtonStyle}" Click="btnDemolish_Click" />
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
