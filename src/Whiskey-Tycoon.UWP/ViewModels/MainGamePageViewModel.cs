@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Whiskey_Tycoon.lib.Enums;
 using Whiskey_Tycoon.lib.JSONObjects;
@@ -29,24 +30,24 @@ namespace Whiskey_Tycoon.UWP.ViewModels
                 warehouse.AgeBarrels();
             }
 
-            var eventText = "No barrels aged";
+            var eventText = new List<string> { "No barrels aged." };
 
             if (Game.BarrelsAging > 0)
             {
-                eventText = $"{Game.BarrelsAging} barrel(s) were aging, be sure to check the Angel's share.";
+                eventText.Add($"{Game.BarrelsAging} barrel(s) were aging, be sure to check the Angel's share.");
             }
 
             if (Game.Warehouses.Any())
             {
-                eventText +=
-                    $"Maintenance upkeep on {Game.Warehouses.Count} warehouses (${Game.WarehouseMaintenanceCost}) subtracted from account";
+                eventText.Add(
+                    $"Maintenance upkeep on {Game.Warehouses.Count} warehouses (${Game.WarehouseMaintenanceCost}) subtracted from account.");
 
                 Game.MoneyAvailable -= Game.WarehouseMaintenanceCost;
             }
 
             Game.Events.Insert(0, new EventObject
             {
-                EventText = eventText,
+                EventText = string.Join(" ", eventText),
                 Year = Game.CurrentYear,
                 Quarter = Game.CurrentQuarter
             });
