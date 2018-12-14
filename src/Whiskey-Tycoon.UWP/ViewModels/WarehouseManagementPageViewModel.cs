@@ -47,6 +47,8 @@ namespace Whiskey_Tycoon.UWP.ViewModels
                 OnPropertyChanged();
 
                 WarehouseCost = ((WarehouseSizes) Enum.Parse(typeof(WarehouseSizes), value)).ToCost();
+
+                ValidateForm();
             }
         }
 
@@ -82,7 +84,7 @@ namespace Whiskey_Tycoon.UWP.ViewModels
 
         private void ValidateForm()
         {
-            EnableCreateButton = !string.IsNullOrEmpty(WarehouseName);
+            EnableCreateButton = !string.IsNullOrEmpty(WarehouseName) && Game.MoneyAvailable > WarehouseCost;
         }
 
         public WarehouseManagementPageViewModel(GameObject game)
