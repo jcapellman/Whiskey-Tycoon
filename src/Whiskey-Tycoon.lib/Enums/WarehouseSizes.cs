@@ -29,5 +29,24 @@
 
             return 0;
         }
+
+        public static ulong ToQuarterCost(this WarehouseSizes warehouseSize)
+        {
+            switch (warehouseSize)
+            {
+                case WarehouseSizes.Tiny:
+                    return 10000;
+                case WarehouseSizes.Small:
+                    return 20000;
+                case WarehouseSizes.Medium:
+                    return 50000;
+                case WarehouseSizes.Large:
+                    return 100000;
+                case WarehouseSizes.ExtraLarge:
+                    return 500000;
+            }
+
+            return 0;
+        }
     }
 }
