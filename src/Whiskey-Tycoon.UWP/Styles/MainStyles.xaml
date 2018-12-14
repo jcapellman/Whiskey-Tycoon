@@ -50,17 +50,17 @@
     </Style>
 
     <Style x:Key="BackButtonStyle" TargetType="Button">
-        <Setter Property="FontSize" Value="30" />
+        <Setter Property="FontSize" Value="20" />
         <Setter Property="Margin" Value="10,10,10,10" />
-        <Setter Property="Width" Value="300" />
-        <Setter Property="Height" Value="55" />
+        <Setter Property="Width" Value="200" />
+        <Setter Property="Height" Value="40" />
     </Style>
 
     <Style x:Key="CenterButtonStyle" TargetType="Button">
-        <Setter Property="FontSize" Value="30" />
+        <Setter Property="FontSize" Value="20" />
         <Setter Property="Margin" Value="10,10,10,10" />
-        <Setter Property="Width" Value="350" />
-        <Setter Property="Height" Value="55" />
+        <Setter Property="Width" Value="250" />
+        <Setter Property="Height" Value="40" />
     </Style>
 
     <Style x:Key="ListButtonStyle" TargetType="Button">
