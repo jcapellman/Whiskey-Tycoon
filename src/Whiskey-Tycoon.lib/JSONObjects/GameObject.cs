@@ -35,6 +35,23 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
         public int BarrelsAging => Warehouses.Sum(a => a.Barrels.Count);
 
+        public ObservableCollection<ReleasesObject> Releases { get; set; }
+
+        public ulong BottlesSold
+        {
+            get
+            {
+                ulong total = 0;
+
+                foreach (var release in Releases)
+                {
+                    total += release.BottlesSold;
+                }
+
+                return total;
+            }
+        }
+
         public ulong WarehouseMaintenanceCost
         {
             get
@@ -54,6 +71,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
         {
             Warehouses = new List<WarehouseObject>();
             Events = new ObservableCollection<EventObject>();
+            Releases = new ObservableCollection<ReleasesObject>();
         }
 
         public void AddWarehouse(string warehouseName, string selectedWarehouseSize, ulong warehouseCost)
