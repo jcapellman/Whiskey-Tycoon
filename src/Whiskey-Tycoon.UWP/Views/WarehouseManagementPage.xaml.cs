@@ -9,6 +9,8 @@ namespace Whiskey_Tycoon.UWP.Views
 {
     public sealed partial class WarehouseManagementPage : Page
     {
+        private WarehouseManagementPageViewModel viewModel => (WarehouseManagementPageViewModel) DataContext;
+
         public WarehouseManagementPage()
         {
             InitializeComponent();
@@ -29,6 +31,11 @@ namespace Whiskey_Tycoon.UWP.Views
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             Frame.GoBack();
+        }
+
+        private void btnCreateWarehouse_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.AddWarehouse();
         }
     }
 }
