@@ -62,7 +62,7 @@
                 <TextBlock Grid.Row="7" Text="Money Available" Style="{StaticResource PageLabelHeaderStyle}" />
                 <TextBlock Grid.Row="8" Text="{Binding Game.MoneyAvailable}" Style="{StaticResource PageHeaderStyle}" />
 
-                <Button Grid.Row="9" Content="Create Warehouse" Style="{StaticResource BackButtonStyle}" IsEnabled="{Binding EnableCreateButton}" Margin="10,10,0,10" />
+                <Button Grid.Row="9" Content="Create Warehouse" Style="{StaticResource BackButtonStyle}" IsEnabled="{Binding EnableCreateButton}" Margin="10,10,0,10" Click="btnCreateWarehouse_Click" />
             </Grid>
         </Grid>
 
