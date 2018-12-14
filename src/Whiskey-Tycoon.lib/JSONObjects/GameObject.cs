@@ -29,7 +29,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
         public string SaveDisplayName { get; set; }
             
-        public List<WarehouseObject> Warehouses { get; set; }
+        public ObservableCollection<WarehouseObject> Warehouses { get; set; }
 
         public ObservableCollection<EventObject> Events { get; set; }
 
@@ -69,7 +69,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
         public GameObject()
         {
-            Warehouses = new List<WarehouseObject>();
+            Warehouses = new ObservableCollection<WarehouseObject>();
             Events = new ObservableCollection<EventObject>();
             Releases = new ObservableCollection<ReleasesObject>();
         }
