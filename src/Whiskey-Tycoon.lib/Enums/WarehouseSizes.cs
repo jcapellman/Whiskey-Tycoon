@@ -11,23 +11,23 @@
 
     public static class ExtensionMethods
     {
-        public static int ToCost(this WarehouseSizes warehouseSize)
+        public static ulong ToCost(this WarehouseSizes warehouseSize)
         {
             switch (warehouseSize)
             {
                 case WarehouseSizes.Tiny:
-                    return 10000;
-                case WarehouseSizes.Small:
-                    return 20000;
-                case WarehouseSizes.Medium:
-                    return 50000;
-                case WarehouseSizes.Large:
                     return 100000;
-                case WarehouseSizes.ExtraLarge:
+                case WarehouseSizes.Small:
+                    return 200000;
+                case WarehouseSizes.Medium:
                     return 500000;
+                case WarehouseSizes.Large:
+                    return 1000000;
+                case WarehouseSizes.ExtraLarge:
+                    return 5000000;
             }
 
-            return -1;
+            return 0;
         }
     }
 }
