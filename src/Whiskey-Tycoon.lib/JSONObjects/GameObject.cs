@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
+using Whiskey_Tycoon.lib.Enums;
+
 namespace Whiskey_Tycoon.lib.JSONObjects
 {
     public class GameObject
@@ -33,10 +35,39 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
         public int BarrelsAging => Warehouses.Sum(a => a.Barrels.Count);
 
+        public ulong WarehouseMaintenanceCost
+        {
+            get
+            {
+                ulong total = 0;
+                
+                foreach (var warehouse in Warehouses)
+                {
+                    total += warehouse.Size.ToQuarterCost();
+                }
+
+                return total;
+            }
+        }
+
         public GameObject()
         {
             Warehouses = new List<WarehouseObject>();
             Events = new ObservableCollection<EventObject>();
+        }
+
+        public void AddWarehouse(string warehouseName, string selectedWarehouseSize, ulong warehouseCost)
+        {
+            MoneyAvailable -= warehouseCost;
+
+            var warehouseObject = new WarehouseObject
+            {
+                Barrels = new List<BarrelObject>(),
+                Name = warehouseName,
+                Size = (WarehouseSizes) Enum.Parse(typeof(WarehouseSizes), selectedWarehouseSize)
+            };
+
+            Warehouses.Add(warehouseObject);
         }
     }
 }
