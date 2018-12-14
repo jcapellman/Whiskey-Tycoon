@@ -48,7 +48,7 @@
                 <TextBlock Grid.Row="0" Text="Create new Warehouse" Style="{StaticResource PageHeaderStyle}" />
 
                 <TextBlock Grid.Row="1" Text="Warehouse Name" Style="{StaticResource PageLabelHeaderStyle}" />
-                <TextBox Grid.Row="2" Style="{StaticResource TextBoxFieldStyle}" Margin="10,0,0,0" />
+                <TextBox Grid.Row="2" Style="{StaticResource TextBoxFieldStyle}" Text="{Binding WarehouseName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,0" />
 
                 <TextBlock Grid.Row="3" Text="Warehouse Size" Style="{StaticResource PageLabelHeaderStyle}" />
                 <ComboBox Grid.Row="4" ItemsSource="{Binding WarehouseSizes}" SelectedItem="{Binding SelectedWarehouseSize, Mode=TwoWay}" Width="350" Margin="10,10,0,10" />
