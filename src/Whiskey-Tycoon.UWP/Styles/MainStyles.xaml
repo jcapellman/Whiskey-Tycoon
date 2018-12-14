@@ -83,6 +83,7 @@
     <Style x:Key="ListTextBlockSubStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="15" />
         <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
 
     <Style x:Key="ActionButtonStyle" TargetType="Button">
