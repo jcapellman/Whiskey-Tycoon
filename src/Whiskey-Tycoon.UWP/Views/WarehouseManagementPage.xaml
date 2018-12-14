@@ -43,6 +43,9 @@
                     <RowDefinition Height="Auto" />
 
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Text="Create new Warehouse" Style="{StaticResource PageHeaderStyle}" />
@@ -56,7 +59,10 @@
                 <TextBlock Grid.Row="5" Text="Warehouse Cost" Style="{StaticResource PageLabelHeaderStyle}" />
                 <TextBlock Grid.Row="6" Text="{Binding WarehouseCost}" Style="{StaticResource PageHeaderStyle}" />
 
-                <Button Grid.Row="7" Content="Create Warehouse" Style="{StaticResource BackButtonStyle}" IsEnabled="{Binding EnableCreateButton}" Margin="10,10,0,10" />
+                <TextBlock Grid.Row="7" Text="Money Available" Style="{StaticResource PageLabelHeaderStyle}" />
+                <TextBlock Grid.Row="8" Text="{Binding Game.MoneyAvailable}" Style="{StaticResource PageHeaderStyle}" />
+
+                <Button Grid.Row="9" Content="Create Warehouse" Style="{StaticResource BackButtonStyle}" IsEnabled="{Binding EnableCreateButton}" Margin="10,10,0,10" />
             </Grid>
         </Grid>
 
