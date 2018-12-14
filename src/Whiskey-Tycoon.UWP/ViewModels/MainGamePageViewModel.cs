@@ -1,4 +1,7 @@
-﻿using Whiskey_Tycoon.lib.JSONObjects;
+﻿using System;
+using System.Linq;
+using Whiskey_Tycoon.lib.Enums;
+using Whiskey_Tycoon.lib.JSONObjects;
 
 namespace Whiskey_Tycoon.UWP.ViewModels
 {
@@ -31,6 +34,14 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             if (Game.BarrelsAging > 0)
             {
                 eventText = $"{Game.BarrelsAging} barrel(s) were aging, be sure to check the Angel's share.";
+            }
+
+            if (Game.Warehouses.Any())
+            {
+                eventText +=
+                    $"Maintenance upkeep on {Game.Warehouses.Count} warehouses (${Game.WarehouseMaintenanceCost}) subtracted from account";
+
+                Game.MoneyAvailable -= Game.WarehouseMaintenanceCost;
             }
 
             Game.Events.Insert(0, new EventObject
