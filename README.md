@@ -1,1 +1,2 @@
-# Whiskey-Tycoon
+# Whiskey Tycoon
+A tycoon simulation
