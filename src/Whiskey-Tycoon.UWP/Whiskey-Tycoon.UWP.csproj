@@ -133,6 +133,7 @@
     <Compile Include="ViewModels\OptionsPageViewModel.cs" />
     <Compile Include="ViewModels\SaveGamePageViewModel.cs" />
     <Compile Include="ViewModels\WarehouseManagementPageViewModel.cs" />
+    <Compile Include="ViewModels\WarehousePageViewModel.cs" />
     <Compile Include="Views\BasePage.cs" />
     <Compile Include="Views\LoadGamePage.xaml.cs">
       <DependentUpon>LoadGamePage.xaml</DependentUpon>
@@ -151,6 +152,9 @@
     </Compile>
     <Compile Include="Views\WarehouseManagementPage.xaml.cs">
       <DependentUpon>WarehouseManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WarehousePage.xaml.cs">
+      <DependentUpon>WarehousePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -204,6 +208,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\WarehouseManagementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WarehousePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
