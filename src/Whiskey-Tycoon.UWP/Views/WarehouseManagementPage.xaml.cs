@@ -4,6 +4,7 @@ using Windows.UI.Xaml.Navigation;
 
 using Whiskey_Tycoon.lib.JSONObjects;
 using Whiskey_Tycoon.UWP.ViewModels;
+using Whiskey_Tycoon.lib.Containers;
 
 namespace Whiskey_Tycoon.UWP.Views
 {
@@ -24,7 +25,7 @@ namespace Whiskey_Tycoon.UWP.Views
             {
                 return;
             }
-
+            
             DataContext = new WarehouseManagementPageViewModel((GameObject)e.Parameter);
         }
 
@@ -50,6 +51,17 @@ namespace Whiskey_Tycoon.UWP.Views
             }
 
             ViewModel.RemoveWarehouse(warehouse);
+        }
+
+        private void btnManage_Click(object sender, RoutedEventArgs e)
+        {
+            var warehouse = (WarehouseObject)((Button)sender).DataContext;
+
+            Frame.Navigate(typeof(WarehousePage), new ManageWarehouseContainer
+            {
+                Game = ViewModel.Game,
+                SelectedWarehouse = warehouse
+            });
         }
     }
 }
