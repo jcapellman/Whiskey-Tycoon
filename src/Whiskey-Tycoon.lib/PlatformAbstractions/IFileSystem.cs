@@ -10,5 +10,7 @@ namespace Whiskey_Tycoon.lib.PlatformAbstractions
         Task<T> GetFileAsync<T>(string fileName);
 
         Task<List<T>> GetFilesAsync<T>(string extension);
+
+        Task<bool> DeleteFileAsync(string fileName);
     }
 }
