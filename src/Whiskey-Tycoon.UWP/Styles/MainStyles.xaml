@@ -72,7 +72,7 @@
     <Style x:Key="ListActionButtonStyle" TargetType="Button">
         <Setter Property="FontSize" Value="20" />
         <Setter Property="Width" Value="125" />
-        <Setter Property="Height" Value="35" />
+        <Setter Property="Height" Value="40" />
         <Setter Property="Margin" Value="0,0,10,0" />
     </Style>
 
