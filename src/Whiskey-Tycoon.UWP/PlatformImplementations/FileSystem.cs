@@ -89,5 +89,19 @@ namespace Whiskey_Tycoon.UWP.PlatformImplementations
 
             return objects;
         }
+
+        public async Task<bool> DeleteFileAsync(string fileName)
+        {
+            var file = await _storageFolder.GetFileAsync(fileName);
+
+            if (file == null)
+            {
+                return false;
+            }
+
+            await file.DeleteAsync();
+
+            return true;
+        }
     }
 }
