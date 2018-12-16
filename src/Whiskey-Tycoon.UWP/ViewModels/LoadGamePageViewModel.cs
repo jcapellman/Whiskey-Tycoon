@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 using Whiskey_Tycoon.lib.Common;
 using Whiskey_Tycoon.lib.JSONObjects;
@@ -27,5 +28,7 @@ namespace Whiskey_Tycoon.UWP.ViewModels
 
             Games = new ObservableCollection<GameObject>(gameList);
         }
+
+        public async Task<bool> DeleteGameAsync(GameObject gameObject) => await App.FileSystem.DeleteFileAsync(gameObject.FileName);
     }
 }
