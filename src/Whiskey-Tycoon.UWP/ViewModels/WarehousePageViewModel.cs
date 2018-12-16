@@ -13,7 +13,7 @@ namespace Whiskey_Tycoon.UWP.ViewModels
 
             set
             {
-                _warehouseHeaderName = $"Manage Warehouse {value}";
+                _warehouseHeaderName = $"Manage Warehouse ({value})";
 
                 OnPropertyChanged();
             }
