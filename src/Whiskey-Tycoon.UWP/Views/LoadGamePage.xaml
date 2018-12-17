@@ -1,4 +1,4 @@
-﻿<Page
+﻿<local:BasePage
     x:Class="Whiskey_Tycoon.UWP.Views.LoadGamePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -46,7 +46,7 @@
 
                         <Button Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Center" Grid.Column="1" Content="Delete Game" Style="{StaticResource ListButtonStyle}" Click="btnDeleteGame_Click" />
 
-                        <Button Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Center" Grid.Column="2" Content="Load Game" Style="{StaticResource ListButtonStyle}" Click="btnLoadGame_Click" />
+                        <Button Grid.Row="0" Grid.RowSpan="2" Margin="10,0,10,0" VerticalAlignment="Center" Grid.Column="2" Content="Load Game" Style="{StaticResource ListButtonStyle}" Click="btnLoadGame_Click" />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -60,4 +60,4 @@
             <Button Grid.Column="0" Style="{StaticResource BackButtonStyle}" Content="Back to Main Menu" Click="btnBackButton_Click" />
         </Grid>
     </Grid>
-</Page>
+</local:BasePage>
