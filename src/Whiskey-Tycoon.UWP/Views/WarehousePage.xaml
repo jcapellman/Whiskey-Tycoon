@@ -50,26 +50,32 @@
                     <RowDefinition Height="Auto" />
 
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Text="Create New Batch" Style="{StaticResource PageHeaderStyle}" />
 
                 <TextBlock Grid.Row="1" Text="Batch Name" Style="{StaticResource PageLabelHeaderStyle}" />
-                <TextBox Grid.Row="2" Style="{StaticResource TextBoxFieldStyle}" />
+                <TextBox Grid.Row="2" Text="{Binding BatchName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxFieldStyle}" Margin="10,10,10,10"  />
 
                 <TextBlock Grid.Row="3" Text="Batch Type" Style="{StaticResource PageLabelHeaderStyle}" />
-                <ComboBox Grid.Row="4" />
+                <ComboBox Grid.Row="4" ItemsSource="{Binding AvailableBatchTypes}" SelectedItem="{Binding SelectedBatchType, Mode=TwoWay}" Margin="10,10,0,10" />
 
                 <TextBlock Grid.Row="5" Text="Barrels" Style="{StaticResource PageLabelHeaderStyle}" />
-                <TextBox Grid.Row="6" />
+                <TextBox Grid.Row="6" Text="{Binding NumberBarrels, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxFieldStyle}" Margin="10,10,10,10" />
 
                 <TextBlock Grid.Row="7" Text="Money Available" Style="{StaticResource PageLabelHeaderStyle}" />
-                <TextBlock Grid.Row="8" />
+                <TextBlock Grid.Row="8" Text="{Binding Game.MoneyAvailable}" Style="{StaticResource PageHeaderStyle}" />
 
                 <TextBlock Grid.Row="9" Text="Batch Cost" Style="{StaticResource PageLabelHeaderStyle}" />
-                <TextBlock Grid.Row="10" />
+                <TextBlock Grid.Row="10" Text="{Binding BatchCost}" Style="{StaticResource PageHeaderStyle}" />
 
-                <Button Grid.Row="11" Content="Create Batch" Style="{StaticResource ActionButtonStyle}" />
+                <TextBlock Grid.Row="11" Text="Space Available" Style="{StaticResource PageLabelHeaderStyle}" />
+                <TextBlock Grid.Row="12" Text="{Binding Warehouse.SpaceAvailable}" Style="{StaticResource PageHeaderStyle}" />
+
+                <Button Grid.Row="13" Content="Create Batch" IsEnabled="{Binding EnableCreateButton}" Style="{StaticResource ActionButtonStyle}" />
             </Grid>
 
             <Grid Grid.Column="1" Margin="10,10,10,10">
