@@ -75,7 +75,7 @@
                 <TextBlock Grid.Row="11" Text="Space Available" Style="{StaticResource PageLabelHeaderStyle}" />
                 <TextBlock Grid.Row="12" Text="{Binding Warehouse.SpaceAvailable}" Style="{StaticResource PageHeaderStyle}" />
 
-                <Button Grid.Row="13" Content="Create Batch" IsEnabled="{Binding EnableCreateButton}" Style="{StaticResource ActionButtonStyle}" />
+                <Button Grid.Row="13" Content="Create Batch" IsEnabled="{Binding EnableCreateButton}" Style="{StaticResource ActionButtonStyle}" Click="btnCreateBatch_Click" />
             </Grid>
 
             <Grid Grid.Column="1" Margin="10,10,10,10">
