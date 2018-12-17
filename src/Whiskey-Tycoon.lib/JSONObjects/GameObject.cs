@@ -74,6 +74,21 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             Releases = new ObservableCollection<ReleasesObject>();
         }
 
+        public void UpdateWarehouse(WarehouseObject warehouseObject)
+        {
+            for (var x = 0; x < Warehouses.Count; x++)
+            {
+                if (Warehouses[x].ID != warehouseObject.ID)
+                {
+                    continue;
+                }
+
+                Warehouses[x] = warehouseObject;
+
+                return;
+            }
+        }
+
         public void AddWarehouse(string warehouseName, string selectedWarehouseSize, ulong warehouseCost)
         {
             MoneyAvailable -= warehouseCost;
