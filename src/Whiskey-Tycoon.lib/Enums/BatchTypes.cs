@@ -2,8 +2,8 @@
 {
     public enum BatchTypes
     {
-        RYE = 7,
-        BOURBON = 10,
-        WHISKEY = 5
+        RYE = 7000,
+        BOURBON = 10000,
+        WHISKEY = 5000
     }
 }
