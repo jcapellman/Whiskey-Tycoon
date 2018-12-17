@@ -12,6 +12,8 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
         public WarehouseSizes Size { get; set; }
 
+        public int SpaceAvailable => (int) Size - Barrels.Count;
+
         public void AgeBarrels()
         {
             foreach (var barrel in Barrels)
