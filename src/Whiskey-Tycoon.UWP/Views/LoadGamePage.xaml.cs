@@ -6,7 +6,7 @@ using Whiskey_Tycoon.UWP.ViewModels;
 
 namespace Whiskey_Tycoon.UWP.Views
 {
-    public sealed partial class LoadGamePage : Page
+    public sealed partial class LoadGamePage : BasePage
     {
         private LoadGamePageViewModel viewModel => (LoadGamePageViewModel) DataContext;
 
@@ -31,13 +31,22 @@ namespace Whiskey_Tycoon.UWP.Views
 
         private async void btnDeleteGame_Click(object sender, RoutedEventArgs e)
         {
+            var dialogResult = await ShowYesNoDialogAsync("Are you sure you want to delete this save game?");
+
+            if (!dialogResult)
+            {
+                return;
+            }
+
             var button = (Button)e.OriginalSource;
 
-            var deletionResult = await viewModel.DeleteGameAsync((GameObject)button.DataContext);
+            var gameObject = (GameObject) button.DataContext;
+
+            var deletionResult = await viewModel.DeleteGameAsync(gameObject);
 
             if (!deletionResult)
             {
-                // Show Message
+                ShowMessage($"{gameObject.SaveDisplayName} could not be deleted");
             }
         }
     }
