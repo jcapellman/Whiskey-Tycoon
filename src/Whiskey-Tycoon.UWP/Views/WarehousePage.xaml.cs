@@ -1,9 +1,7 @@
 ﻿using Whiskey_Tycoon.lib.Containers;
-using Whiskey_Tycoon.lib.JSONObjects;
 using Whiskey_Tycoon.UWP.ViewModels;
 
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 namespace Whiskey_Tycoon.UWP.Views
@@ -31,7 +29,12 @@ namespace Whiskey_Tycoon.UWP.Views
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            Frame.GoBack();
+            Frame.Navigate(typeof(WarehouseManagementPage), ViewModel.Game);
+        }
+
+        private void btnCreateBatch_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.AddBatch();
         }
     }
 }
