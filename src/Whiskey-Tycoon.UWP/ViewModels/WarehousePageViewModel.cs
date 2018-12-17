@@ -138,6 +138,26 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             NumberBarrels = 0;
         }
 
+        public void AddBatch()
+        {
+            for (var x = 0; x < NumberBarrels; x++)
+            {
+                var barrelObject = new BarrelObject
+                {
+                    Quarters = 0,
+                    BarrelYear = Game.CurrentYear,
+                    FillAmount = 100,
+                    BarrelQuarter = Game.CurrentQuarter
+                };
+                
+                Warehouse.Barrels.Add(barrelObject);
+            }
+
+            Game.UpdateWarehouse(Warehouse);
+
+            ClearForm();
+        }
+
         public WarehousePageViewModel(ManageWarehouseContainer container)
         {
             Game = container.Game;
