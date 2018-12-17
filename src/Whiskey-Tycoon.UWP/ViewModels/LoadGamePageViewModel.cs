@@ -29,6 +29,16 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             Games = new ObservableCollection<GameObject>(gameList);
         }
 
-        public async Task<bool> DeleteGameAsync(GameObject gameObject) => await App.FileSystem.DeleteFileAsync(gameObject.FileName);
+        public async Task<bool> DeleteGameAsync(GameObject gameObject)
+        {
+            var result = await App.FileSystem.DeleteFileAsync(gameObject.FileName);
+
+            if (result)
+            {
+                LoadGames();
+            }
+
+            return result;
+        }
     }
 }
