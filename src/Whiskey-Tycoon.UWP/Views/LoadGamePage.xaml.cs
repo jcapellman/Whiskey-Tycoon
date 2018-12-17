@@ -28,5 +28,17 @@ namespace Whiskey_Tycoon.UWP.Views
             
             Frame.Navigate(typeof(MainGamePage), (GameObject)button.DataContext);
         }
+
+        private async void btnDeleteGame_Click(object sender, RoutedEventArgs e)
+        {
+            var button = (Button)e.OriginalSource;
+
+            var deletionResult = await viewModel.DeleteGameAsync((GameObject)button.DataContext);
+
+            if (!deletionResult)
+            {
+                // Show Message
+            }
+        }
     }
 }
