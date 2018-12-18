@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Whiskey_Tycoon.lib.Enums;
+
 using Whiskey_Tycoon.lib.JSONObjects;
 
 namespace Whiskey_Tycoon.UWP.ViewModels
@@ -27,7 +26,7 @@ namespace Whiskey_Tycoon.UWP.ViewModels
 
             foreach (var warehouse in Game.Warehouses)
             {
-                warehouse.AgeBarrels();
+                warehouse.AgeBatches();
             }
 
             var eventText = new List<string> { "No barrels aged." };
