@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 using Whiskey_Tycoon.lib.Enums;
 
@@ -11,17 +12,22 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
         public string Name { get; set; }
 
-        public List<BarrelObject> Barrels { get; set; }
+        public ObservableCollection<BatchObject> Batches { get; set; }
 
         public WarehouseSizes Size { get; set; }
 
-        public int SpaceAvailable => (int) Size - Barrels.Count;
+        public int BarrelsAging => Batches.Sum(a => a.Barrels.Count);
+
+        public int SpaceAvailable => (int) Size - BarrelsAging;
 
         public void AgeBarrels()
         {
-            foreach (var barrel in Barrels)
+            foreach (var batch in Batches)
             {
-                barrel.AgeBarrel();
+                foreach (var barrel in batch.Barrels)
+                {
+                    barrel.AgeBarrel(batch.BarrelQuarterAge);
+                }
             }
         }
 
@@ -29,7 +35,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
         {
             ID = Guid.NewGuid();
 
-            Barrels = new List<BarrelObject>();
+            Batches = new ObservableCollection<BatchObject>();
         }
     }
 }
