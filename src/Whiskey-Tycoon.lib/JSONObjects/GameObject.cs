@@ -32,7 +32,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
         public ObservableCollection<EventObject> Events { get; set; }
 
-        public int BarrelsAging => Warehouses.Sum(a => a.Batches.Count);
+        public int BarrelsAging => Warehouses.Sum(a => a.BarrelsAging);
 
         public ObservableCollection<ReleasesObject> Releases { get; set; }
 
