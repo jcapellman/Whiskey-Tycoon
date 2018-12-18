@@ -176,11 +176,12 @@ namespace Whiskey_Tycoon.UWP.ViewModels
         {
             var batch = new BatchObject
             {
+                Name = BatchName,
                 BarrelQuarterAge = 0,
                 BarrelQuarter = Game.CurrentQuarter,
                 BarrelYear = Game.CurrentYear,
                 BatchType = (BatchTypes) Enum.Parse(typeof(BatchTypes), SelectedBatchType),
-                Barrels = new List<BarrelObject>(NumberBarrels)
+                Barrels = Enumerable.Repeat(new BarrelObject(), NumberBarrels).ToList()
             };
             
             Warehouse.Batches.Add(batch);
