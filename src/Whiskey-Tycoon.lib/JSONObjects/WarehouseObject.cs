@@ -20,14 +20,11 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
         public int SpaceAvailable => (int) Size - BarrelsAging;
 
-        public void AgeBarrels()
+        public void AgeBatches()
         {
             foreach (var batch in Batches)
             {
-                foreach (var barrel in batch.Barrels)
-                {
-                    barrel.AgeBarrel(batch.BarrelQuarterAge);
-                }
+                batch.AgeBatch();
             }
         }
 
