@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -181,9 +180,12 @@ namespace Whiskey_Tycoon.UWP.ViewModels
                 BarrelQuarter = Game.CurrentQuarter,
                 BarrelYear = Game.CurrentYear,
                 BatchType = (BatchTypes) Enum.Parse(typeof(BatchTypes), SelectedBatchType),
-                Barrels = Enumerable.Repeat(new BarrelObject(), NumberBarrels).ToList()
+                Barrels = Enumerable.Repeat(new BarrelObject(), NumberBarrels).ToList(),
+                QualityLevel = (IngredientsQualityLevels)Enum.Parse(typeof(IngredientsQualityLevels), SelectedIngredientQualityLevel)
             };
-            
+
+            batch.Quality = batch.QualityLevel.ToQuality();
+
             Warehouse.Batches.Add(batch);
 
             Game.UpdateWarehouse(Warehouse);
