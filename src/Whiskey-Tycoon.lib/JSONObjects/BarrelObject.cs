@@ -3,18 +3,17 @@
     public class BarrelObject
     {
         public int ID { get; set; }
-
-        public int BarrelYear { get; set; }
-
-        public int BarrelQuarter { get; set; }
-
-        public int Quarters { get; set; }
-
+        
         public int FillAmount { get; set; }
 
-        public void AgeBarrel()
+        public BarrelObject()
         {
-            FillAmount = (int) (100 - (Quarters * .25));
+            FillAmount = 100;
+        }
+
+        public void AgeBarrel(int quartersOld)
+        {
+            FillAmount = (int) (100 - (quartersOld * .25));
         }
     }
 }
