@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -10,6 +11,35 @@ namespace Whiskey_Tycoon.UWP.ViewModels
 {
     public class WarehousePageViewModel : BaseViewModel
     {
+        private ObservableCollection<string> _availableIngredientQualityLevels;
+
+        public ObservableCollection<string> AvailableIngredientQualityLevels
+        {
+            get => _availableIngredientQualityLevels;
+
+            set
+            {
+                _availableIngredientQualityLevels = value;
+
+                OnPropertyChanged();
+            }
+        }
+
+        private string _selectedIngredientQualityLevel;
+
+        public string SelectedIngredientQualityLevel
+        {
+            get => _selectedIngredientQualityLevel;
+
+            set
+            {
+                _selectedIngredientQualityLevel = value;
+                OnPropertyChanged();
+
+                ValidateForm();
+            }
+        }
+
         private string _warehouseHeaderName;
 
         public string WarehouseHeaderName
@@ -126,7 +156,10 @@ namespace Whiskey_Tycoon.UWP.ViewModels
                 NumberBarrels = Warehouse.SpaceAvailable;
             }
 
-            BatchCost = (ulong) ((int)(BatchTypes)Enum.Parse(typeof(BatchTypes), SelectedBatchType) * NumberBarrels);
+            var qualityLevel =
+                (IngredientsQualityLevels) Enum.Parse(typeof(IngredientsQualityLevels), SelectedIngredientQualityLevel ?? AvailableIngredientQualityLevels.FirstOrDefault());
+
+            BatchCost = (ulong) ((int)(BatchTypes)Enum.Parse(typeof(BatchTypes), SelectedBatchType) * NumberBarrels * qualityLevel.ToQualityLevelMultiplier());
 
             EnableCreateButton = !string.IsNullOrEmpty(BatchName) && BatchCost <= Game.MoneyAvailable;
         }
@@ -136,22 +169,21 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             BatchName = string.Empty;
             SelectedBatchType = AvailableBatchTypes.FirstOrDefault();
             NumberBarrels = 0;
+            SelectedIngredientQualityLevel = AvailableIngredientQualityLevels.FirstOrDefault();
         }
 
         public void AddBatch()
         {
-            for (var x = 0; x < NumberBarrels; x++)
+            var batch = new BatchObject
             {
-                var barrelObject = new BarrelObject
-                {
-                    Quarters = 0,
-                    BarrelYear = Game.CurrentYear,
-                    FillAmount = 100,
-                    BarrelQuarter = Game.CurrentQuarter
-                };
-                
-                Warehouse.Barrels.Add(barrelObject);
-            }
+                BarrelQuarterAge = 0,
+                BarrelQuarter = Game.CurrentQuarter,
+                BarrelYear = Game.CurrentYear,
+                BatchType = (BatchTypes) Enum.Parse(typeof(BatchTypes), SelectedBatchType),
+                Barrels = new List<BarrelObject>(NumberBarrels)
+            };
+            
+            Warehouse.Batches.Add(batch);
 
             Game.UpdateWarehouse(Warehouse);
 
@@ -162,7 +194,9 @@ namespace Whiskey_Tycoon.UWP.ViewModels
         {
             Game = container.Game;
             Warehouse = container.SelectedWarehouse;
+
             AvailableBatchTypes = new ObservableCollection<string>(Enum.GetNames(typeof(BatchTypes)));
+            AvailableIngredientQualityLevels = new ObservableCollection<string>(Enum.GetNames(typeof(IngredientsQualityLevels)));
             
             ClearForm();
         }
