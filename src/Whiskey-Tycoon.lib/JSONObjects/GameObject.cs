@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -33,7 +32,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
         public ObservableCollection<EventObject> Events { get; set; }
 
-        public int BarrelsAging => Warehouses.Sum(a => a.Barrels.Count);
+        public int BarrelsAging => Warehouses.Sum(a => a.Batches.Count);
 
         public ObservableCollection<ReleasesObject> Releases { get; set; }
 
@@ -95,7 +94,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
             var warehouseObject = new WarehouseObject
             {
-                Barrels = new List<BarrelObject>(),
+                Batches = new ObservableCollection<BatchObject>(),
                 Name = warehouseName,
                 Size = (WarehouseSizes) Enum.Parse(typeof(WarehouseSizes), selectedWarehouseSize)
             };
