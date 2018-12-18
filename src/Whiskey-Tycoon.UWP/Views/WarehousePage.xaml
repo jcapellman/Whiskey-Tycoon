@@ -95,6 +95,37 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Style="{StaticResource PageHeaderStyle}" Text="Currently Aging Batches" />
+
+                <ListView Grid.Row="1" ItemsSource="{Binding Warehouse.Batches}">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" Style="{StaticResource ListTextBlockSubStyle}" Text="{Binding Name}" />
+                                <TextBlock Grid.Column="1" Style="{StaticResource ListTextBlockSubStyle}" Margin="10,0,10,0" Text="{Binding BatchType}" />
+                                <TextBlock Grid.Column="2" Style="{StaticResource ListTextBlockSubStyle}" Margin="0,0,10,0" Text="{Binding NumberBarrels}" />
+                                <TextBlock Grid.Column="3" Style="{StaticResource ListTextBlockSubStyle}" Text="{Binding BarrelingDate}" />
+
+                                <Button Grid.Column="4" Style="{StaticResource ListActionButtonStyle}" HorizontalAlignment="Right" Content="Trash" />
+                                <Button Grid.Column="5" Style="{StaticResource ListActionButtonStyle}" HorizontalAlignment="Right" Content="Release" />
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </Grid>
         </Grid>
 
