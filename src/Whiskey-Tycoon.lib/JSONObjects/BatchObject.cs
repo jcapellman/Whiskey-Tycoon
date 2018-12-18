@@ -14,6 +14,10 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
         public int BarrelQuarterAge { get; set; }
 
+        public string BarrelingDate => $"{BarrelQuarter}-{BarrelYear}";
+
+        public int NumberBarrels => Barrels.Count;
+
         public IngredientsQualityLevels QualityLevel { get; set; }
 
         public BatchTypes BatchType { get; set; }
