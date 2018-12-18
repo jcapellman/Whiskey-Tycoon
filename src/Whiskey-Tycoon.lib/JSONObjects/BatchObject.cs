@@ -22,11 +22,23 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
         public BatchTypes BatchType { get; set; }
 
+        public int Quality { get; set; }
+
         public List<BarrelObject> Barrels { get; set; }
 
         public BatchObject()
         {
             Barrels = new List<BarrelObject>();
+        }
+
+        public void AgeBatch()
+        {
+            Quality += QualityLevel.ToQualityQuarterIncrement();
+
+            foreach (var barrel in Barrels)
+            {
+                barrel.AgeBarrel(BarrelQuarterAge);
+            }
         }
     }
 }
