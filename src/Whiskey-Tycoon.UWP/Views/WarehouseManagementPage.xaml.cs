@@ -31,7 +31,7 @@ namespace Whiskey_Tycoon.UWP.Views
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-            Frame.GoBack();
+            Frame.Navigate(typeof(MainGamePage), ViewModel.Game);
         }
 
         private void btnCreateWarehouse_Click(object sender, RoutedEventArgs e)
