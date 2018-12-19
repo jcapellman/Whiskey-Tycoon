@@ -31,5 +31,12 @@ namespace Whiskey_Tycoon.UWP.Views
         {
             Frame.Navigate(typeof(WarehousePage), ViewModel.Container);
         }
+
+        private void btnRelease_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.ReleaseTheBatch();
+
+            Frame.Navigate(typeof(MainGamePage), ViewModel.Game);
+        }
     }
 }
