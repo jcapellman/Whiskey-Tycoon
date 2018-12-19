@@ -123,7 +123,7 @@
                                 <TextBlock Grid.Column="4" Style="{StaticResource ListTextBlockSubStyle}" Text="{Binding BarrelingDate}" />
 
                                 <Button Grid.Column="5" Style="{StaticResource ListActionButtonStyle}" HorizontalAlignment="Right" Content="Trash" Click="btnTrash_Click" />
-                                <Button Grid.Column="6" Style="{StaticResource ListActionButtonStyle}" HorizontalAlignment="Right" Content="Release" />
+                                <Button Grid.Column="6" Style="{StaticResource ListActionButtonStyle}" HorizontalAlignment="Right" Content="Release" Click="btnRelease_Click" />
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
