@@ -59,5 +59,19 @@ namespace Whiskey_Tycoon.UWP.Views
                 ShowMessage($"{batchObject.Name} could not be trashed");
             }
         }
+
+        private void btnRelease_Click(object sender, RoutedEventArgs e)
+        {
+            var button = (Button)e.OriginalSource;
+
+            var batchObject = (BatchObject)button.DataContext;
+
+            Frame.Navigate(typeof(ReleaseBatchPage), new ManageWarehouseContainer
+            {
+                Game = ViewModel.Game,
+                SelectedWarehouse = ViewModel.Warehouse,
+                SelectedBatch = batchObject
+            });
+        }
     }
 }
