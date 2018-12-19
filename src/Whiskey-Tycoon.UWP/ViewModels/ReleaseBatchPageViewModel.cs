@@ -9,6 +9,20 @@ namespace Whiskey_Tycoon.UWP.ViewModels
 
         private BatchObject _batchObject;
 
+        public BatchObject Batch
+        {
+            get => _batchObject;
+
+            set
+            {
+                _batchObject = value;
+
+                OnPropertyChanged();
+            }
+        }
+        
+        public string ReleaseBatchName => $"Release {Batch.Name}";
+
         public ManageWarehouseContainer Container => new ManageWarehouseContainer
         {
             Game = Game,
