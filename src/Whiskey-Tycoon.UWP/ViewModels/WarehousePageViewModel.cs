@@ -203,5 +203,12 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             
             ClearForm();
         }
+
+        public bool DeleteBatch(BatchObject batchObject)
+        {
+            Warehouse.Batches.Remove(batchObject);
+
+            return true;
+        }
     }
 }
