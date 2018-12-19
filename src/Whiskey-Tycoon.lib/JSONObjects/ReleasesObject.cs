@@ -4,6 +4,8 @@
     {
         public string Name { get; set; }
 
+        public int QualityRating { get; set; }
+
         public float YearsAged { get; set; }
 
         public int ReleaseYear { get; set; }
