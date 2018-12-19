@@ -7,5 +7,7 @@ namespace Whiskey_Tycoon.lib.Containers
         public GameObject Game { get; set; }
 
         public WarehouseObject SelectedWarehouse { get; set; }
+
+        public BatchObject SelectedBatch { get; set; }
     }
 }

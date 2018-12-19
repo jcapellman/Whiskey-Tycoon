@@ -131,6 +131,7 @@
     <Compile Include="ViewModels\MainGamePageViewModel.cs" />
     <Compile Include="ViewModels\NewGamePageViewModel.cs" />
     <Compile Include="ViewModels\OptionsPageViewModel.cs" />
+    <Compile Include="ViewModels\ReleaseBatchPageViewModel.cs" />
     <Compile Include="ViewModels\SaveGamePageViewModel.cs" />
     <Compile Include="ViewModels\WarehouseManagementPageViewModel.cs" />
     <Compile Include="ViewModels\WarehousePageViewModel.cs" />
@@ -146,6 +147,9 @@
     </Compile>
     <Compile Include="Views\OptionsPage.xaml.cs">
       <DependentUpon>OptionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReleaseBatchPage.xaml.cs">
+      <DependentUpon>ReleaseBatchPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SaveGamePage.xaml.cs">
       <DependentUpon>SaveGamePage.xaml</DependentUpon>
@@ -200,6 +204,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\OptionsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReleaseBatchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
