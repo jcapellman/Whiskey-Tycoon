@@ -26,6 +26,8 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
         public List<BarrelObject> Barrels { get; set; }
 
+        public float BarrelAgeInYears => BarrelQuarterAge / 12.0f;
+
         public BatchObject()
         {
             Barrels = new List<BarrelObject>();
