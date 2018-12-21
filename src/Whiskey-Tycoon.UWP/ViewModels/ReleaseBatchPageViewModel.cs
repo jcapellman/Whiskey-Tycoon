@@ -21,6 +21,19 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             }
         }
 
+        private float _selectedProof;
+
+        public float SelectedProof
+        {
+            get => _selectedProof;
+
+            set
+            {
+                _selectedProof = value;
+                OnPropertyChanged();
+            }
+        }
+
         private int _price;
 
         public int Price
