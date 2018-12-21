@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+using System.Linq;
 using Whiskey_Tycoon.lib.Enums;
 
 namespace Whiskey_Tycoon.lib.JSONObjects
@@ -25,6 +25,8 @@ namespace Whiskey_Tycoon.lib.JSONObjects
         public int Quality { get; set; }
 
         public List<BarrelObject> Barrels { get; set; }
+
+        public int BarrelFillAmount => Barrels.FirstOrDefault().FillAmount;
 
         public float BarrelAgeInYears => BarrelQuarterAge / 12.0f;
 
