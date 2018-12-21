@@ -23,6 +23,7 @@
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
@@ -47,7 +48,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Style="{StaticResource PageHeaderStyle}" Text="Release Metrics" />
+                <TextBlock Grid.Row="0" Style="{StaticResource PageHeaderStyle}" Text="Batch Metrics" />
 
                 <TextBlock Grid.Row="1" Style="{StaticResource PageLabelHeaderStyle}" Text="Release Quality" />
                 <TextBlock Grid.Row="2" Style="{StaticResource PageLabelHeaderStyle}" Text="{Binding Batch.Quality}" />
@@ -60,6 +61,44 @@
 
                 <TextBlock Grid.Row="7" Style="{StaticResource PageLabelHeaderStyle}" Text="Barrel Age In Years" />
                 <TextBlock Grid.Row="8" Style="{StaticResource PageLabelHeaderStyle}" Text="{Binding Batch.BarrelAgeInYears}" />
+            </Grid>
+
+            <Grid Grid.Column="1" Margin="10,10,10,10">
+                <Grid.Background>
+                    <SolidColorBrush Opacity="0.5" Color="Black" />
+                </Grid.Background>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="Angel Share" Style="{StaticResource PageHeaderStyle}" />
+                <TextBlock Grid.Row="1" Text="{Binding Batch.BarrelFillAmount}" Style="{StaticResource PageLabelHeaderStyle}" />
+            </Grid>
+
+            <Grid Grid.Column="2" Margin="10,10,10,10">
+                <Grid.Background>
+                    <SolidColorBrush Opacity="0.5" Color="Black" />
+                </Grid.Background>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="Release Options" Style="{StaticResource PageHeaderStyle}" />
+
+                <TextBlock Grid.Row="1" Text="Proof" Style="{StaticResource PageLabelHeaderStyle}" />
+                <TextBox Grid.Row="2" Text="{Binding SelectedProof, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+
+                <TextBlock Grid.Row="3" Text="Bottles" Style="{StaticResource PageLabelHeaderStyle}" />
+                <TextBox Grid.Row="4" Text="{Binding NumberBottles, Mode=TwoWay}" />
             </Grid>
         </Grid>
 
