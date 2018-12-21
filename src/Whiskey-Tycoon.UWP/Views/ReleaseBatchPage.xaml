@@ -98,7 +98,7 @@
                 <TextBox Grid.Row="2" Text="{Binding SelectedProof, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
 
                 <TextBlock Grid.Row="3" Text="Bottles" Style="{StaticResource PageLabelHeaderStyle}" />
-                <TextBox Grid.Row="4" Text="{Binding NumberBottles, Mode=TwoWay}" />
+                <TextBlock Grid.Row="4" Text="{Binding NumberBottles, Mode=TwoWay}" />
             </Grid>
         </Grid>
 
