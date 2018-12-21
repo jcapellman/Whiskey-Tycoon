@@ -21,6 +21,19 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             }
         }
 
+        private int _numberBottles;
+
+        public int NumberBottles
+        {
+            get => _numberBottles;
+
+            set
+            {
+                _numberBottles = value;
+                OnPropertyChanged();
+            }
+        }
+
         private float _selectedProof;
 
         public float SelectedProof
@@ -31,6 +44,9 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             {
                 _selectedProof = value;
                 OnPropertyChanged();
+
+                NumberBottles = (Batch.NumberBarrels * Whiskey_Tycoon.lib.Common.Constants.NUMBER_BOTTLES_PER_BARREL) *
+                                (Batch.BarrelFillAmount / 100);
             }
         }
 
