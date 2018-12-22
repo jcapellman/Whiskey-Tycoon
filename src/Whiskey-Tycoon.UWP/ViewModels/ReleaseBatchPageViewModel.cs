@@ -1,4 +1,5 @@
-﻿using Whiskey_Tycoon.lib.Containers;
+﻿using Whiskey_Tycoon.lib.Common;
+using Whiskey_Tycoon.lib.Containers;
 using Whiskey_Tycoon.lib.JSONObjects;
 
 namespace Whiskey_Tycoon.UWP.ViewModels
@@ -45,8 +46,17 @@ namespace Whiskey_Tycoon.UWP.ViewModels
                 _selectedProof = value;
                 OnPropertyChanged();
 
-                NumberBottles = (Batch.NumberBarrels * Whiskey_Tycoon.lib.Common.Constants.NUMBER_BOTTLES_PER_BARREL) *
-                                (Batch.BarrelFillAmount / 100);
+                double mlSpirits = (Batch.NumberBarrels * Constants.NUMBER_BOTTLES_PER_BARREL *
+                                (Batch.BarrelFillAmount / 100) * Constants.BOTTLE_SIZE);
+
+                if (value > Constants.DEFAULT_BARREL_PROOF)
+                {
+                    _selectedProof = Constants.DEFAULT_BARREL_PROOF;
+                }
+
+                mlSpirits *= (Constants.DEFAULT_BARREL_PROOF / _selectedProof);
+
+                NumberBottles = (int) (mlSpirits / Constants.BOTTLE_SIZE);
             }
         }
 
@@ -77,6 +87,8 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             Game = container.Game;
             _warehouseObject = container.SelectedWarehouse;
             _batchObject = container.SelectedBatch;
+
+            SelectedProof = Constants.DEFAULT_BARREL_PROOF;
         }
 
         public void ReleaseTheBatch()
