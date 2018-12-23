@@ -1,4 +1,6 @@
-﻿namespace Whiskey_Tycoon.lib.JSONObjects
+﻿using Whiskey_Tycoon.lib.Helpers;
+
+namespace Whiskey_Tycoon.lib.JSONObjects
 {
     public class BarrelObject
     {
@@ -11,9 +13,9 @@
             FillAmount = 100;
         }
 
-        public void AgeBarrel(int quartersOld)
+        public void AgeBarrel()
         {
-            FillAmount = (int) (100 - (quartersOld * .25));
+            FillAmount = AngelsShare.ComputeAngelShare(FillAmount);
         }
     }
 }
