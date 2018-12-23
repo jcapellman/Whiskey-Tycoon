@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+
 using Whiskey_Tycoon.lib.Enums;
 
 namespace Whiskey_Tycoon.lib.JSONObjects
@@ -41,7 +42,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
             foreach (var barrel in Barrels)
             {
-                barrel.AgeBarrel(BarrelQuarterAge);
+                barrel.AgeBarrel();
             }
         }
     }
