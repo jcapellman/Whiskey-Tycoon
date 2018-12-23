@@ -29,7 +29,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
         public int BarrelFillAmount => Barrels.FirstOrDefault().FillAmount;
 
-        public float BarrelAgeInYears => BarrelQuarterAge / 12.0f;
+        public float BarrelAgeInYears => BarrelQuarterAge / 4.0f;
 
         public BatchObject()
         {
@@ -38,6 +38,8 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
         public void AgeBatch()
         {
+            BarrelQuarterAge++;
+
             Quality += QualityLevel.ToQualityQuarterIncrement();
 
             foreach (var barrel in Barrels)
