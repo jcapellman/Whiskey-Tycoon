@@ -11,7 +11,14 @@ namespace Whiskey_Tycoon.lib.Helpers
         {
             var random = new Random((int)DateTime.Now.Ticks);
             
-            return fillAmount - random.Next(SHARE_MIN, SHARE_MAX);
+            var value = fillAmount - random.Next(SHARE_MIN, SHARE_MAX);
+
+            if (value < 0)
+            {
+                return 0;
+            }
+
+            return value;
         } 
     }
 }
