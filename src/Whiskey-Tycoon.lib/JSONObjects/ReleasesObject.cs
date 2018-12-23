@@ -15,5 +15,7 @@
         public float BottlePrice { get; set; }
 
         public ulong BottlesSold { get; set; }
+
+        public ulong BottlesAvailable { get; set; }
     }
 }
