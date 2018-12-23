@@ -102,7 +102,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             Warehouses.Add(warehouseObject);
         }
 
-        public void ReleaseBatch(BatchObject batch, int price, float selectedProof)
+        public void ReleaseBatch(BatchObject batch, int price, float selectedProof, ulong bottlesAvailable)
         {
             var releaseObject = new ReleasesObject
             {
@@ -112,7 +112,8 @@ namespace Whiskey_Tycoon.lib.JSONObjects
                 QualityRating = batch.Quality,
                 ReleaseQuarter = CurrentQuarter,
                 ReleaseYear = CurrentYear,
-                YearsAged = batch.BarrelQuarterAge / 4.0f
+                YearsAged = batch.BarrelQuarterAge / 4.0f,
+                BottlesAvailable = bottlesAvailable
             };
 
             Releases.Add(releaseObject);
