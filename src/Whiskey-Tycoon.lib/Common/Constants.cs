@@ -10,6 +10,8 @@
 
         public const int NUMBER_BOTTLES_PER_BARREL = 265;
 
+        public const double BARREL_SIZE_ML = 200626.824;
+
         public const int DEFAULT_BARREL_PROOF = 130;
 
         public const int BOTTLE_SIZE = 750;
