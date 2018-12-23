@@ -22,9 +22,9 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             }
         }
 
-        private int _numberBottles;
+        private ulong _numberBottles;
 
-        public int NumberBottles
+        public ulong NumberBottles
         {
             get => _numberBottles;
 
@@ -59,7 +59,7 @@ namespace Whiskey_Tycoon.UWP.ViewModels
 
                 mlSpirits *= (Constants.DEFAULT_BARREL_PROOF / _selectedProof);
 
-                NumberBottles = (int) (mlSpirits / Constants.BOTTLE_SIZE);
+                NumberBottles = (ulong) (mlSpirits / Constants.BOTTLE_SIZE);
             }
         }
 
@@ -96,7 +96,7 @@ namespace Whiskey_Tycoon.UWP.ViewModels
 
         public void ReleaseTheBatch()
         {
-            Game.ReleaseBatch(_batchObject, Price, SelectedProof);
+            Game.ReleaseBatch(_batchObject, Price, SelectedProof, NumberBottles);
         }
     }
 }
