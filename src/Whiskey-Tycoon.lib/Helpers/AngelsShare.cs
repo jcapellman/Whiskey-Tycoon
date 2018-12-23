@@ -5,7 +5,7 @@ namespace Whiskey_Tycoon.lib.Helpers
     public static class AngelsShare
     {
         private const int SHARE_MIN = 1;
-        private const int SHARE_MAX = 4;
+        private const int SHARE_MAX = 2;
 
         public static int ComputeAngelShare(int fillAmount)
         {
