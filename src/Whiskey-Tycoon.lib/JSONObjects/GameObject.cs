@@ -101,5 +101,21 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
             Warehouses.Add(warehouseObject);
         }
+
+        public void ReleaseBatch(BatchObject batch, int price, float selectedProof)
+        {
+            var releaseObject = new ReleasesObject
+            {
+                Name = batch.Name,
+                BottlesSold = 0,
+                BottlePrice = price,
+                QualityRating = batch.Quality,
+                ReleaseQuarter = CurrentQuarter,
+                ReleaseYear = CurrentYear,
+                YearsAged = batch.BarrelQuarterAge / 4.0f
+            };
+
+            Releases.Add(releaseObject);
+        }
     }
 }

@@ -52,6 +52,9 @@ namespace Whiskey_Tycoon.UWP.ViewModels
                 if (value > Constants.DEFAULT_BARREL_PROOF)
                 {
                     _selectedProof = Constants.DEFAULT_BARREL_PROOF;
+                } else if (value < Constants.MINIMUM_PROOF)
+                {
+                    _selectedProof = Constants.MINIMUM_PROOF;
                 }
 
                 mlSpirits *= (Constants.DEFAULT_BARREL_PROOF / _selectedProof);
@@ -93,18 +96,7 @@ namespace Whiskey_Tycoon.UWP.ViewModels
 
         public void ReleaseTheBatch()
         {
-            var releaseObject = new ReleasesObject
-            {
-                Name = Batch.Name,
-                BottlesSold = 0,
-                BottlePrice = Price,
-                QualityRating = Batch.Quality,
-                ReleaseQuarter = Game.CurrentQuarter,
-                ReleaseYear = Game.CurrentYear,
-                YearsAged = Batch.BarrelQuarterAge / 4.0f
-            };
-
-            Game.Releases.Add(releaseObject);
+            Game.ReleaseBatch(_batchObject, Price, SelectedProof);
         }
     }
 }

@@ -13,5 +13,7 @@
         public const int DEFAULT_BARREL_PROOF = 130;
 
         public const int BOTTLE_SIZE = 750;
+
+        public const int MINIMUM_PROOF = 80;
     }
 }
