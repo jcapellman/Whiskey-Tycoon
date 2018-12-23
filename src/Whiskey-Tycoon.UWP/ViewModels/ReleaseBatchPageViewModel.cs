@@ -1,4 +1,6 @@
-﻿using Whiskey_Tycoon.lib.Common;
+﻿using System.Linq;
+
+using Whiskey_Tycoon.lib.Common;
 using Whiskey_Tycoon.lib.Containers;
 using Whiskey_Tycoon.lib.JSONObjects;
 
@@ -45,21 +47,20 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             {
                 _selectedProof = value;
                 OnPropertyChanged();
-
-                double mlSpirits = (Batch.NumberBarrels * Constants.NUMBER_BOTTLES_PER_BARREL *
-                                (Batch.BarrelFillAmount / 100) * Constants.BOTTLE_SIZE);
-
+                
                 if (value > Constants.DEFAULT_BARREL_PROOF)
                 {
-                    _selectedProof = Constants.DEFAULT_BARREL_PROOF;
+                    SelectedProof = Constants.DEFAULT_BARREL_PROOF;
                 } else if (value < Constants.MINIMUM_PROOF)
                 {
-                    _selectedProof = Constants.MINIMUM_PROOF;
+                    SelectedProof = Constants.MINIMUM_PROOF;
                 }
 
-                mlSpirits *= (Constants.DEFAULT_BARREL_PROOF / _selectedProof);
+                var liquidAvailable = Batch.Barrels.Sum(a => (a.FillAmount / 100.0) * Constants.BARREL_SIZE_ML);
 
-                NumberBottles = (ulong) (mlSpirits / Constants.BOTTLE_SIZE);
+                var water = liquidAvailable * ((Constants.DEFAULT_BARREL_PROOF / SelectedProof) - 1);
+
+                NumberBottles = (ulong)(liquidAvailable + water) / Constants.BOTTLE_SIZE;
             }
         }
 
