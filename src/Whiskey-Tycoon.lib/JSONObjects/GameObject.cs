@@ -102,7 +102,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             Warehouses.Add(warehouseObject);
         }
 
-        public void ReleaseBatch(BatchObject batch, int price, float selectedProof, ulong bottlesAvailable)
+        public void ReleaseBatch(BatchObject batch, float price, float selectedProof, ulong bottlesAvailable)
         {
             var releaseObject = new ReleasesObject
             {
