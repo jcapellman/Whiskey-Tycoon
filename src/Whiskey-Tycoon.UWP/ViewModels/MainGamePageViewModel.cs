@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Whiskey_Tycoon.lib.Common;
 using Whiskey_Tycoon.lib.Enums;
 using Whiskey_Tycoon.lib.JSONObjects;
 
@@ -29,12 +30,13 @@ namespace Whiskey_Tycoon.UWP.ViewModels
                 warehouse.AgeBatches();
             }
 
-            var eventText = new List<string>();
-
-            eventText.Add(Game.BarrelsAging > 0
-                ? $"{Game.BarrelsAging} barrel(s) were aging, be sure to check the Angel's share."
-                : "No barrels aged.");
-
+            var eventText = new List<string>
+            {
+                Game.BarrelsAging > 0
+                    ? $"{Game.BarrelsAging} barrel(s) were aging, be sure to check the Angel's share."
+                    : "No barrels aged."
+            };
+            
             if (Game.Warehouses.Any())
             {
                 eventText.Add(
@@ -57,7 +59,15 @@ namespace Whiskey_Tycoon.UWP.ViewModels
                     eventText.Add("Weather has caused an unusual amount of Angel's share to be taken");
                     break;
                 case RandomEvents.WAREHOUSE_COLLAPSE:
-                    eventText.Add("Unfortunately a warehouse has collapsed");
+                    if (Game.Warehouses.Any())
+                    {
+                        var warehouse = Game.Warehouses.GetRandomItem();
+
+                        Game.Warehouses.Remove(warehouse);
+
+                        eventText.Add($"Unfortunately Warehouse ({warehouse.Name}) along with all {warehouse.BarrelsAging} barrels aging has collapsed");
+                    }
+
                     break;
                 case RandomEvents.NOTHING:
                 default:
