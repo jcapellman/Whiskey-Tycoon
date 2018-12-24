@@ -37,6 +37,20 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             }
         }
 
+        private float _selectedPrice;
+
+        public float SelectedPrice
+        {
+            get => _selectedPrice;
+
+            set
+            {
+                _selectedPrice = value;
+
+                OnPropertyChanged();
+            }
+        }
+
         private float _selectedProof;
 
         public float SelectedProof
@@ -56,25 +70,17 @@ namespace Whiskey_Tycoon.UWP.ViewModels
                     SelectedProof = Constants.MINIMUM_PROOF;
                 }
 
-                var liquidAvailable = Batch.Barrels.Sum(a => (a.FillAmount / 100.0) * Constants.BARREL_SIZE_ML);
-
-                var water = liquidAvailable * ((Constants.DEFAULT_BARREL_PROOF / SelectedProof) - 1);
-
-                NumberBottles = (ulong)(liquidAvailable + water) / Constants.BOTTLE_SIZE;
+                UpdateForm();
             }
         }
-
-        private int _price;
-
-        public int Price
+        
+        private void UpdateForm()
         {
-            get => _price;
+            var liquidAvailable = Batch.Barrels.Sum(a => (a.FillAmount / 100.0) * Constants.BARREL_SIZE_ML);
 
-            set
-            {
-                _price = value;
-                OnPropertyChanged();
-            }
+            var water = liquidAvailable * ((Constants.DEFAULT_BARREL_PROOF / SelectedProof) - 1);
+
+            NumberBottles = (ulong)(liquidAvailable + water) / Constants.BOTTLE_SIZE;
         }
 
         public string ReleaseBatchName => $"Release {Batch.Name}";
@@ -97,7 +103,7 @@ namespace Whiskey_Tycoon.UWP.ViewModels
 
         public void ReleaseTheBatch()
         {
-            Game.ReleaseBatch(_batchObject, Price, SelectedProof, NumberBottles);
+            Game.ReleaseBatch(_batchObject, SelectedPrice, SelectedProof, NumberBottles);
         }
     }
 }
