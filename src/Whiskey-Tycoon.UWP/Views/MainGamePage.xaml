@@ -51,10 +51,10 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Text="BANK BALANCE ($K)" Style="{StaticResource PageLabelHeaderStyle}" />
-                <TextBlock Grid.Row="1" Text="{Binding Game.MoneyAvailable}" Style="{StaticResource PageLabelHeaderStyle}" />
+                <TextBlock Grid.Row="1" Text="{Binding Game.MoneyAvailable}" Style="{StaticResource PageLabelValueStyle}" />
 
                 <TextBlock Grid.Row="2" Text="BARRELS AGING" Style="{StaticResource PageLabelHeaderStyle}" />
-                <TextBlock Grid.Row="3" Text="{Binding Game.BarrelsAging}" Style="{StaticResource PageLabelHeaderStyle}" />
+                <TextBlock Grid.Row="3" Text="{Binding Game.BarrelsAging}" Style="{StaticResource PageLabelValueStyle}" />
             </Grid>
 
             <Grid Grid.Column="2">
@@ -66,10 +66,10 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Text="DATE (YEAR-QUARTER)" Style="{StaticResource PageLabelHeaderStyle}" HorizontalAlignment="Right" />
-                <TextBlock Grid.Row="1" Text="{Binding Game.CurrentDate}" Style="{StaticResource PageLabelHeaderStyle}" HorizontalAlignment="Right" />
+                <TextBlock Grid.Row="1" Text="{Binding Game.CurrentDate}" Style="{StaticResource PageLabelValueStyle}" HorizontalAlignment="Right" />
 
                 <TextBlock Grid.Row="2" Text="BOTTLES SOLD" Style="{StaticResource PageLabelHeaderStyle}" HorizontalAlignment="Right" />
-                <TextBlock Grid.Row="3" Text="{Binding Game.BottlesSold}" Style="{StaticResource PageLabelHeaderStyle}" HorizontalAlignment="Right" />
+                <TextBlock Grid.Row="3" Text="{Binding Game.BottlesSold}" Style="{StaticResource PageLabelValueStyle}" HorizontalAlignment="Right" />
             </Grid>
         </Grid>
 
