@@ -104,11 +104,11 @@
                 <TextBlock Grid.Row="1" Text="SET YOUR PROOF" Style="{StaticResource PageLabelHeaderStyle}" />
                 <TextBox Grid.Row="2" Text="{Binding SelectedProof, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Left" Width="100" Margin="10,0,10,0" />
 
-                <TextBlock Grid.Row="3" Text="BOTTLES" Style="{StaticResource PageLabelHeaderStyle}" />
-                <TextBlock Grid.Row="4" Text="{Binding NumberBottles, Mode=TwoWay}" Style="{StaticResource PageLabelValueStyle}" />
-
-                <TextBlock Grid.Row="5" Text="SET YOUR PRICE" Style="{StaticResource PageLabelHeaderStyle}" />
-                <TextBox Grid.Row="6" Text="{Binding SelectedPrice, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Left" Width="100" Margin="10,0,10,0" />
+                <TextBlock Grid.Row="3" Text="SET YOUR PRICE (USD)" Style="{StaticResource PageLabelHeaderStyle}" />
+                <TextBox Grid.Row="4" Text="{Binding SelectedPrice, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Left" Width="100" Margin="10,0,10,0" />
+                
+                <TextBlock Grid.Row="5" Text="BOTTLES" Style="{StaticResource PageLabelHeaderStyle}" />
+                <TextBlock Grid.Row="6" Text="{Binding NumberBottles, Mode=TwoWay}" Style="{StaticResource PageLabelValueStyle}" />
             </Grid>
         </Grid>
 
