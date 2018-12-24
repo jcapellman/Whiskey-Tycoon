@@ -51,16 +51,16 @@
                 <TextBlock Grid.Row="0" Style="{StaticResource PageHeaderStyle}" Text="BATCH METRICS" />
 
                 <TextBlock Grid.Row="1" Style="{StaticResource PageLabelHeaderStyle}" Text="RELEASE QUALITY" />
-                <TextBlock Grid.Row="2" Style="{StaticResource PageLabelHeaderStyle}" Text="{Binding Batch.Quality}" />
+                <TextBlock Grid.Row="2" Style="{StaticResource PageLabelValueStyle}" Text="{Binding Batch.Quality}" />
 
                 <TextBlock Grid.Row="3" Style="{StaticResource PageLabelHeaderStyle}" Text="BATCH TYPE" />
-                <TextBlock Grid.Row="4" Style="{StaticResource PageLabelHeaderStyle}" Text="{Binding Batch.BatchType}" />
+                <TextBlock Grid.Row="4" Style="{StaticResource PageLabelValueStyle}" Text="{Binding Batch.BatchType}" />
 
                 <TextBlock Grid.Row="5" Style="{StaticResource PageLabelHeaderStyle}" Text="NUMBER OF BARRELS" />
-                <TextBlock Grid.Row="6" Style="{StaticResource PageLabelHeaderStyle}" Text="{Binding Batch.NumberBarrels}" />
+                <TextBlock Grid.Row="6" Style="{StaticResource PageLabelValueStyle}" Text="{Binding Batch.NumberBarrels}" />
 
                 <TextBlock Grid.Row="7" Style="{StaticResource PageLabelHeaderStyle}" Text="BARREL AGE IN YEARS" />
-                <TextBlock Grid.Row="8" Style="{StaticResource PageLabelHeaderStyle}" Text="{Binding Batch.BarrelAgeInYears}" />
+                <TextBlock Grid.Row="8" Style="{StaticResource PageLabelValueStyle}" Text="{Binding Batch.BarrelAgeInYears}" />
             </Grid>
 
             <Grid Grid.Column="1" Margin="10,10,10,10">
@@ -74,7 +74,7 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Text="ANGEL SHARE" Style="{StaticResource PageHeaderStyle}" />
-                <TextBlock Grid.Row="1" Text="{Binding Batch.BarrelFillAmount}" Style="{StaticResource PageLabelHeaderStyle}" />
+                <TextBlock Grid.Row="1" Text="{Binding Batch.BarrelFillAmount}" Style="{StaticResource PageLabelValueStyle}" />
             </Grid>
 
             <Grid Grid.Column="2" Margin="10,10,10,10">
@@ -98,7 +98,7 @@
                 <TextBox Grid.Row="2" Text="{Binding SelectedProof, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Left" Width="100" Margin="10,0,10,0" />
 
                 <TextBlock Grid.Row="3" Text="BOTTLES" Style="{StaticResource PageLabelHeaderStyle}" />
-                <TextBlock Grid.Row="4" Text="{Binding NumberBottles, Mode=TwoWay}" Style="{StaticResource PageLabelHeaderStyle}" />
+                <TextBlock Grid.Row="4" Text="{Binding NumberBottles, Mode=TwoWay}" Style="{StaticResource PageLabelValueStyle}" />
             </Grid>
         </Grid>
 
