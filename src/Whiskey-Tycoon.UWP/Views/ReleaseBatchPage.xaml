@@ -48,18 +48,18 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Style="{StaticResource PageHeaderStyle}" Text="Batch Metrics" />
+                <TextBlock Grid.Row="0" Style="{StaticResource PageHeaderStyle}" Text="BATCH METRICS" />
 
-                <TextBlock Grid.Row="1" Style="{StaticResource PageLabelHeaderStyle}" Text="Release Quality" />
+                <TextBlock Grid.Row="1" Style="{StaticResource PageLabelHeaderStyle}" Text="RELEASE QUALITY" />
                 <TextBlock Grid.Row="2" Style="{StaticResource PageLabelHeaderStyle}" Text="{Binding Batch.Quality}" />
 
-                <TextBlock Grid.Row="3" Style="{StaticResource PageLabelHeaderStyle}" Text="Batch Type" />
+                <TextBlock Grid.Row="3" Style="{StaticResource PageLabelHeaderStyle}" Text="BATCH TYPE" />
                 <TextBlock Grid.Row="4" Style="{StaticResource PageLabelHeaderStyle}" Text="{Binding Batch.BatchType}" />
 
-                <TextBlock Grid.Row="5" Style="{StaticResource PageLabelHeaderStyle}" Text="Number of Barrels" />
+                <TextBlock Grid.Row="5" Style="{StaticResource PageLabelHeaderStyle}" Text="NUMBER OF BARRELS" />
                 <TextBlock Grid.Row="6" Style="{StaticResource PageLabelHeaderStyle}" Text="{Binding Batch.NumberBarrels}" />
 
-                <TextBlock Grid.Row="7" Style="{StaticResource PageLabelHeaderStyle}" Text="Barrel Age In Years" />
+                <TextBlock Grid.Row="7" Style="{StaticResource PageLabelHeaderStyle}" Text="BARREL AGE IN YEARS" />
                 <TextBlock Grid.Row="8" Style="{StaticResource PageLabelHeaderStyle}" Text="{Binding Batch.BarrelAgeInYears}" />
             </Grid>
 
@@ -73,7 +73,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Text="Angel Share" Style="{StaticResource PageHeaderStyle}" />
+                <TextBlock Grid.Row="0" Text="ANGEL SHARE" Style="{StaticResource PageHeaderStyle}" />
                 <TextBlock Grid.Row="1" Text="{Binding Batch.BarrelFillAmount}" Style="{StaticResource PageLabelHeaderStyle}" />
             </Grid>
 
@@ -92,13 +92,13 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Text="Release Options" Style="{StaticResource PageHeaderStyle}" />
+                <TextBlock Grid.Row="0" Text="RELEASE OPTIONS" Style="{StaticResource PageHeaderStyle}" />
 
-                <TextBlock Grid.Row="1" Text="Proof" Style="{StaticResource PageLabelHeaderStyle}" />
-                <TextBox Grid.Row="2" Text="{Binding SelectedProof, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                <TextBlock Grid.Row="1" Text="SET YOUR PROOF" Style="{StaticResource PageLabelHeaderStyle}" />
+                <TextBox Grid.Row="2" Text="{Binding SelectedProof, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Left" Width="100" Margin="10,0,10,0" />
 
-                <TextBlock Grid.Row="3" Text="Bottles" Style="{StaticResource PageLabelHeaderStyle}" />
-                <TextBlock Grid.Row="4" Text="{Binding NumberBottles, Mode=TwoWay}" />
+                <TextBlock Grid.Row="3" Text="BOTTLES" Style="{StaticResource PageLabelHeaderStyle}" />
+                <TextBlock Grid.Row="4" Text="{Binding NumberBottles, Mode=TwoWay}" Style="{StaticResource PageLabelHeaderStyle}" />
             </Grid>
         </Grid>
 
