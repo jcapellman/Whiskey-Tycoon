@@ -91,6 +91,7 @@
         <Setter Property="FontSize" Value="15" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="Gold" />
     </Style>
 
     <Style x:Key="ActionButtonStyle" TargetType="Button">
