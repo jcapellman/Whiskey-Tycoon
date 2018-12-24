@@ -32,6 +32,13 @@
         <Setter Property="Margin" Value="10,10,10,0" />
     </Style>
 
+    <Style x:Key="PageLabelValueStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Foreground" Value="Gold" />
+        <Setter Property="Margin" Value="10,10,10,0" />
+    </Style>
+
     <Style x:Key="TextBoxFieldStyle" TargetType="TextBox">
         <Setter Property="Width" Value="350" />
         <Setter Property="Background" Value="White" />
