@@ -66,6 +66,14 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             }
         }
 
+        public void AgeBarrels()
+        {
+            foreach (var warehouse in Warehouses)
+            {
+                warehouse.AgeBatches();
+            }
+        }
+
         public GameObject()
         {
             Warehouses = new ObservableCollection<WarehouseObject>();
