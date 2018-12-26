@@ -25,10 +25,7 @@ namespace Whiskey_Tycoon.UWP.ViewModels
                 Game.CurrentQuarter++;
             }
 
-            foreach (var warehouse in Game.Warehouses)
-            {
-                warehouse.AgeBatches();
-            }
+            Game.AgeBarrels();
 
             var eventText = new List<string>
             {
@@ -36,17 +33,9 @@ namespace Whiskey_Tycoon.UWP.ViewModels
                     ? $"{Game.BarrelsAging} barrel(s) were aging, be sure to check the Angel's share."
                     : "No barrels aged."
             };
-            
-            if (Game.Warehouses.Any())
-            {
-                eventText.Add(
-                    $"Maintenance upkeep on {Game.Warehouses.Count} warehouses (${Game.WarehouseMaintenanceCost}) subtracted from account.");
-
-                Game.MoneyAvailable -= Game.WarehouseMaintenanceCost;
-            }
 
             var randomEvent = RandomEvent.GetRandomEvent();
-            
+
             switch (randomEvent)
             {
                 case RandomEvents.COMPETITOR_LOST_SHIPMENT:
@@ -57,6 +46,8 @@ namespace Whiskey_Tycoon.UWP.ViewModels
                     break;
                 case RandomEvents.HIGHER_THAN_USUAL_ANGELS_SHARE:
                     eventText.Add("Weather has caused an unusual amount of Angel's share to be taken");
+
+                    Game.AgeBarrels();
                     break;
                 case RandomEvents.WAREHOUSE_COLLAPSE:
                     if (Game.Warehouses.Any())
@@ -74,7 +65,15 @@ namespace Whiskey_Tycoon.UWP.ViewModels
                     eventText.Add("Nothing out of the ordinary occurred");
                     break;
             }
-        
+
+            if (Game.Warehouses.Any())
+            {
+                eventText.Add(
+                    $"Maintenance upkeep on {Game.Warehouses.Count} warehouses (${Game.WarehouseMaintenanceCost}) subtracted from account.");
+
+                Game.MoneyAvailable -= Game.WarehouseMaintenanceCost;
+            }
+            
             Game.Events.Insert(0, new EventObject
             {
                 EventText = string.Join(System.Environment.NewLine, eventText),
