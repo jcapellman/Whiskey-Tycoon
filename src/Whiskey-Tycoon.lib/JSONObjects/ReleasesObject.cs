@@ -17,5 +17,7 @@
         public ulong BottlesSold { get; set; }
 
         public ulong BottlesAvailable { get; set; }
+
+        public int Demand { get; set; }
     }
 }
