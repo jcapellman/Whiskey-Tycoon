@@ -6,6 +6,13 @@ namespace Whiskey_Tycoon.lib.Common
 {
     public static class ExtensionMethods
     {
+        public static int GetRandomNumber(int min, int max)
+        {
+            var random = new Random((int)DateTime.Now.Ticks);
+
+            return random.Next(min, max);
+        }
+
         public static T GetRandomItem<T>(this ObservableCollection<T> container)
         {
             if (!container.Any())
