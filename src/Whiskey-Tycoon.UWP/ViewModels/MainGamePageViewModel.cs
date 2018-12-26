@@ -3,6 +3,7 @@ using System.Linq;
 using Whiskey_Tycoon.lib.Common;
 using Whiskey_Tycoon.lib.Enums;
 using Whiskey_Tycoon.lib.JSONObjects;
+using ExtensionMethods = Whiskey_Tycoon.lib.Common.ExtensionMethods;
 
 namespace Whiskey_Tycoon.UWP.ViewModels
 {
@@ -39,10 +40,31 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             switch (randomEvent)
             {
                 case RandomEvents.COMPETITOR_LOST_SHIPMENT:
-                    eventText.Add("A competitor lost a shipment of bottles, demand for your products has increased");
+                    if (Game.Releases.Any())
+                    {
+                        eventText.Add("A competitor lost a shipment of bottles, demand for your products has increased");
+
+                        Game.UpdateDemandForReleases(ExtensionMethods.GetRandomNumber(Constants.EVENTS_COMPETITOR_LOST_SHIPMENT_QUALITY_DECREASES_MIN, Constants.EVENTS_COMPETITOR_LOST_SHIPMENT_QUALITY_INCREASES_MAX));
+                    }
+                    else
+                    {
+                        eventText.Add("A competitor's quality has suffered, but you don't have any releases");
+                    }
+
+                    eventText.Add("");
                     break;
                 case RandomEvents.COMPETITOR_QUALITY_ISSUES:
-                    eventText.Add("A competitor's quality has suffered, demand for your product has increased");
+                    if (Game.Releases.Any())
+                    {
+                        eventText.Add("A competitor's quality has suffered, demand for your product has increased");
+
+                        Game.UpdateDemandForReleases(ExtensionMethods.GetRandomNumber(Constants.EVENTS_COMPETITOR_QUALITY_DECREASES_MIN, Constants.EVENTS_COMPETITOR_QUALITY_INCREASES_MAX));
+                    }
+                    else
+                    {
+                        eventText.Add("A competitor's quality has suffered, but you don't have any releases");
+                    }
+
                     break;
                 case RandomEvents.HIGHER_THAN_USUAL_ANGELS_SHARE:
                     eventText.Add("Weather has caused an unusual amount of Angel's share to be taken");
