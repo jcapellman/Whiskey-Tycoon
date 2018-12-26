@@ -103,7 +103,7 @@ namespace Whiskey_Tycoon.UWP.ViewModels
 
         public void ReleaseTheBatch()
         {
-            Game.ReleaseBatch(_batchObject, SelectedPrice, SelectedProof, NumberBottles);
+            Game.ReleaseBatch(_batchObject, SelectedPrice, SelectedProof, NumberBottles, 0);
         }
     }
 }
