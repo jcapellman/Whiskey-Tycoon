@@ -105,5 +105,10 @@ namespace Whiskey_Tycoon.UWP.ViewModels
         {
             Game.ReleaseBatch(_batchObject, SelectedPrice, SelectedProof, NumberBottles, 0);
         }
+
+        public void ReleaseBatchToPress()
+        {
+            _batchObject.ReleaseToPress();
+        }
     }
 }
