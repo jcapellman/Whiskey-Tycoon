@@ -130,7 +130,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             Releases.Add(releaseObject);
         }
 
-        public void UpdateDemandForReleases(int modifier)
+        private void UpdateDemandForReleases(int modifier)
         {
             foreach (var release in Releases)
             {
@@ -138,7 +138,24 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             }
         }
 
-        public void GenerateEvents()
+        public void NextQuarter()
+        {
+            if (CurrentQuarter == 4)
+            {
+                CurrentYear++;
+                CurrentQuarter = 1;
+            }
+            else
+            {
+                CurrentQuarter++;
+            }
+
+            AgeBarrels();
+
+            GenerateEvents();
+        }
+
+        private void GenerateEvents()
         {
             var eventText = new List<string>
             {
