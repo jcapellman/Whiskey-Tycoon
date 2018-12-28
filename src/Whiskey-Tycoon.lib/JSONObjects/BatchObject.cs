@@ -31,9 +31,14 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
         public float BarrelAgeInYears => BarrelQuarterAge / 4.0f;
 
+        public int Demand { get; set; }
+
+        public List<PressSampleReviewObject> PressSampleReviews { get; set; }
+
         public BatchObject()
         {
             Barrels = new List<BarrelObject>();
+            PressSampleReviews = new List<PressSampleReviewObject>();
         }
 
         public void AgeBatch()
@@ -46,6 +51,11 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             {
                 barrel.AgeBarrel();
             }
+        }
+
+        public void ReleaseToPress()
+        {
+
         }
     }
 }
