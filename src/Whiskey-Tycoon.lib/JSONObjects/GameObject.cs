@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-
+using Whiskey_Tycoon.lib.Common;
 using Whiskey_Tycoon.lib.Enums;
+using ExtensionMethods = Whiskey_Tycoon.lib.Enums.ExtensionMethods;
 
 namespace Whiskey_Tycoon.lib.JSONObjects
 {
@@ -134,6 +136,84 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             {
                 release.Demand += modifier;
             }
+        }
+
+        public void GenerateEvents()
+        {
+            var eventText = new List<string>
+            {
+                BarrelsAging > 0
+                    ? $"{BarrelsAging} barrel(s) were aging, be sure to check the Angel's share."
+                    : "No barrels aged."
+            };
+
+            var randomEvent = RandomEvent.GetRandomEvent();
+
+            switch (randomEvent)
+            {
+                case RandomEvents.COMPETITOR_LOST_SHIPMENT:
+                    if (Releases.Any())
+                    {
+                        eventText.Add("A competitor lost a shipment of bottles, demand for your products has increased");
+
+                        UpdateDemandForReleases(Whiskey_Tycoon.lib.Common.ExtensionMethods.GetRandomNumber(Constants.EVENTS_COMPETITOR_LOST_SHIPMENT_QUALITY_DECREASES_MIN, Constants.EVENTS_COMPETITOR_LOST_SHIPMENT_QUALITY_INCREASES_MAX));
+                    }
+                    else
+                    {
+                        eventText.Add("A competitor's quality has suffered, but you don't have any releases");
+                    }
+
+                    eventText.Add("");
+                    break;
+                case RandomEvents.COMPETITOR_QUALITY_ISSUES:
+                    if (Releases.Any())
+                    {
+                        eventText.Add("A competitor's quality has suffered, demand for your product has increased");
+
+                        UpdateDemandForReleases(Whiskey_Tycoon.lib.Common.ExtensionMethods.GetRandomNumber(Constants.EVENTS_COMPETITOR_QUALITY_DECREASES_MIN, Constants.EVENTS_COMPETITOR_QUALITY_INCREASES_MAX));
+                    }
+                    else
+                    {
+                        eventText.Add("A competitor's quality has suffered, but you don't have any releases");
+                    }
+
+                    break;
+                case RandomEvents.HIGHER_THAN_USUAL_ANGELS_SHARE:
+                    eventText.Add("Weather has caused an unusual amount of Angel's share to be taken");
+
+                    AgeBarrels();
+                    break;
+                case RandomEvents.WAREHOUSE_COLLAPSE:
+                    if (Warehouses.Any())
+                    {
+                        var warehouse = Warehouses.GetRandomItem();
+
+                        Warehouses.Remove(warehouse);
+
+                        eventText.Add($"Unfortunately Warehouse ({warehouse.Name}) along with all {warehouse.BarrelsAging} barrels aging has collapsed");
+                    }
+
+                    break;
+                case RandomEvents.NOTHING:
+                default:
+                    eventText.Add("Nothing out of the ordinary occurred");
+                    break;
+            }
+
+            if (Warehouses.Any())
+            {
+                eventText.Add(
+                    $"Maintenance upkeep on {Warehouses.Count} warehouses (${WarehouseMaintenanceCost}) subtracted from account.");
+
+                MoneyAvailable -= WarehouseMaintenanceCost;
+            }
+
+            Events.Insert(0, new EventObject
+            {
+                EventText = string.Join(System.Environment.NewLine, eventText),
+                Year = CurrentYear,
+                Quarter = CurrentQuarter
+            });
         }
     }
 }
