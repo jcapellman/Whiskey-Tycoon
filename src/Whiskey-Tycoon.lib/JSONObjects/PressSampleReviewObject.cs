@@ -6,6 +6,8 @@
 
         public int Year { get; set; }
 
+        public string ReviewDate => $"{Year}-{Quarter}";
+
         public string Review { get; set; }
 
         public bool Positive { get; set; }
