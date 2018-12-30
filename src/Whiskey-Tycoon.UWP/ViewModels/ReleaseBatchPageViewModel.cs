@@ -10,6 +10,19 @@ namespace Whiskey_Tycoon.UWP.ViewModels
     {
         private WarehouseObject _warehouseObject;
 
+        private bool _btnReleaseToPressEnable;
+
+        public bool btnReleaseToPressEnable
+        {
+            get => _btnReleaseToPressEnable;
+
+            set
+            {
+                _btnReleaseToPressEnable = value;
+                OnPropertyChanged();
+            }
+        }
+
         private BatchObject _batchObject;
 
         public BatchObject Batch
@@ -81,6 +94,9 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             var water = liquidAvailable * ((Constants.DEFAULT_BARREL_PROOF / SelectedProof) - 1);
 
             NumberBottles = (ulong)(liquidAvailable + water) / Constants.BOTTLE_SIZE;
+
+            btnReleaseToPressEnable =
+                !Batch.PressSampleReviews.Any(a => a.Quarter == Game.CurrentQuarter && a.Year == Game.CurrentYear);
         }
 
         public string ReleaseBatchName => $"Release {Batch.Name}";
@@ -109,6 +125,8 @@ namespace Whiskey_Tycoon.UWP.ViewModels
         public void ReleaseBatchToPress()
         {
             _batchObject.ReleaseToPress(Game.CurrentYear, Game.CurrentQuarter);
+            
+            UpdateForm();
         }
     }
 }

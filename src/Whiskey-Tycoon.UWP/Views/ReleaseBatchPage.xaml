@@ -168,7 +168,7 @@
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0" Style="{StaticResource BackButtonStyle}" Content="Back" Click="btnBack_Click" />
-            <Button Grid.Column="1" Style="{StaticResource CenterButtonStyle}" Content="Release to Press" Click="btnReleaseToPress_Click" />
+            <Button Grid.Column="1" Style="{StaticResource CenterButtonStyle}" Content="Release to Press" IsEnabled="{Binding btnReleaseToPressEnable, Mode=TwoWay}" Click="btnReleaseToPress_Click" />
             <Button Grid.Column="2" Style="{StaticResource CenterButtonStyle}" HorizontalAlignment="Right" Content="Release the Batch" Click="btnRelease_Click"  />
         </Grid>
     </Grid>
