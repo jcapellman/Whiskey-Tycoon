@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 using Whiskey_Tycoon.lib.Enums;
@@ -34,12 +35,12 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
         public int Demand { get; set; }
 
-        public List<PressSampleReviewObject> PressSampleReviews { get; set; }
+        public ObservableCollection<PressSampleReviewObject> PressSampleReviews { get; set; }
 
         public BatchObject()
         {
             Barrels = new List<BarrelObject>();
-            PressSampleReviews = new List<PressSampleReviewObject>();
+            PressSampleReviews = new ObservableCollection<PressSampleReviewObject>();
         }
 
         public void AgeBatch()
