@@ -46,6 +46,9 @@
 
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Style="{StaticResource PageHeaderStyle}" Text="BATCH METRICS" />
@@ -61,6 +64,9 @@
 
                 <TextBlock Grid.Row="7" Style="{StaticResource PageLabelHeaderStyle}" Text="BARREL AGE IN YEARS" />
                 <TextBlock Grid.Row="8" Style="{StaticResource PageLabelValueStyle}" Text="{Binding Batch.BarrelAgeInYears}" />
+
+                <TextBlock Grid.Row="9" Style="{StaticResource PageLabelHeaderStyle}" Text="DEMAND (%)" />
+                <TextBlock Grid.Row="10" Style="{StaticResource PageLabelValueStyle}" Text="{Binding Batch.Demand}" />
             </Grid>
 
             <Grid Grid.Column="1" Margin="10,10,10,10">
