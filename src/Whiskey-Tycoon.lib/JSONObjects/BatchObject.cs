@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using Whiskey_Tycoon.lib.Enums;
@@ -53,9 +54,36 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             }
         }
 
-        public void ReleaseToPress()
+        public void ReleaseToPress(int currentYear, int currentQuarter)
         {
+            var pressPreview = new PressSampleReviewObject();
 
+            var review = new List<string>();
+
+            // Temporary logic until ML can replace this
+            if (Quality < 70)
+            {
+                Demand -= Quality / 10;
+                pressPreview.Positive = false;
+                review.Add("Could use more aging or priced cheaply.");
+            } else if (Quality > 70)
+            {
+                Demand += Quality / 10;
+                pressPreview.Positive = true;
+                review.Add("Good amount of aging.");
+            }
+
+            Demand = Math.Abs(Demand);
+
+            review.Add(QualityLevel < IngredientsQualityLevels.MID
+                ? "Better quality ingredients would be wise, hopefully it is priced cheap."
+                : "Smart choice to utilize better quality ingredients.");
+
+            pressPreview.Review = string.Join(System.Environment.NewLine, review);
+            pressPreview.Quarter = currentQuarter;
+            pressPreview.Year = currentYear;
+
+            PressSampleReviews.Add(pressPreview);
         }
     }
 }
