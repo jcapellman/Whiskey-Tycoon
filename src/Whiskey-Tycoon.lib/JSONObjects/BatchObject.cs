@@ -84,7 +84,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             pressPreview.Quarter = currentQuarter;
             pressPreview.Year = currentYear;
 
-            PressSampleReviews.Add(pressPreview);
+            PressSampleReviews.Insert(0, pressPreview);
         }
     }
 }
