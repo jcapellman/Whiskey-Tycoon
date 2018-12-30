@@ -108,7 +108,7 @@ namespace Whiskey_Tycoon.UWP.ViewModels
 
         public void ReleaseBatchToPress()
         {
-            _batchObject.ReleaseToPress();
+            _batchObject.ReleaseToPress(Game.CurrentYear, Game.CurrentQuarter);
         }
     }
 }
