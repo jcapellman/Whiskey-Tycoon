@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -114,8 +115,53 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             Warehouses.Add(warehouseObject);
         }
 
-        public void ReleaseBatch(BatchObject batch, ulong price, float selectedProof, ulong bottlesAvailable, int demand, ulong bottlingCost)
+        private (string reviewString, uint reviewRating) calculateReview(BatchObject batch, ulong price, uint demand)
         {
+            var rating = batch.Quality;
+            var descriptions = new List<string>();
+
+            // Temporary until ML can replace
+            if (batch.Quality > demand)
+            {
+                rating += 5;
+            }
+
+            if (batch.Quality > 80)
+            {
+                descriptions.Add("Good quality release");
+            }
+            else
+            {
+                descriptions.Add("Sub-par quality release");
+            }
+
+            if ((batch.Quality / Constants.QUALITY_PER_DOLLAR) > price)
+            {
+                descriptions.Add("Overpriced for the quality of release");
+
+                if (rating > 20)
+                {
+                    rating -= 20;
+                }
+            }
+            else
+            {
+                descriptions.Add("Priced properly");
+                rating += 5;
+            }
+
+            if (rating > 100)
+            {
+                rating = 100;
+            }
+
+            return (string.Join(Environment.NewLine, descriptions), rating);
+        }
+
+        public void ReleaseBatch(BatchObject batch, ulong price, float selectedProof, ulong bottlesAvailable, uint demand, ulong bottlingCost)
+        {
+            var reviewMetrics = calculateReview(batch, price, demand);
+            
             var releaseObject = new ReleasesObject
             {
                 Name = batch.Name,
@@ -126,7 +172,10 @@ namespace Whiskey_Tycoon.lib.JSONObjects
                 ReleaseYear = CurrentYear,
                 YearsAged = batch.BarrelQuarterAge / 4.0f,
                 BottlesAvailable = bottlesAvailable,
-                Demand = demand
+                Demand = demand,
+                PressReviewDescription = reviewMetrics.reviewString,
+                PressReviewRating = reviewMetrics.reviewRating,
+                Archived = false
             };
 
             Releases.Add(releaseObject);
@@ -146,7 +195,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             MoneyAvailable -= bottlingCost;
         }
 
-        private void UpdateDemandForReleases(int modifier)
+        private void UpdateDemandForReleases(uint modifier)
         {
             foreach (var release in Releases)
             {
@@ -187,18 +236,20 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
                 var perecentageSold = Common.ExtensionMethods.GetRandomNumber(0, release.Demand + 1) / 100.0;
 
-                var bottles = (ulong)Common.ExtensionMethods.GetRandomNumber(0, (int)(perecentageSold * release.BottlesAvailable));
+                var bottles = (ulong)Common.ExtensionMethods.GetRandomNumber(0, (uint)(perecentageSold * release.BottlesAvailable));
 
                 release.BottlesSold += bottles;
                 release.BottlesAvailable -= bottles;
-                release.Demand--;
+
+                if (release.Demand > 0)
+                {
+                    release.Demand--;
+                }
 
                 var moneyGenerated = release.BottlePrice * bottles;
 
                 MoneyAvailable += moneyGenerated;
-
-                release.Demand = Math.Abs(release.Demand);
-
+                
                 _eventManager.AddEvent(bottles > 0
                     ? $"{release.Name} sold {bottles} bottle(s) and generated ${moneyGenerated}"
                     : $"{release.Name} sold no bottles");
