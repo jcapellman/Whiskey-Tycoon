@@ -20,11 +20,13 @@
 
         public const ulong BOTTLE_COST = 5;
 
-        // Events
-        public const int EVENTS_COMPETITOR_QUALITY_DECREASES_MIN = 1;
-        public const int EVENTS_COMPETITOR_QUALITY_INCREASES_MAX = 3;
+        public const uint QUALITY_PER_DOLLAR = 2;
 
-        public const int EVENTS_COMPETITOR_LOST_SHIPMENT_QUALITY_DECREASES_MIN = 1;
-        public const int EVENTS_COMPETITOR_LOST_SHIPMENT_QUALITY_INCREASES_MAX = 3;
+        // Events
+        public const uint EVENTS_COMPETITOR_QUALITY_DECREASES_MIN = 1;
+        public const uint EVENTS_COMPETITOR_QUALITY_INCREASES_MAX = 3;
+
+        public const uint EVENTS_COMPETITOR_LOST_SHIPMENT_QUALITY_DECREASES_MIN = 1;
+        public const uint EVENTS_COMPETITOR_LOST_SHIPMENT_QUALITY_INCREASES_MAX = 3;
     }
 }
