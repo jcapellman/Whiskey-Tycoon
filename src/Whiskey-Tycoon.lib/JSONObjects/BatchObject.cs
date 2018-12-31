@@ -27,7 +27,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
         public BatchTypes BatchType { get; set; }
 
-        public int Quality { get; set; }
+        public uint Quality { get; set; }
 
         public List<BarrelObject> Barrels { get; set; }
 
@@ -35,7 +35,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
         public float BarrelAgeInYears => BarrelQuarterAge / 4.0f;
 
-        public int Demand { get; set; }
+        public uint Demand { get; set; }
 
         public ObservableCollection<PressSampleReviewObject> PressSampleReviews { get; set; }
 
@@ -76,9 +76,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
                 pressPreview.Positive = true;
                 review.Add("Good amount of aging.");
             }
-
-            Demand = Math.Abs(Demand);
-
+            
             review.Add(QualityLevel < IngredientsQualityLevels.MID
                 ? "Better quality ingredients would be wise, hopefully it is priced cheap."
                 : "Smart choice to utilize better quality ingredients.");

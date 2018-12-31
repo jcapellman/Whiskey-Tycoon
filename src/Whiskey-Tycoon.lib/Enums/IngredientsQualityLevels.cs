@@ -13,7 +13,7 @@
     {
         public static float ToQualityLevelMultiplier(this IngredientsQualityLevels qualityLevel) => ((int)qualityLevel / 100.0f);
 
-        public static int ToQuality(this IngredientsQualityLevels qualityLevel)
+        public static uint ToQuality(this IngredientsQualityLevels qualityLevel)
         {
             switch (qualityLevel)
             {
@@ -32,7 +32,7 @@
             return 0;
         }
 
-        public static int ToQualityQuarterIncrement(this IngredientsQualityLevels qualityLevel)
+        public static uint ToQualityQuarterIncrement(this IngredientsQualityLevels qualityLevel)
         {
             switch (qualityLevel)
             {
