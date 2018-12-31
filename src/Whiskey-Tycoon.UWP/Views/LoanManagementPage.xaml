@@ -26,11 +26,51 @@
             </Grid.Background>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Button Grid.Row="1" Style="{StaticResource ActionButtonStyle}" Content="Get Loan" HorizontalAlignment="Center" Click="btnGetLoan_Click" />
+            <ListView SelectionMode="Single" SelectedItem="{Binding SelectedLoan, Mode=TwoWay}" ItemsSource="{Binding LoanTypes, Mode=TwoWay}">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Width="256" Height="512" HorizontalAlignment="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Style="{StaticResource PageLabelHeaderStyle}" Text="LOAN NAME" />
+                            <TextBlock Grid.Row="1" Style="{StaticResource PageLabelValueStyle}" Text="{Binding Name}" />
+
+                            <TextBlock Grid.Row="2" Style="{StaticResource PageLabelHeaderStyle}" Text="LOAN AMOUNT" />
+                            <TextBlock Grid.Row="3" Style="{StaticResource PageLabelValueStyle}" Text="{Binding Amount}" />
+
+                            <TextBlock Grid.Row="4" Style="{StaticResource PageLabelHeaderStyle}" Text="LOAN PAYOFF TERM" />
+                            <TextBlock Grid.Row="5" Style="{StaticResource PageLabelValueStyle}" Text="{Binding QuartersToPayOff}" />
+
+                            <TextBlock Grid.Row="6" Style="{StaticResource PageLabelHeaderStyle}" Text="LOAN QUARTERLY INTEREST" />
+                            <TextBlock Grid.Row="7" Style="{StaticResource PageLabelValueStyle}" Text="{Binding QuarterlyInterest}" />
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Grid.Row="1" Style="{StaticResource ActionButtonStyle}" Content="Get Loan" HorizontalAlignment="Center" Margin="0,0,0,20" Click="btnGetLoan_Click" />
         </Grid>
 
         <Grid Grid.Row="2">
