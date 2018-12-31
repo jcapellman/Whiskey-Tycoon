@@ -31,5 +31,11 @@ namespace Whiskey_Tycoon.UWP.Views
         {
             Frame.Navigate(typeof(MainGamePage), ViewModel.Game);
         }
+
+        private void btnGetLoan_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Bind the Loan properties to listview of buttons
+            // ViewModel.AddLoan();
+        }
     }
 }
