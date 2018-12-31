@@ -24,6 +24,13 @@
             <Grid.Background>
                 <SolidColorBrush Color="Black" Opacity="0.5" />
             </Grid.Background>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Button Grid.Row="1" Style="{StaticResource ActionButtonStyle}" Content="Get Loan" HorizontalAlignment="Center" Click="btnGetLoan_Click" />
         </Grid>
 
         <Grid Grid.Row="2">
