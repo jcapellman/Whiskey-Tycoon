@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+
 using Whiskey_Tycoon.lib.Common;
 using Whiskey_Tycoon.lib.Enums;
-using ExtensionMethods = Whiskey_Tycoon.lib.Enums.ExtensionMethods;
+using Whiskey_Tycoon.lib.Managers;
 
 namespace Whiskey_Tycoon.lib.JSONObjects
 {
@@ -67,6 +67,8 @@ namespace Whiskey_Tycoon.lib.JSONObjects
                 return total;
             }
         }
+        
+        private EventManager _eventManager = new EventManager();
 
         public void AgeBarrels()
         {
@@ -154,6 +156,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
         public void NextQuarter()
         {
+            
             if (CurrentQuarter == 4)
             {
                 CurrentYear++;
@@ -169,6 +172,8 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             GenerateEvents();
 
             GenerateSales();
+
+            Events.Insert(0, _eventManager.GenerateEvent(CurrentYear, CurrentQuarter));
         }
 
         private void GenerateSales()
@@ -183,20 +188,24 @@ namespace Whiskey_Tycoon.lib.JSONObjects
                 release.BottlesAvailable -= bottles;
                 release.Demand--;
 
-                MoneyAvailable += release.BottlePrice * bottles;
+                var moneyGenerated = release.BottlePrice * bottles;
+
+                MoneyAvailable += moneyGenerated;
 
                 release.Demand = Math.Abs(release.Demand);
+
+                _eventManager.AddEvent(bottles > 0
+                    ? $"{release.Name} sold {bottles} bottle(s) and generated ${moneyGenerated}"
+                    : $"{release.Name} sold no bottles");
             }
         }
 
         private void GenerateEvents()
         {
-            var eventText = new List<string>
-            {
+            _eventManager.AddEvent(
                 BarrelsAging > 0
                     ? $"{BarrelsAging} barrel(s) were aging, be sure to check the Angel's share."
-                    : "No barrels aged."
-            };
+                    : "No barrels aged.");
 
             var randomEvent = RandomEvent.GetRandomEvent();
 
@@ -205,32 +214,31 @@ namespace Whiskey_Tycoon.lib.JSONObjects
                 case RandomEvents.COMPETITOR_LOST_SHIPMENT:
                     if (Releases.Any())
                     {
-                        eventText.Add("A competitor lost a shipment of bottles, demand for your products has increased");
+                        _eventManager.AddEvent("A competitor lost a shipment of bottles, demand for your products has increased");
 
                         UpdateDemandForReleases(Whiskey_Tycoon.lib.Common.ExtensionMethods.GetRandomNumber(Constants.EVENTS_COMPETITOR_LOST_SHIPMENT_QUALITY_DECREASES_MIN, Constants.EVENTS_COMPETITOR_LOST_SHIPMENT_QUALITY_INCREASES_MAX));
                     }
                     else
                     {
-                        eventText.Add("A competitor's quality has suffered, but you don't have any releases");
+                        _eventManager.AddEvent("A competitor's quality has suffered, but you don't have any releases");
                     }
-
-                    eventText.Add("");
+                    
                     break;
                 case RandomEvents.COMPETITOR_QUALITY_ISSUES:
                     if (Releases.Any())
                     {
-                        eventText.Add("A competitor's quality has suffered, demand for your product has increased");
+                        _eventManager.AddEvent("A competitor's quality has suffered, demand for your product has increased");
 
                         UpdateDemandForReleases(Whiskey_Tycoon.lib.Common.ExtensionMethods.GetRandomNumber(Constants.EVENTS_COMPETITOR_QUALITY_DECREASES_MIN, Constants.EVENTS_COMPETITOR_QUALITY_INCREASES_MAX));
                     }
                     else
                     {
-                        eventText.Add("A competitor's quality has suffered, but you don't have any releases");
+                        _eventManager.AddEvent("A competitor's quality has suffered, but you don't have any releases");
                     }
 
                     break;
                 case RandomEvents.HIGHER_THAN_USUAL_ANGELS_SHARE:
-                    eventText.Add("Weather has caused an unusual amount of Angel's share to be taken");
+                    _eventManager.AddEvent("Weather has caused an unusual amount of Angel's share to be taken");
 
                     AgeBarrels();
                     break;
@@ -241,30 +249,23 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
                         Warehouses.Remove(warehouse);
 
-                        eventText.Add($"Unfortunately Warehouse ({warehouse.Name}) along with all {warehouse.BarrelsAging} barrels aging has collapsed");
+                        _eventManager.AddEvent($"Unfortunately Warehouse ({warehouse.Name}) along with all {warehouse.BarrelsAging} barrels aging has collapsed");
                     }
 
                     break;
                 case RandomEvents.NOTHING:
                 default:
-                    eventText.Add("Nothing out of the ordinary occurred");
+                    _eventManager.AddEvent("Nothing out of the ordinary occurred");
                     break;
             }
 
             if (Warehouses.Any())
             {
-                eventText.Add(
+                _eventManager.AddEvent(
                     $"Maintenance upkeep on {Warehouses.Count} warehouses (${WarehouseMaintenanceCost}) subtracted from account.");
 
                 MoneyAvailable -= WarehouseMaintenanceCost;
             }
-
-            Events.Insert(0, new EventObject
-            {
-                EventText = string.Join(System.Environment.NewLine, eventText),
-                Year = CurrentYear,
-                Quarter = CurrentQuarter
-            });
         }
     }
 }
