@@ -5,6 +5,7 @@ using System.Linq;
 
 using Whiskey_Tycoon.lib.Common;
 using Whiskey_Tycoon.lib.Enums;
+using Whiskey_Tycoon.lib.Loans.Base;
 using Whiskey_Tycoon.lib.Managers;
     
 namespace Whiskey_Tycoon.lib.JSONObjects
@@ -230,19 +231,21 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             Events.Insert(0, _eventManager.GenerateEvent(CurrentYear, CurrentQuarter));
         }
 
-        public void AddLoan(ulong loanAmount, ulong quarterlyInterest, uint numberInstallments)
+        public void AddLoan(BaseLoan loan)
         {
             var loanObject = new LoanObject
             {
-                LoanedAmount = loanAmount,
-                QuartersRemaining = numberInstallments,
-                QuarterlyInterest = quarterlyInterest,
+                LoanedAmount = loan.Amount,
+                QuartersRemaining = loan.QuartersToPayOff,
+                QuarterlyInterest = loan.QuarterlyInterest,
                 TotalInterest = 0,
-                LoanAmountRemaining = loanAmount,
-                QuarterlyPayment = loanAmount / numberInstallments
+                LoanAmountRemaining = loan.Amount,
+                QuarterlyPayment = loan.Amount / loan.QuartersToPayOff
             };
 
             Loans.Add(loanObject);
+
+            MoneyAvailable += loan.Amount;
         }
 
         private void ProcessLoans()
