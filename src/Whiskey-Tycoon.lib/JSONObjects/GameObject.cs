@@ -39,6 +39,8 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
         public ObservableCollection<ReleasesObject> Releases { get; set; }
 
+        public ObservableCollection<LoanObject> Loans { get; set; }
+
         public ulong BottlesSold
         {
             get
@@ -84,12 +86,13 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             Warehouses = new ObservableCollection<WarehouseObject>();
             Events = new ObservableCollection<EventObject>();
             Releases = new ObservableCollection<ReleasesObject>();
+            Loans = new ObservableCollection<LoanObject>();
         }
 
         public void UpdateWarehouse(WarehouseObject warehouseObject)
         {
             for (var x = 0; x < Warehouses.Count; x++)
-            {
+            {   
                 if (Warehouses[x].ID != warehouseObject.ID)
                 {
                     continue;
@@ -222,7 +225,53 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
             GenerateSales();
 
+            ProcessLoans();
+
             Events.Insert(0, _eventManager.GenerateEvent(CurrentYear, CurrentQuarter));
+        }
+
+        private void ProcessLoans()
+        {
+            if (!Loans.Any())
+            {
+                _eventManager.AddEvent("No loans to process");
+
+                return;
+            }
+
+            foreach (var loan in Loans)
+            {
+                if (loan.QuartersRemaining == 0)
+                {
+                    if (MoneyAvailable < loan.PayOffAmount)
+                    {
+                        _eventManager.AddEvent($"Not enough funds to process loan, game over");
+
+                        return;
+                    }
+
+                    _eventManager.AddEvent($"Loan of ${loan.LoanedAmount} completed");
+
+                    Loans.Remove(loan);
+
+                    continue;
+                }
+
+                loan.TotalInterest += loan.QuarterlyInterest;
+                
+                loan.LoanAmountRemaining -= loan.QuarterlyPayment;
+
+                if (MoneyAvailable < loan.QuarterlyPayment)
+                {
+                    _eventManager.AddEvent($"Not enough funds to process loan, game over");
+
+                    return;
+                }
+
+                MoneyAvailable -= loan.QuarterlyPayment;
+
+                _eventManager.AddEvent($"Loan payment of ${loan.QuarterlyPayment} applied (${loan.QuarterlyInterest} of interest added)");
+            }
         }
 
         private void GenerateSales()
