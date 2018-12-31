@@ -5,7 +5,7 @@ using System.Linq;
 using Whiskey_Tycoon.lib.Common;
 using Whiskey_Tycoon.lib.Enums;
 using Whiskey_Tycoon.lib.Managers;
-
+    
 namespace Whiskey_Tycoon.lib.JSONObjects
 {
     public class GameObject
@@ -180,6 +180,11 @@ namespace Whiskey_Tycoon.lib.JSONObjects
         {
             foreach (var release in Releases)
             {
+                if (release.Archived)
+                {
+                    continue;
+                }
+
                 var perecentageSold = Common.ExtensionMethods.GetRandomNumber(0, release.Demand + 1) / 100.0;
 
                 var bottles = (ulong)Common.ExtensionMethods.GetRandomNumber(0, (int)(perecentageSold * release.BottlesAvailable));
@@ -197,6 +202,13 @@ namespace Whiskey_Tycoon.lib.JSONObjects
                 _eventManager.AddEvent(bottles > 0
                     ? $"{release.Name} sold {bottles} bottle(s) and generated ${moneyGenerated}"
                     : $"{release.Name} sold no bottles");
+
+                if (release.BottlesAvailable == 0)
+                {
+                    release.Archived = true;
+
+                    _eventManager.AddEvent($"{release.Name} has sold out");
+                }
             }
         }
 
