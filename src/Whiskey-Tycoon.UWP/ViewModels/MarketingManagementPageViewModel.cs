@@ -2,16 +2,16 @@
 using System.Linq;
 
 using Whiskey_Tycoon.lib.JSONObjects;
-using Whiskey_Tycoon.lib.Loans.Base;
 using Whiskey_Tycoon.lib.Managers;
+using Whiskey_Tycoon.lib.Marketing.Base;
 
 namespace Whiskey_Tycoon.UWP.ViewModels
 {
     public class MarketingManagementPageViewModel : BaseViewModel
     {
-        private ObservableCollection<BaseLoan> _marketingTypes;
+        private ObservableCollection<BaseMarketing> _marketingTypes;
 
-        public ObservableCollection<BaseLoan> MarketingTypes
+        public ObservableCollection<BaseMarketing> MarketingTypes
         {
             get => _marketingTypes;
 
@@ -37,9 +37,9 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             }
         }
 
-        private BaseLoan _selectedMarketing;
+        private BaseMarketing _selectedMarketing;
 
-        public BaseLoan SelectedMarketing
+        public BaseMarketing SelectedMarketing
         {
             get => _selectedMarketing;
 
@@ -55,7 +55,7 @@ namespace Whiskey_Tycoon.UWP.ViewModels
         {
             Game = game;
 
-            MarketingTypes = LoanManager.GetLoanTypes();
+            MarketingTypes = MarketingManager.GetMarketingTypes();
 
             SelectedMarketing = MarketingTypes.FirstOrDefault();
 
