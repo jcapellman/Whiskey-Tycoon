@@ -12,7 +12,7 @@
 
         public int ReleaseQuarter { get; set; }
 
-        public float BottlePrice { get; set; }
+        public ulong BottlePrice { get; set; }
 
         public ulong BottlesSold { get; set; }
 
