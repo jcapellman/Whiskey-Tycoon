@@ -4,7 +4,7 @@
     {
         public string Name { get; set; }
 
-        public int QualityRating { get; set; }
+        public uint QualityRating { get; set; }
 
         public float YearsAged { get; set; }
 
@@ -18,8 +18,12 @@
 
         public ulong BottlesAvailable { get; set; }
 
-        public int Demand { get; set; }
+        public uint Demand { get; set; }
 
         public bool Archived { get; set; }
+
+        public uint PressReviewRating { get; set; }
+
+        public string PressReviewDescription { get; set; }
     }
 }
