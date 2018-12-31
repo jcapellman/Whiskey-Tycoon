@@ -23,6 +23,20 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             }
         }
 
+        private bool _enableGetLoanButton;
+
+        public bool EnableGetLoanButton
+        {
+            get => _enableGetLoanButton;
+
+            set
+            {
+                _enableGetLoanButton = value;
+
+                OnPropertyChanged();
+            }
+        }
+
         private BaseLoan _selectedLoan;
 
         public BaseLoan SelectedLoan
@@ -44,6 +58,8 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             LoanTypes = LoanManager.GetLoanTypes();
 
             SelectedLoan = LoanTypes.FirstOrDefault();
+
+            EnableGetLoanButton = !Game.Loans.Any();
         }
 
         public void AddLoan()

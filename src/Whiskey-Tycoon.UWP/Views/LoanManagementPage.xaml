@@ -70,7 +70,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Button Grid.Row="1" Style="{StaticResource ActionButtonStyle}" Content="Get Loan" HorizontalAlignment="Center" Margin="0,0,0,20" Click="btnGetLoan_Click" />
+            <Button Grid.Row="1" Style="{StaticResource ActionButtonStyle}" IsEnabled="{Binding EnableGetLoanButton, Mode=TwoWay}" Content="Get Loan" HorizontalAlignment="Center" Margin="0,0,0,20" Click="btnGetLoan_Click" />
         </Grid>
 
         <Grid Grid.Row="2">
