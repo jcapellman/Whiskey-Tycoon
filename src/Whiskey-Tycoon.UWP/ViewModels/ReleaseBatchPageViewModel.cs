@@ -50,6 +50,20 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             }
         }
 
+        private ulong _bottlingCost;
+
+        public ulong BottlingCost
+        {
+            get => _bottlingCost;
+
+            set
+            {
+                _bottlingCost = value;
+
+                OnPropertyChanged();
+            }
+        }
+
         private ulong _selectedPrice;
 
         public ulong SelectedPrice
@@ -97,6 +111,8 @@ namespace Whiskey_Tycoon.UWP.ViewModels
 
             btnReleaseToPressEnable =
                 !Batch.PressSampleReviews.Any(a => a.Quarter == Game.CurrentQuarter && a.Year == Game.CurrentYear);
+
+           BottlingCost = Constants.BOTTLE_COST * NumberBottles;
         }
 
         public string ReleaseBatchName => $"Release {Batch.Name}";
@@ -119,7 +135,7 @@ namespace Whiskey_Tycoon.UWP.ViewModels
 
         public void ReleaseTheBatch()
         {
-            Game.ReleaseBatch(_batchObject, SelectedPrice, SelectedProof, NumberBottles, 0);
+            Game.ReleaseBatch(_batchObject, SelectedPrice, SelectedProof, NumberBottles, 0, BottlingCost);
         }
 
         public void ReleaseBatchToPress()
