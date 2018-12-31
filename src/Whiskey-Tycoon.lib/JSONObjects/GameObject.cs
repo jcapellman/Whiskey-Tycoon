@@ -112,7 +112,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             Warehouses.Add(warehouseObject);
         }
 
-        public void ReleaseBatch(BatchObject batch, ulong price, float selectedProof, ulong bottlesAvailable, int demand)
+        public void ReleaseBatch(BatchObject batch, ulong price, float selectedProof, ulong bottlesAvailable, int demand, ulong bottlingCost)
         {
             var releaseObject = new ReleasesObject
             {
@@ -140,6 +140,8 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
                 warehouse.RemoveBatch(batch);
             }
+
+            MoneyAvailable -= bottlingCost;
         }
 
         private void UpdateDemandForReleases(int modifier)
