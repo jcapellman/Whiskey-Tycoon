@@ -128,6 +128,18 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             };
 
             Releases.Add(releaseObject);
+
+            foreach (var warehouse in Warehouses)
+            {
+                var found = warehouse.Batches.Any(a => a.ID == batch.ID);
+
+                if (!found)
+                {
+                    continue;
+                }
+
+                warehouse.RemoveBatch(batch);
+            }
         }
 
         private void UpdateDemandForReleases(int modifier)

@@ -9,6 +9,8 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 {
     public class BatchObject
     {
+        public Guid ID { get; set; }
+
         public string Name { get; set; }
 
         public int BarrelQuarter { get; set; }
@@ -39,6 +41,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
         public BatchObject()
         {
+            ID = Guid.NewGuid();
             Barrels = new List<BarrelObject>();
             PressSampleReviews = new ObservableCollection<PressSampleReviewObject>();
         }

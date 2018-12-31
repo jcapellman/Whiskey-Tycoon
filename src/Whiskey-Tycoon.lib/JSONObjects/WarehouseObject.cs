@@ -34,5 +34,10 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
             Batches = new ObservableCollection<BatchObject>();
         }
+
+        public void RemoveBatch(BatchObject batch)
+        {
+            Batches.Remove(batch);
+        }
     }
 }
