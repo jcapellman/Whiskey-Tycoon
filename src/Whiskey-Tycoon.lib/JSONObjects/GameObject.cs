@@ -112,7 +112,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             Warehouses.Add(warehouseObject);
         }
 
-        public void ReleaseBatch(BatchObject batch, float price, float selectedProof, ulong bottlesAvailable, int demand)
+        public void ReleaseBatch(BatchObject batch, ulong price, float selectedProof, ulong bottlesAvailable, int demand)
         {
             var releaseObject = new ReleasesObject
             {
@@ -165,6 +165,26 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             AgeBarrels();
 
             GenerateEvents();
+
+            GenerateSales();
+        }
+
+        private void GenerateSales()
+        {
+            foreach (var release in Releases)
+            {
+                var perecentageSold = Common.ExtensionMethods.GetRandomNumber(0, release.Demand + 1) / 100.0;
+
+                var bottles = (ulong)Common.ExtensionMethods.GetRandomNumber(0, (int)(perecentageSold * release.BottlesAvailable));
+
+                release.BottlesSold += bottles;
+                release.BottlesAvailable -= bottles;
+                release.Demand--;
+
+                MoneyAvailable += release.BottlePrice * bottles;
+
+                release.Demand = Math.Abs(release.Demand);
+            }
         }
 
         private void GenerateEvents()
