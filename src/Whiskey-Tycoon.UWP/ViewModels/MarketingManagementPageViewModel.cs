@@ -59,7 +59,7 @@ namespace Whiskey_Tycoon.UWP.ViewModels
 
             SelectedMarketing = MarketingTypes.FirstOrDefault();
 
-            EnableBuyMarketingButton = !Game.Loans.Any();
+            EnableBuyMarketingButton = !Game.Marketing.Any();
         }
 
         public void AddMarketing()
