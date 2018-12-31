@@ -7,7 +7,8 @@ using Whiskey_Tycoon.lib.Common;
 using Whiskey_Tycoon.lib.Enums;
 using Whiskey_Tycoon.lib.Loans.Base;
 using Whiskey_Tycoon.lib.Managers;
-    
+using Whiskey_Tycoon.lib.Marketing.Base;
+
 namespace Whiskey_Tycoon.lib.JSONObjects
 {
     public class GameObject
@@ -41,6 +42,8 @@ namespace Whiskey_Tycoon.lib.JSONObjects
         public ObservableCollection<ReleasesObject> Releases { get; set; }
 
         public ObservableCollection<LoanObject> Loans { get; set; }
+
+        public ObservableCollection<MarketingObject> Marketing { get; set; }
 
         public ulong BottlesSold
         {
@@ -88,6 +91,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             Events = new ObservableCollection<EventObject>();
             Releases = new ObservableCollection<ReleasesObject>();
             Loans = new ObservableCollection<LoanObject>();
+            Marketing = new ObservableCollection<MarketingObject>();
         }
 
         public void UpdateWarehouse(WarehouseObject warehouseObject)
@@ -396,6 +400,18 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
                 MoneyAvailable -= WarehouseMaintenanceCost;
             }
+        }
+
+        public void AddMarketing(BaseMarketing selectedMarketing)
+        {
+            var marketing = new MarketingObject
+            {
+                Impact = selectedMarketing.Impact,
+                QuartersRemaining = selectedMarketing.QuartersLength,
+                QuarterlyCost = selectedMarketing.QuarterCost
+            };
+
+            Marketing.Add(marketing);
         }
     }
 }
