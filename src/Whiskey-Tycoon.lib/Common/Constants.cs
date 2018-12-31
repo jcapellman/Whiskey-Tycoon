@@ -18,6 +18,8 @@
 
         public const int MINIMUM_PROOF = 80;
 
+        public const ulong BOTTLE_COST = 5;
+
         // Events
         public const int EVENTS_COMPETITOR_QUALITY_DECREASES_MIN = 1;
         public const int EVENTS_COMPETITOR_QUALITY_INCREASES_MAX = 3;
