@@ -54,17 +54,17 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
-                            <TextBlock Grid.Row="0" Style="{StaticResource PageLabelHeaderStyle}" Text="LOAN NAME" />
+                            <TextBlock Grid.Row="0" Style="{StaticResource PageLabelHeaderStyle}" Text="MARKETING NAME" />
                             <TextBlock Grid.Row="1" Style="{StaticResource PageLabelValueStyle}" Text="{Binding Name}" />
 
-                            <TextBlock Grid.Row="2" Style="{StaticResource PageLabelHeaderStyle}" Text="LOAN AMOUNT" />
-                            <TextBlock Grid.Row="3" Style="{StaticResource PageLabelValueStyle}" Text="{Binding Amount}" />
+                            <TextBlock Grid.Row="2" Style="{StaticResource PageLabelHeaderStyle}" Text="MARKETING MAXIMUM IMPACT" />
+                            <TextBlock Grid.Row="3" Style="{StaticResource PageLabelValueStyle}" Text="{Binding Impact}" />
 
-                            <TextBlock Grid.Row="4" Style="{StaticResource PageLabelHeaderStyle}" Text="LOAN PAYOFF TERM" />
-                            <TextBlock Grid.Row="5" Style="{StaticResource PageLabelValueStyle}" Text="{Binding QuartersToPayOff}" />
+                            <TextBlock Grid.Row="4" Style="{StaticResource PageLabelHeaderStyle}" Text="MARKETING QUARTER LENGTH" />
+                            <TextBlock Grid.Row="5" Style="{StaticResource PageLabelValueStyle}" Text="{Binding QuartersLength}" />
 
-                            <TextBlock Grid.Row="6" Style="{StaticResource PageLabelHeaderStyle}" Text="LOAN QUARTERLY INTEREST" />
-                            <TextBlock Grid.Row="7" Style="{StaticResource PageLabelValueStyle}" Text="{Binding QuarterlyInterest}" />
+                            <TextBlock Grid.Row="6" Style="{StaticResource PageLabelHeaderStyle}" Text="QUARTER COST" />
+                            <TextBlock Grid.Row="7" Style="{StaticResource PageLabelValueStyle}" Text="{Binding QuarterCost}" />
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>

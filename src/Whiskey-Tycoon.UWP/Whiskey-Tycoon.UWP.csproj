@@ -130,6 +130,7 @@
     <Compile Include="ViewModels\LoadGamePageViewModel.cs" />
     <Compile Include="ViewModels\LoanManagementPageViewModel.cs" />
     <Compile Include="ViewModels\MainGamePageViewModel.cs" />
+    <Compile Include="ViewModels\MarketingManagementPageViewModel.cs" />
     <Compile Include="ViewModels\NewGamePageViewModel.cs" />
     <Compile Include="ViewModels\OptionsPageViewModel.cs" />
     <Compile Include="ViewModels\ReleaseBatchPageViewModel.cs" />
@@ -146,6 +147,9 @@
     </Compile>
     <Compile Include="Views\MainGamePage.xaml.cs">
       <DependentUpon>MainGamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MarketingManagementPage.xaml.cs">
+      <DependentUpon>MarketingManagementPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewGamePage.xaml.cs">
       <DependentUpon>NewGamePage.xaml</DependentUpon>
@@ -247,6 +251,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainGamePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MarketingManagementPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
