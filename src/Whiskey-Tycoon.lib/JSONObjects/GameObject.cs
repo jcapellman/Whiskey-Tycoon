@@ -230,6 +230,21 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             Events.Insert(0, _eventManager.GenerateEvent(CurrentYear, CurrentQuarter));
         }
 
+        public void AddLoan(ulong loanAmount, ulong quarterlyInterest, uint numberInstallments)
+        {
+            var loanObject = new LoanObject
+            {
+                LoanedAmount = loanAmount,
+                QuartersRemaining = numberInstallments,
+                QuarterlyInterest = quarterlyInterest,
+                TotalInterest = 0,
+                LoanAmountRemaining = loanAmount,
+                QuarterlyPayment = loanAmount / numberInstallments
+            };
+
+            Loans.Add(loanObject);
+        }
+
         private void ProcessLoans()
         {
             if (!Loans.Any())
