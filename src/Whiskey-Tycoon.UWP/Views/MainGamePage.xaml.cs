@@ -76,5 +76,10 @@ namespace Whiskey_Tycoon.UWP.Views
         {
             Frame.Navigate(typeof(LoanManagementPage), viewModel.Game);
         }
+
+        private void btnMarketingManagement_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MarketingManagementPage), viewModel.Game);
+        }
     }
 }
