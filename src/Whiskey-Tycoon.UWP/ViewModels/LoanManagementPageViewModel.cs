@@ -8,5 +8,10 @@ namespace Whiskey_Tycoon.UWP.ViewModels
         {
             Game = game;
         }
+
+        public void AddLoan(ulong amount, ulong quarterlyInterest, uint quarterInstallments)
+        {
+            Game.AddLoan(amount, quarterlyInterest, quarterInstallments);
+        }
     }
 }
