@@ -50,9 +50,9 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             }
         }
 
-        private float _selectedPrice;
+        private ulong _selectedPrice;
 
-        public float SelectedPrice
+        public ulong SelectedPrice
         {
             get => _selectedPrice;
 
