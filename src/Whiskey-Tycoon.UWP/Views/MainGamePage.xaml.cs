@@ -12,7 +12,7 @@ using Whiskey_Tycoon.lib.JSONObjects;
 
 namespace Whiskey_Tycoon.UWP.Views
 {
-    public sealed partial class MainGamePage : Page
+    public sealed partial class MainGamePage : BasePage
     {
         private MainGamePageViewModel viewModel => (MainGamePageViewModel) DataContext;
 
@@ -59,7 +59,16 @@ namespace Whiskey_Tycoon.UWP.Views
 
         private void btnNextQuarter_Click(object sender, RoutedEventArgs e)
         {
-            viewModel.NextQuarter();
+            var continueGame = viewModel.NextQuarter();
+
+            if (continueGame)
+            {
+                return;
+            }
+
+            ShowMessage("You have run out of money, game over");
+
+            Frame.Navigate(typeof(HighScorePage));
         }
 
         private void btnWarehouseManagement_Click(object sender, RoutedEventArgs e)
