@@ -18,7 +18,19 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Style="{StaticResource PageHeaderStyle}" Text="High Scores" />
+        <Grid Grid.Row="0" Margin="10,10,10,10">
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.5" />
+            </Grid.Background>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Style="{StaticResource PageHeaderStyle}" Text="HIGH SCORES" />
+            <TextBlock Grid.Row="1" Style="{StaticResource PageHeaderHelpStyle}" Text="Below are the High Scores from the games played" />
+        </Grid>
 
         <Grid Grid.Row="1" Margin="10,10,10,10">
             <Grid.Background>
@@ -37,27 +49,53 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" Style="{StaticResource ListTextBlockSubStyle}" Text="{Binding DistilleryName}" />
-                            <TextBlock Grid.Column="1" Style="{StaticResource ListTextBlockSubStyle}" Text="{Binding DistillerName}" />
-                            <TextBlock Grid.Column="2" Style="{StaticResource ListTextBlockSubStyle}" Text="{Binding BottlesSold}" />
-                            <TextBlock Grid.Column="3" Style="{StaticResource ListTextBlockSubStyle}" Text="{Binding YearsSurvived}" />
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Text="1" Style="{StaticResource PageHeaderStyle}" />
+
+                            <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Column="0" Grid.Row="0" Text="DISTILLERY NAME" Style="{StaticResource PageLabelHeaderStyle}" />
+                                <TextBlock Grid.Column="0" Grid.Row="1" Style="{StaticResource PageLabelValueStyle}" Text="{Binding DistilleryName}" />
+
+                                <TextBlock Grid.Column="1" Grid.Row="0" Text="DISTILLER NAME" Style="{StaticResource PageLabelHeaderStyle}" />
+                                <TextBlock Grid.Column="1" Grid.Row="1" Style="{StaticResource PageLabelValueStyle}" Text="{Binding DistillerName}" />
+
+                                <TextBlock Grid.Column="2" Grid.Row="0" Text="# BOTTLES SOLD" Style="{StaticResource PageLabelHeaderStyle}" />
+                                <TextBlock Grid.Column="2" Grid.Row="1" Style="{StaticResource PageLabelValueStyle}" Text="{Binding BottlesSold}" />
+
+                                <TextBlock Grid.Column="3" Grid.Row="0" Text="# YEARS SURVIVED" Style="{StaticResource PageLabelHeaderStyle}" />
+                                <TextBlock Grid.Column="3" Grid.Row="1" Style="{StaticResource PageLabelValueStyle}" Text="{Binding YearsSurvived}" />
+                            </Grid>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
 
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
+        <Grid Grid.Row="2" Margin="10,0,10,10">
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.5" />
+            </Grid.Background>
 
-            <Button Grid.Column="0" Style="{StaticResource BackButtonStyle}" Content="Back to Main Menu" Click="btnBack_Click" />
+            <Button Style="{StaticResource BackButtonStyle}" Content="Back to Main Menu" Click="btnBack_Click" />
         </Grid>
     </Grid>
 </local:BasePage>
