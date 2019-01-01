@@ -4,6 +4,7 @@
     xmlns:local="using:Whiskey_Tycoon.UWP.Styles">
 
     <SolidColorBrush x:Key="MainColor" Color="White"/>
+    <SolidColorBrush x:Key="SecondaryColor" Color="Gold" />
 
     <Style x:Key="MainLogoStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="80" />
@@ -17,6 +18,12 @@
         <Setter Property="FontSize" Value="40" />
         <Setter Property="Foreground" Value="{StaticResource MainColor}" />
         <Setter Property="Margin" Value="10,10,0,10" />
+    </Style>
+
+    <Style x:Key="PageHeaderHelpStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Foreground" Value="{StaticResource SecondaryColor}" />
+        <Setter Property="Margin" Value="10,0,0,10" />
     </Style>
 
     <Style x:Key="PageSubHeaderStyle" TargetType="TextBlock">
