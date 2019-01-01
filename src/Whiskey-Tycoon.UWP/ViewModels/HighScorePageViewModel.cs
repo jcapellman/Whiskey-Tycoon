@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
-using Whiskey_Tycoon.lib.Common;
 using Whiskey_Tycoon.lib.JSONObjects;
+using Whiskey_Tycoon.lib.Managers;
 
 namespace Whiskey_Tycoon.UWP.ViewModels
 {
@@ -28,9 +27,7 @@ namespace Whiskey_Tycoon.UWP.ViewModels
 
         private async void LoadHighScores()
         {
-            var highScoresResult = await App.FileSystem.GetFileAsync<List<HighScoresObject>>(Constants.FILENAME_HIGHSCORES);
-
-            HighScores = highScoresResult?.OrderByDescending(a => a.BottlesSold).ToList() ?? new List<HighScoresObject>();
+            HighScores = await HighScoreManager.GetHighScoresAsync(App.FileSystem);
         }
     }
 }
