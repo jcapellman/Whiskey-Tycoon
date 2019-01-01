@@ -211,9 +211,8 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             }
         }
 
-        public void NextQuarter()
+        public bool NextQuarter()
         {
-            
             if (CurrentQuarter == 4)
             {
                 CurrentYear++;
@@ -224,26 +223,37 @@ namespace Whiskey_Tycoon.lib.JSONObjects
                 CurrentQuarter++;
             }
 
-            ProcessMarketing();
+            if (!ProcessMarketing())
+            {
+                return false;
+            }
 
             AgeBarrels();
 
-            GenerateEvents();
+            if (!GenerateEvents())
+            {
+                return false;
+            }
 
             GenerateSales();
 
-            ProcessLoans();
+            if (!ProcessLoans())
+            {
+                return false;
+            }
             
             Events.Insert(0, _eventManager.GenerateEvent(CurrentYear, CurrentQuarter));
+
+            return true;
         }
 
-        private void ProcessMarketing()
+        private bool ProcessMarketing()
         {
             if (!Marketing.Any())
             {
                 _eventManager.AddEvent("No marketing purchased");
 
-                return;
+                return true;
             }
 
             foreach (var marketing in Marketing)
@@ -254,10 +264,15 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
                     Marketing.Remove(marketing);
 
-                    return;
+                    return true;
                 }
 
                 marketing.QuartersRemaining--;
+
+                if (MoneyAvailable < marketing.QuarterlyCost)
+                {
+                    return false;
+                }
 
                 MoneyAvailable -= marketing.QuarterlyCost;
 
@@ -268,6 +283,8 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
                 _eventManager.AddEvent($"{marketing.Name} marketing ran, subtracted ${marketing.QuarterlyCost} from money available");
             }
+
+            return true;
         }
 
         public void AddLoan(BaseLoan loan)
@@ -287,13 +304,13 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             MoneyAvailable += loan.Amount;
         }
 
-        private void ProcessLoans()
+        private bool ProcessLoans()
         {
             if (!Loans.Any())
             {
                 _eventManager.AddEvent("No loans to process");
 
-                return;
+                return true;
             }
 
             foreach (var loan in Loans)
@@ -304,7 +321,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
                     {
                         _eventManager.AddEvent($"Not enough funds to process loan, game over");
 
-                        return;
+                        return false;
                     }
 
                     _eventManager.AddEvent($"Loan of ${loan.LoanedAmount} completed");
@@ -322,13 +339,15 @@ namespace Whiskey_Tycoon.lib.JSONObjects
                 {
                     _eventManager.AddEvent($"Not enough funds to process loan, game over");
 
-                    return;
+                    return false;
                 }
 
                 MoneyAvailable -= loan.QuarterlyPayment;
 
                 _eventManager.AddEvent($"Loan payment of ${loan.QuarterlyPayment} applied (${loan.QuarterlyInterest} of interest added)");
             }
+
+            return true;
         }
 
         private void GenerateSales()
@@ -369,7 +388,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             }
         }
 
-        private void GenerateEvents()
+        private bool GenerateEvents()
         {
             _eventManager.AddEvent(
                 BarrelsAging > 0
@@ -433,8 +452,15 @@ namespace Whiskey_Tycoon.lib.JSONObjects
                 _eventManager.AddEvent(
                     $"Maintenance upkeep on {Warehouses.Count} warehouses (${WarehouseMaintenanceCost}) subtracted from account.");
 
+                if (MoneyAvailable < WarehouseMaintenanceCost)
+                {
+                    return false;
+                }
+
                 MoneyAvailable -= WarehouseMaintenanceCost;
             }
+
+            return true;
         }
 
         public void AddMarketing(BaseMarketing selectedMarketing)
