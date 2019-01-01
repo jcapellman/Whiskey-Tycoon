@@ -1,4 +1,5 @@
 ﻿using Whiskey_Tycoon.lib.JSONObjects;
+using Whiskey_Tycoon.lib.Managers;
 
 namespace Whiskey_Tycoon.UWP.ViewModels
 {
@@ -15,7 +16,22 @@ namespace Whiskey_Tycoon.UWP.ViewModels
 
             Game = Game;
 
-            return continueGame;
+            if (continueGame)
+            {
+                return true;
+            }
+
+            var highScoreObject = new HighScoresObject
+            {
+                BottlesSold = Game.BottlesSold,
+                DistillerName = Game.DistillerName,
+                DistilleryName = Game.DistilleryName,
+                YearsSurvived = Game.YearsOld
+            };
+
+            HighScoreManager.AddHighScore(highScoreObject, App.FileSystem);
+
+            return false;
         }
     }
 }
