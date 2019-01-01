@@ -2,6 +2,8 @@
 {
     public class MarketingObject
     {
+        public string Name { get; set; }
+
         public uint Impact { get; set; }
 
         public ulong QuarterlyCost { get; set; }
