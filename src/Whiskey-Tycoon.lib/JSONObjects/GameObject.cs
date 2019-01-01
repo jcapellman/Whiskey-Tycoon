@@ -224,6 +224,8 @@ namespace Whiskey_Tycoon.lib.JSONObjects
                 CurrentQuarter++;
             }
 
+            ProcessMarketing();
+
             AgeBarrels();
 
             GenerateEvents();
@@ -231,8 +233,41 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             GenerateSales();
 
             ProcessLoans();
-
+            
             Events.Insert(0, _eventManager.GenerateEvent(CurrentYear, CurrentQuarter));
+        }
+
+        private void ProcessMarketing()
+        {
+            if (!Marketing.Any())
+            {
+                _eventManager.AddEvent("No marketing purchased");
+
+                return;
+            }
+
+            foreach (var marketing in Marketing)
+            {
+                if (marketing.QuartersRemaining == 0)
+                {
+                    _eventManager.AddEvent($"{marketing.Name} marketing finished");
+
+                    Marketing.Remove(marketing);
+
+                    return;
+                }
+
+                marketing.QuartersRemaining--;
+
+                MoneyAvailable -= marketing.QuarterlyCost;
+
+                foreach (var release in Releases)
+                {
+                    release.Demand += Common.ExtensionMethods.GetRandomNumber(0, marketing.Impact);
+                }
+
+                _eventManager.AddEvent($"{marketing.Name} marketing ran, subtracted ${marketing.QuarterlyCost} from money available");
+            }
         }
 
         public void AddLoan(BaseLoan loan)
@@ -406,6 +441,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
         {
             var marketing = new MarketingObject
             {
+                Name = selectedMarketing.Name,
                 Impact = selectedMarketing.Impact,
                 QuartersRemaining = selectedMarketing.QuartersLength,
                 QuarterlyCost = selectedMarketing.QuarterCost
