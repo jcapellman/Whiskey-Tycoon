@@ -36,7 +36,7 @@ namespace Whiskey_Tycoon.UWP.Views
         {
             ViewModel.AddMarketing();
 
-            ShowMessage($"{ViewModel.SelectedMarketing.Name} obtained!");
+            ShowMessage($"{ViewModel.SelectedMarketing.Name} marketing obtained!");
 
             Frame.Navigate(typeof(MainGamePage), ViewModel.Game);
         }
