@@ -8,7 +8,7 @@ A tycoon simulation of running a Whiskey Distillery.
 * Distribution Management
 * Loan Management
 
-## Tentative Timeline
+## Tentative Release Timeline
 
 ### Alpha 1 (December 31st 2018)
 Feature complete, but not polished release (https://github.com/jcapellman/Whiskey-Tycoon/releases/tag/v0.1-alpha-1)
