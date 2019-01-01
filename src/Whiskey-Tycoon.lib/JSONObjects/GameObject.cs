@@ -25,6 +25,8 @@ namespace Whiskey_Tycoon.lib.JSONObjects
 
         public int CurrentQuarter { get; set; } = 1;
         
+        public uint YearsOld { get; set; }
+
         public ulong MoneyAvailable { get; set; } = 1000000;
 
         public DateTime SaveDate { get; set; }
@@ -217,6 +219,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             {
                 CurrentYear++;
                 CurrentQuarter = 1;
+                YearsOld++;
             }
             else
             {
