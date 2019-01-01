@@ -9,11 +9,13 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             Game = gameObject;
         }
 
-        public void NextQuarter()
+        public bool NextQuarter()
         {
-            Game.NextQuarter();
+            var continueGame = Game.NextQuarter();
 
             Game = Game;
+
+            return continueGame;
         }
     }
 }
