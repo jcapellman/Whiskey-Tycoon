@@ -4,6 +4,8 @@
     {
         public const string FILENAME_OPTIONS = "options.json";
 
+        public const string FILENAME_HIGHSCORES = "highscores.json";
+
         public const string FILE_SAVEGAME_EXTENSION = "wtsg";
 
         public const string FILE_SAVEGAME_DEFAULT_NAME = "New Save Game";
