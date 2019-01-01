@@ -1,4 +1,4 @@
-﻿<Page
+﻿<local:BasePage
     x:Class="Whiskey_Tycoon.UWP.Views.MainGamePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -131,4 +131,4 @@
             <Button Grid.Column="5" Style="{StaticResource CenterButtonStyle}" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Content="Next Quarter" Click="btnNextQuarter_Click" />
         </Grid>
     </Grid>
-</Page>
+</local:BasePage>
