@@ -26,5 +26,10 @@ namespace Whiskey_Tycoon.UWP
         {
             Frame.Navigate(typeof(OptionsPage));
         }
+
+        private void btnHighScores_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(HighScorePage));
+        }
     }
 }
