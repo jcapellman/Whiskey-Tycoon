@@ -14,13 +14,14 @@ namespace Whiskey_Tycoon.lib.Managers
         {
             var highScoresResult = await fileSystem.GetFileAsync<List<HighScoresObject>>(Constants.FILENAME_HIGHSCORES);
 
-            return highScoresResult?.OrderByDescending(a => a.BottlesSold).ToList() ?? new List<HighScoresObject>();
+            return highScoresResult?.OrderByDescending(a => a.BottlesSold).Select((value, index) => 
+                       new HighScoresObject(value, index + 1)).ToList() ?? new List<HighScoresObject>();
         }
 
         public static async void AddHighScore(HighScoresObject highScoreObject, IFileSystem fileSystem)
         {
             var highScores = await GetHighScoresAsync(fileSystem);
-
+            
             highScores.Add(highScoreObject);
 
             await fileSystem.WriteFileAsync<List<HighScoresObject>>(Constants.FILENAME_HIGHSCORES, highScores);
