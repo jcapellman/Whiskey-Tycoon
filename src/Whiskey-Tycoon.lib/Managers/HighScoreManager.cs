@@ -18,13 +18,13 @@ namespace Whiskey_Tycoon.lib.Managers
                        new HighScoresObject(value, index + 1)).ToList() ?? new List<HighScoresObject>();
         }
 
-        public static async void AddHighScore(HighScoresObject highScoreObject, IFileSystem fileSystem)
+        public static async Task<bool> AddHighScoreAsync(HighScoresObject highScoreObject, IFileSystem fileSystem)
         {
             var highScores = await GetHighScoresAsync(fileSystem);
             
             highScores.Add(highScoreObject);
 
-            await fileSystem.WriteFileAsync<List<HighScoresObject>>(Constants.FILENAME_HIGHSCORES, highScores);
+            return await fileSystem.WriteFileAsync<List<HighScoresObject>>(Constants.FILENAME_HIGHSCORES, highScores);
         }
 
         public static async void ClearHighScoresAsync(IFileSystem fileSystem)
