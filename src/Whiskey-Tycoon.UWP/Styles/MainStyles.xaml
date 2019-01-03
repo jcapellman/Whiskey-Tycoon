@@ -20,6 +20,19 @@
         <Setter Property="Margin" Value="10,10,0,10" />
     </Style>
 
+    <Style x:Key="ListViewRankingTextStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="40" />
+        <Setter Property="Foreground" Value="{StaticResource MainColor}" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+    
+    <Style x:Key="ListViewRankingContainer" TargetType="Grid">
+        <Setter Property="Background" Value="Gold" />
+        <Setter Property="Width" Value="64" />
+        <Setter Property="Height" Value="64" />
+    </Style>
+
     <Style x:Key="PageHeaderHelpStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="15" />
         <Setter Property="Foreground" Value="{StaticResource SecondaryColor}" />
