@@ -26,5 +26,10 @@ namespace Whiskey_Tycoon.lib.Managers
 
             await fileSystem.WriteFileAsync<List<HighScoresObject>>(Constants.FILENAME_HIGHSCORES, highScores);
         }
+
+        public static async void ClearHighScoresAsync(IFileSystem fileSystem)
+        {
+            await fileSystem.DeleteFileAsync(Constants.FILENAME_HIGHSCORES);
+        }
     }
 }
