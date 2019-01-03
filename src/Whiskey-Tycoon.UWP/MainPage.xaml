@@ -18,19 +18,25 @@
 
         <Grid Grid.Row="0" VerticalAlignment="Center">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="300" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Text="Whiskey Tycoon" Style="{StaticResource MainLogoStyle}" />
-            
-            <Button Grid.Row="1" Content="New Game" Style="{StaticResource MainButtonStyle}" Click="btnNewGame_Click" />
-            <Button Grid.Row="2" Content="Load Game" Style="{StaticResource MainButtonStyle}" Click="btnLoadGame_Click" />
-            <Button Grid.Row="3" Content="Options" Style="{StaticResource MainButtonStyle}" Click="btnOptions_Click" />
-            <Button Grid.Row="4" Content="High Scores" Style="{StaticResource MainButtonStyle}" Click="btnHighScores_Click" />
+            <Image Grid.Row="0" Source="Assets/StoreLogo.scale-400.png" />
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Button Grid.Row="0" Content="New Game" Style="{StaticResource MainButtonStyle}" Click="btnNewGame_Click" />
+                <Button Grid.Row="1" Content="Load Game" Style="{StaticResource MainButtonStyle}" Click="btnLoadGame_Click" />
+                <Button Grid.Row="2" Content="Options" Style="{StaticResource MainButtonStyle}" Click="btnOptions_Click" />
+                <Button Grid.Row="3" Content="High Scores" Style="{StaticResource MainButtonStyle}" Click="btnHighScores_Click" />
+            </Grid>
         </Grid>
 
         <TextBlock Grid.Row="1" HorizontalAlignment="Center" Margin="0,0,0,10">
