@@ -1,4 +1,6 @@
-﻿using Whiskey_Tycoon.lib.JSONObjects;
+﻿using System.Threading.Tasks;
+
+using Whiskey_Tycoon.lib.JSONObjects;
 using Whiskey_Tycoon.lib.Managers;
 
 namespace Whiskey_Tycoon.UWP.ViewModels
@@ -10,7 +12,7 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             Game = gameObject;
         }
 
-        public bool NextQuarter()
+        public async Task<(bool GameContinues, bool SaveSuccess)> NextQuarterAsync()
         {
             var continueGame = Game.NextQuarter();
 
@@ -18,7 +20,7 @@ namespace Whiskey_Tycoon.UWP.ViewModels
 
             if (continueGame)
             {
-                return true;
+                return (true, false);
             }
 
             var highScoreObject = new HighScoresObject
@@ -29,9 +31,9 @@ namespace Whiskey_Tycoon.UWP.ViewModels
                 YearsSurvived = Game.YearsOld
             };
 
-            HighScoreManager.AddHighScore(highScoreObject, App.FileSystem);
-
-            return false;
+            var addScoreResult = await HighScoreManager.AddHighScoreAsync(highScoreObject, App.FileSystem);
+            
+            return (false, addScoreResult);
         }
     }
 }
