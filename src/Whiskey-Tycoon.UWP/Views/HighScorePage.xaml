@@ -37,7 +37,9 @@
                 <SolidColorBrush Opacity="0.5" Color="Black" />
             </Grid.Background>
 
-            <ListView ItemsSource="{Binding HighScores, Mode=TwoWay}" SelectionMode="None">
+            <TextBlock Text="No games have been completed yet" Style="{StaticResource ListViewEmptyStyle}" Visibility="{Binding EmptyListViewVisibility, Mode=TwoWay}" />
+
+            <ListView ItemsSource="{Binding HighScores, Mode=TwoWay}" SelectionMode="None" Visibility="{Binding ListViewVisibility, Mode=TwoWay}">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -97,7 +99,13 @@
                 <SolidColorBrush Color="Black" Opacity="0.5" />
             </Grid.Background>
 
-            <Button Style="{StaticResource BackButtonStyle}" Content="Back to Main Menu" Click="btnBack_Click" />
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Style="{StaticResource BackButtonStyle}" Content="Back to Main Menu" Click="btnBack_Click" />
+            <Button Grid.Column="1" Style="{StaticResource ActionButtonStyle}" HorizontalAlignment="Right" IsEnabled="{Binding EnableClearHighScoreButton, Mode=TwoWay}" Content="Clear High Scores" Click="btnClearHighScores_Click" />
         </Grid>
     </Grid>
 </local:BasePage>
