@@ -37,7 +37,7 @@
                 <SolidColorBrush Opacity="0.5" Color="Black" />
             </Grid.Background>
 
-            <ListView ItemsSource="{Binding HighScores, Mode=TwoWay}">
+            <ListView ItemsSource="{Binding HighScores, Mode=TwoWay}" SelectionMode="None">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -46,7 +46,7 @@
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
+                        <Grid Margin="0,0,0,20">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
@@ -57,7 +57,9 @@
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
 
-                            <TextBlock Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Text="1" Style="{StaticResource PageHeaderStyle}" />
+                            <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource ListViewRankingContainer}">
+                                <TextBlock Text="{Binding Ranking}" Style="{StaticResource ListViewRankingTextStyle}" />
+                            </Grid>
 
                             <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
                                 <Grid.ColumnDefinitions>
