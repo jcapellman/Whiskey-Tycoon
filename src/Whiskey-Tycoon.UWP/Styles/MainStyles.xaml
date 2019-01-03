@@ -20,6 +20,13 @@
         <Setter Property="Margin" Value="10,10,0,10" />
     </Style>
 
+    <Style x:Key="ListViewEmptyStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="Foreground" Value="{StaticResource MainColor}" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
     <Style x:Key="ListViewRankingTextStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="40" />
         <Setter Property="Foreground" Value="{StaticResource MainColor}" />
