@@ -19,5 +19,17 @@ namespace Whiskey_Tycoon.UWP.Views
         {
             Frame.Navigate(typeof(MainPage));
         }
+
+        private async void btnClearHighScores_Click(object sender, RoutedEventArgs e)
+        {
+            var result = await ShowYesNoDialogAsync("Are you sure you want to clear the high scores?");
+
+            if (!result)
+            {
+                return;
+            }
+
+            ViewModel.ClearHighScores();
+        }
     }
 }
