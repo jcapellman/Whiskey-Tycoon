@@ -5,6 +5,7 @@
     xmlns:local="using:Whiskey_Tycoon.UWP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Whiskey_Tycoon.UWP.Controls"
     mc:Ignorable="d">
 
     <Grid>
@@ -18,7 +19,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="NEW GAME" Style="{StaticResource PageHeaderStyle}" />
+        <controls:HeaderControl Grid.Row="0" HeaderText="NEW GAME" HeaderHelpText="Fill out the fields below and click Start Game" />
 
         <Grid Grid.Row="1" Margin="10,10,10,10">
             <Grid.RowDefinitions>
@@ -26,15 +27,23 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <TextBox Grid.Row="0" Header="Master Distiller Name" Style="{StaticResource TextBoxFieldStyle}" Text="{Binding MasterDistillerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox Grid.Row="1" Header="Distillery Name" Style="{StaticResource TextBoxFieldStyle}" Text="{Binding DistilleryName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.5" />
+            </Grid.Background>
+
+            <TextBox Grid.Row="0" Header="MASTER DISTILLER NAME" Style="{StaticResource TextBoxFieldStyle}" Text="{Binding MasterDistillerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Grid.Row="1" Header="DISTILLERY NAME" Style="{StaticResource TextBoxFieldStyle}" Text="{Binding DistilleryName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
 
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" Margin="10,0,10,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.5" />
+            </Grid.Background>
 
             <Button Grid.Column="0" Content="Back" Style="{StaticResource BackButtonStyle}" Click="btnBack_Click" />
 

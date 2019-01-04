@@ -72,7 +72,7 @@
         <Setter Property="Foreground" Value="Black" />
         <Setter Property="FontSize" Value="20" />
         <Setter Property="HorizontalAlignment" Value="Left" />
-        <Setter Property="Margin" Value="0,0,0,20" />
+        <Setter Property="Margin" Value="10,0,0,20" />
     </Style>
 
     <Style x:Key="MainButtonStyle" TargetType="Button">
@@ -129,10 +129,10 @@
     </Style>
 
     <Style x:Key="NextButtonStyle" TargetType="Button">
-        <Setter Property="FontSize" Value="30" />
+        <Setter Property="FontSize" Value="20" />
         <Setter Property="Margin" Value="0,10,10,10" />
         <Setter Property="Width" Value="200" />
-        <Setter Property="Height" Value="50" />
+        <Setter Property="Height" Value="40" />
         <Setter Property="HorizontalAlignment" Value="Right" />
     </Style>
 </ResourceDictionary>
