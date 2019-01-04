@@ -1,5 +1,8 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
+
+using Windows.UI.Xaml;
 
 using Whiskey_Tycoon.lib.Common;
 using Whiskey_Tycoon.lib.JSONObjects;
@@ -12,7 +15,12 @@ namespace Whiskey_Tycoon.UWP.ViewModels
 
         public ObservableCollection<GameObject> Games {
             get => _games;
-            set { _games = value; OnPropertyChanged(); }
+            set
+            {
+                _games = value;
+                OnPropertyChanged();
+                ListViewVisibility = value.Any() ? Visibility.Visible : Visibility.Collapsed;
+            }
         }
 
         public LoadGamePageViewModel()

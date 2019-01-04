@@ -5,6 +5,7 @@
     xmlns:local="using:Whiskey_Tycoon.UWP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Whiskey_Tycoon.UWP.Controls"
     mc:Ignorable="d">
 
     <Grid>
@@ -18,46 +19,54 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Style="{StaticResource PageHeaderStyle}" Text="Load Game" />
+        <controls:HeaderControl Grid.Row="0" HeaderText="LOAD GAME" HeaderHelpText="Below are your previously saved games (if any)" />
 
-        <ListView Grid.Row="1" ItemsSource="{Binding Games}">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                </Style>
-            </ListView.ItemContainerStyle>
+        <Grid Grid.Row="1" Margin="10,10,10,10">
+            <Grid.Background>
+                <SolidColorBrush Opacity="0.5" Color="Black" />
+            </Grid.Background>
 
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
+            <TextBlock Text="No games have been saved yet" Style="{StaticResource ListViewEmptyStyle}" Visibility="{Binding EmptyListViewVisibility, Mode=TwoWay}" />
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
+            <ListView ItemsSource="{Binding Games}" Visibility="{Binding ListViewVisibility, Mode=TwoWay}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
 
-                        <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding DistilleryName}" />
-                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding SaveDate}" />
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
 
-                        <Button Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Center" Grid.Column="1" Content="Delete Game" Style="{StaticResource ListButtonStyle}" Click="btnDeleteGame_Click" />
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
 
-                        <Button Grid.Row="0" Grid.RowSpan="2" Margin="10,0,10,0" VerticalAlignment="Center" Grid.Column="2" Content="Load Game" Style="{StaticResource ListButtonStyle}" Click="btnLoadGame_Click" />
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding DistilleryName}" />
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding SaveDate}" />
 
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
+                            <Button Grid.Row="0" Grid.RowSpan="2" VerticalAlignment="Center" Grid.Column="1" Content="Delete Game" Style="{StaticResource ListButtonStyle}" Click="btnDeleteGame_Click" />
 
-            <Button Grid.Column="0" Style="{StaticResource BackButtonStyle}" Content="Back to Main Menu" Click="btnBackButton_Click" />
+                            <Button Grid.Row="0" Grid.RowSpan="2" Margin="10,0,10,0" VerticalAlignment="Center" Grid.Column="2" Content="Load Game" Style="{StaticResource ListButtonStyle}" Click="btnLoadGame_Click" />
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+
+        <Grid Grid.Row="2" Margin="10,0,10,10">
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.5" />
+            </Grid.Background>
+
+            <Button Style="{StaticResource BackButtonStyle}" Content="Back to Main Menu" Click="btnBackButton_Click" />
         </Grid>
     </Grid>
 </local:BasePage>
