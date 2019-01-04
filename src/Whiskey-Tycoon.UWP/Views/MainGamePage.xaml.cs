@@ -49,8 +49,15 @@ namespace Whiskey_Tycoon.UWP.Views
                 Frame.Navigate(typeof(SaveGamePage), viewModel.Game);
             }));
 
-            menu.Commands.Add(new UICommand("Quit Game", (command) =>
+            menu.Commands.Add(new UICommand("Quit Game", async (command) =>
             {
+                var result = await ShowYesNoDialogAsync("Are you sure you want to quit?");
+
+                if (!result)
+                {
+                    return;
+                }
+
                 Frame.Navigate(typeof(MainPage));
             }));
 
