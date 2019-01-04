@@ -137,6 +137,7 @@
     <Compile Include="ViewModels\LoadGamePageViewModel.cs" />
     <Compile Include="ViewModels\LoanManagementPageViewModel.cs" />
     <Compile Include="ViewModels\MainGamePageViewModel.cs" />
+    <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\MarketingManagementPageViewModel.cs" />
     <Compile Include="ViewModels\NewGamePageViewModel.cs" />
     <Compile Include="ViewModels\OptionsPageViewModel.cs" />
