@@ -14,6 +14,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" VerticalAlignment="Center">
@@ -42,5 +43,7 @@
         <TextBlock Grid.Row="1" HorizontalAlignment="Center" Margin="0,0,0,10">
             <Span xml:space="preserve"><Run>source code on </Run> <Hyperlink NavigateUri="https://github.com/jcapellman/whiskey-tycoon">github</Hyperlink></Span>
         </TextBlock>
+
+        <TextBlock Grid.Row="2" Text="{Binding VersionString}" HorizontalAlignment="Center" />
     </Grid>
 </Page>
