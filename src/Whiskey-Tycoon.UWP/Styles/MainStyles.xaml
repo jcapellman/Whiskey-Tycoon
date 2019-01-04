@@ -124,7 +124,7 @@
     <Style x:Key="ActionButtonStyle" TargetType="Button">
         <Setter Property="FontSize" Value="20" />
         <Setter Property="Width" Value="200" />
-        <Setter Property="Height" Value="35" />
+        <Setter Property="Height" Value="40" />
         <Setter Property="Margin" Value="0,0,20,0" />
     </Style>
 

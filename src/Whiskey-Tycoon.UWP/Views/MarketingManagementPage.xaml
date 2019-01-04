@@ -5,6 +5,7 @@
     xmlns:local="using:Whiskey_Tycoon.UWP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Whiskey_Tycoon.UWP.Controls"
     mc:Ignorable="d">
 
     <Grid>
@@ -18,7 +19,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Style="{StaticResource PageHeaderStyle}" Text="Marketing Management" />
+        <controls:HeaderControl Grid.Row="0" HeaderText="MARKETING MANAGEMENT" HeaderHelpText="Marketing increases demand for your releases" />
 
         <Grid Grid.Row="1" Margin="10,20,10,10">
             <Grid.Background>
@@ -73,10 +74,14 @@
             <Button Grid.Row="1" Style="{StaticResource ActionButtonStyle}" IsEnabled="{Binding EnableBuyMarketingButton, Mode=TwoWay}" Content="Buy Marketing" HorizontalAlignment="Center" Margin="0,0,0,20" Click="btnBuyMarketing_Click" />
         </Grid>
 
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="2" Margin="10,10,10,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
+
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.5" />
+            </Grid.Background>
 
             <Button Grid.Column="0" Style="{StaticResource BackButtonStyle}" Content="Back to Dashboard" Click="btnBack_Click" />
         </Grid>
