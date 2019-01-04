@@ -4,7 +4,6 @@ using Windows.Foundation;
 
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 using Whiskey_Tycoon.UWP.ViewModels;
