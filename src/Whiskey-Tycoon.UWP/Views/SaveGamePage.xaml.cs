@@ -40,9 +40,9 @@ namespace Whiskey_Tycoon.UWP.Views
         {
             var result = await viewModel.SaveGameAsync(fileName);
 
-            ShowMessage(result ? "Saved Successfully" : "Save failed");
+            ShowMessage(result.saveSuccessful ? "Saved Successfully" : "Save failed");
 
-            Frame.GoBack();
+            Frame.Navigate(typeof(MainGamePage), result.currentGame);
         }
 
         private void btnSaveNewGame_Click(object sender, RoutedEventArgs e)

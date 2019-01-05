@@ -28,6 +28,9 @@
 
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
             <Grid.Background>
@@ -39,6 +42,9 @@
 
             <TextBlock Grid.Row="2" Style="{StaticResource PageLabelHeaderStyle}" Text="Enable Sound" />
             <ToggleSwitch Grid.Row="3" Style="{StaticResource ToggleSwitchStyle}" IsOn="{Binding Options.EnableSound, Mode=TwoWay}" />
+
+            <TextBlock Grid.Row="4" Style="{StaticResource PageLabelHeaderStyle}" Text="Enable Auto-Save" />
+            <ToggleSwitch Grid.Row="5" Style="{StaticResource ToggleSwitchStyle}" IsOn="{Binding Options.AutoSave, Mode=TwoWay}" />
         </Grid>
 
         <Grid Grid.Row="2">

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
-
+using Whiskey_Tycoon.lib.Common;
 using Whiskey_Tycoon.lib.JSONObjects;
 
 namespace Whiskey_Tycoon.UWP.ViewModels
@@ -51,6 +51,8 @@ namespace Whiskey_Tycoon.UWP.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        protected async Task<OptionsObject> GetOptions() => await App.FileSystem.GetFileAsync<OptionsObject>(Constants.FILENAME_OPTIONS);
 
         public BaseViewModel()
         {

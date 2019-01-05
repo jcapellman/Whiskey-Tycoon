@@ -7,9 +7,18 @@ namespace Whiskey_Tycoon.UWP.ViewModels
 {
     public class MainGamePageViewModel : BaseViewModel
     {
+        private OptionsObject _options;
+
         public MainGamePageViewModel(GameObject gameObject)
         {
             Game = gameObject;
+
+            LoadOptions();
+        }
+
+        private async void LoadOptions()
+        {
+            _options = await GetOptions();
         }
 
         public async Task<(bool GameContinues, bool SaveSuccess)> NextQuarterAsync()
@@ -20,6 +29,11 @@ namespace Whiskey_Tycoon.UWP.ViewModels
 
             if (continueGame)
             {
+                if (_options.AutoSave && !string.IsNullOrEmpty(Game.FileName))
+                {
+                    await App.FileSystem.WriteFileAsync<GameObject>(Game.FileName, Game);
+                }
+                
                 return (true, false);
             }
 

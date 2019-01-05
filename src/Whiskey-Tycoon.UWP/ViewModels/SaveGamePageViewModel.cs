@@ -38,7 +38,7 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             Games = new ObservableCollection<GameObject>(gameList);
         }
 
-        public async Task<bool> SaveGameAsync(string fileName = null)
+        public async Task<(bool saveSuccessful, GameObject currentGame)> SaveGameAsync(string fileName = null)
         {
             // New Game is null
             if (fileName == null)
@@ -54,7 +54,7 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             
             _currentGame.SaveDate = DateTime.Now;
             
-            return await App.FileSystem.WriteFileAsync<GameObject>(_currentGame.FileName, _currentGame);
+            return (await App.FileSystem.WriteFileAsync<GameObject>(_currentGame.FileName, _currentGame), _currentGame);
         }
     }
 }
