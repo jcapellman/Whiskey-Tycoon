@@ -79,6 +79,10 @@
         </Grid>
 
         <Grid Grid.Row="1" Margin="10,20,10,10">
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.5" />
+            </Grid.Background>
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -96,10 +100,6 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="0,0,0,10">
-                            <Grid.Background>
-                                <SolidColorBrush Color="Black" Opacity="0.5" />
-                            </Grid.Background>
-
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
@@ -122,6 +122,10 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.5" />
+            </Grid.Background>
 
             <Button Grid.Column="0" Style="{StaticResource BackButtonStyle}" Content="Options" Click="btnOptions_Click" />
             <Button Grid.Column="1" Style="{StaticResource CenterButtonStyle}" HorizontalAlignment="Center" Content="Warehouse Management" Click="btnWarehouseManagement_Click" />
