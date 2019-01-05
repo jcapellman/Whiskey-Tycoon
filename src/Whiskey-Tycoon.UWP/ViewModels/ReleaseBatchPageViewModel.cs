@@ -136,9 +136,9 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             SelectedPrice = Constants.DEFAULT_BOTTLE_PRICE;
         }
 
-        public void ReleaseTheBatch()
+        public ReleasesObject ReleaseTheBatch()
         {
-            Game.ReleaseBatch(_batchObject, SelectedPrice, SelectedProof, NumberBottles, 0, BottlingCost);
+            return Game.ReleaseBatch(_batchObject, SelectedPrice, SelectedProof, NumberBottles, 0, BottlingCost);
         }
 
         public void ReleaseBatchToPress()
