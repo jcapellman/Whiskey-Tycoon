@@ -50,6 +50,8 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
 
                                 <Grid.RowDefinitions>
@@ -65,6 +67,12 @@
 
                                 <TextBlock Grid.Row="0" Grid.Column="2" Margin="20,0,0,0" Style="{StaticResource PageLabelHeaderStyle}" Text="BOTTLES AVAILABLE" />
                                 <TextBlock Grid.Row="1" Grid.Column="2" Margin="20,0,0,0" Style="{StaticResource PageLabelValueStyle}" Text="{Binding BottlesAvailable}" />
+
+                                <TextBlock Grid.Row="0" Grid.Column="3" Margin="20,0,0,0" Style="{StaticResource PageLabelHeaderStyle}" Text="BOTTLE AGE" />
+                                <TextBlock Grid.Row="1" Grid.Column="3" Margin="20,0,0,0" Style="{StaticResource PageLabelValueStyle}" Text="{Binding YearsAged}" />
+
+                                <TextBlock Grid.Row="0" Grid.Column="4" Margin="20,0,0,0" Style="{StaticResource PageLabelHeaderStyle}" Text="DEMAND" />
+                                <TextBlock Grid.Row="1" Grid.Column="4" Margin="20,0,0,0" Style="{StaticResource PageLabelValueStyle}" Text="{Binding Demand}" />
                             </Grid>
                         </Grid>
                     </DataTemplate>
