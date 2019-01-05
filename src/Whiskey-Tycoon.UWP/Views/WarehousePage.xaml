@@ -5,6 +5,7 @@
     xmlns:local="using:Whiskey_Tycoon.UWP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Whiskey_Tycoon.UWP.Controls"
     mc:Ignorable="d">
 
     <Grid>
@@ -18,7 +19,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Style="{StaticResource PageHeaderStyle}" Text="{Binding WarehouseHeaderName}" />
+        <controls:HeaderControl Grid.Row="0" HeaderText="{Binding WarehouseHeaderName}" HeaderHelpText="Manage your warehouse below" />
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -58,7 +59,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Text="Create New Batch" Style="{StaticResource PageHeaderStyle}" />
+                <TextBlock Grid.Row="0" Text="Create New Batch" Style="{StaticResource PageSubHeaderStyle}" />
 
                 <TextBlock Grid.Row="1" Text="Batch Name" Style="{StaticResource PageLabelHeaderStyle}" />
                 <TextBox Grid.Row="2" Text="{Binding BatchName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxFieldStyle}" Margin="10,10,10,10"  />
@@ -76,12 +77,12 @@
                 <TextBlock Grid.Row="10" Text="{Binding Game.MoneyAvailable}" Style="{StaticResource PageHeaderStyle}" />
 
                 <TextBlock Grid.Row="11" Text="Batch Cost" Style="{StaticResource PageLabelHeaderStyle}" />
-                <TextBlock Grid.Row="12" Text="{Binding BatchCost}" Style="{StaticResource PageHeaderStyle}" />
+                <TextBlock Grid.Row="12" Text="{Binding BatchCost}" Style="{StaticResource PageLabelValueStyle}" />
 
                 <TextBlock Grid.Row="13" Text="Space Available" Style="{StaticResource PageLabelHeaderStyle}" />
-                <TextBlock Grid.Row="14" Text="{Binding Warehouse.SpaceAvailable}" Style="{StaticResource PageHeaderStyle}" />
+                <TextBlock Grid.Row="14" Text="{Binding Warehouse.SpaceAvailable}" Style="{StaticResource PageLabelValueStyle}" />
 
-                <Button Grid.Row="15" Content="Create Batch" IsEnabled="{Binding EnableCreateButton}" Style="{StaticResource ActionButtonStyle}" Click="btnCreateBatch_Click" />
+                <Button Grid.Row="15" Content="Create Batch" Margin="10,10,0,0" IsEnabled="{Binding EnableCreateButton}" Style="{StaticResource ActionButtonStyle}" Click="btnCreateBatch_Click" />
             </Grid>
 
             <Grid Grid.Column="1" Margin="10,10,10,10">
@@ -94,40 +95,44 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Style="{StaticResource PageHeaderStyle}" Text="Currently Aging Batches" />
+                <TextBlock Grid.Row="0" Style="{StaticResource PageSubHeaderStyle}" Text="Currently Aging Batches" />
 
-                <ListView Grid.Row="1" ItemsSource="{Binding Warehouse.Batches}">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                        </Style>
-                    </ListView.ItemContainerStyle>
+                <Grid Grid.Row="1">
+                    <TextBlock Text="No batches have been created yet" Style="{StaticResource ListViewEmptyStyle}" Visibility="{Binding EmptyListViewVisibility, Mode=TwoWay}" />
 
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
+                    <ListView ItemsSource="{Binding Warehouse.Batches}" Visibility="{Binding ListViewVisibility, Mode=TwoWay}">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
 
-                                <TextBlock Grid.Column="0" Style="{StaticResource ListTextBlockSubStyle}" Text="{Binding Name}" />
-                                <TextBlock Grid.Column="1" Style="{StaticResource ListTextBlockSubStyle}" Margin="10,0,10,0" Text="{Binding Quality}" />
-                                <TextBlock Grid.Column="2" Style="{StaticResource ListTextBlockSubStyle}" Margin="0,0,10,0" Text="{Binding BatchType}" />
-                                <TextBlock Grid.Column="3" Style="{StaticResource ListTextBlockSubStyle}" Margin="0,0,10,0" Text="{Binding NumberBarrels}" />
-                                <TextBlock Grid.Column="4" Style="{StaticResource ListTextBlockSubStyle}" Text="{Binding BarrelingDate}" />
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
 
-                                <Button Grid.Column="5" Style="{StaticResource ListActionButtonStyle}" HorizontalAlignment="Right" Content="Trash" Click="btnTrash_Click" />
-                                <Button Grid.Column="6" Style="{StaticResource ListActionButtonStyle}" HorizontalAlignment="Right" Content="Release" Click="btnRelease_Click" />
-                            </Grid>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                                    <TextBlock Grid.Column="0" Style="{StaticResource ListTextBlockSubStyle}" Text="{Binding Name}" />
+                                    <TextBlock Grid.Column="1" Style="{StaticResource ListTextBlockSubStyle}" Margin="10,0,10,0" Text="{Binding Quality}" />
+                                    <TextBlock Grid.Column="2" Style="{StaticResource ListTextBlockSubStyle}" Margin="0,0,10,0" Text="{Binding BatchType}" />
+                                    <TextBlock Grid.Column="3" Style="{StaticResource ListTextBlockSubStyle}" Margin="0,0,10,0" Text="{Binding NumberBarrels}" />
+                                    <TextBlock Grid.Column="4" Style="{StaticResource ListTextBlockSubStyle}" Text="{Binding BarrelingDate}" />
+
+                                    <Button Grid.Column="5" Style="{StaticResource ListActionButtonStyle}" HorizontalAlignment="Right" Content="Trash" Click="btnTrash_Click" />
+                                    <Button Grid.Column="6" Style="{StaticResource ListActionButtonStyle}" HorizontalAlignment="Right" Content="Release" Click="btnRelease_Click" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
             </Grid>
         </Grid>
 
@@ -135,6 +140,10 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
+
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.5" />
+            </Grid.Background>
 
             <Button Grid.Column="0" Style="{StaticResource BackButtonStyle}" Content="Back" Click="btnBack_Click" />
         </Grid>
