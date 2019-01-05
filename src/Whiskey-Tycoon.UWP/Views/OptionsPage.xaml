@@ -5,6 +5,7 @@
     xmlns:local="using:Whiskey_Tycoon.UWP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Whiskey_Tycoon.UWP.Controls"
     mc:Ignorable="d">
 
     <Grid>
@@ -18,7 +19,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Style="{StaticResource PageHeaderStyle}" Text="Options" />
+        <controls:HeaderControl Grid.Row="0" HeaderText="OPTIONS" HeaderHelpText="Configure the game below" />
 
         <Grid Grid.Row="1" Margin="10,10,10,10">
             <Grid.RowDefinitions>
@@ -29,11 +30,15 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Text="Enable Music" />
-            <ToggleSwitch Grid.Row="1" IsOn="{Binding Options.EnableMusic, Mode=TwoWay}" />
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.5" />
+            </Grid.Background>
 
-            <TextBlock Grid.Row="2" Text="Enable Sound" />
-            <ToggleSwitch Grid.Row="3" IsOn="{Binding Options.EnableSound, Mode=TwoWay}" />
+            <TextBlock Grid.Row="0" Style="{StaticResource PageLabelHeaderStyle}" Text="Enable Music" />
+            <ToggleSwitch Grid.Row="1" Style="{StaticResource ToggleSwitchStyle}" IsOn="{Binding Options.EnableMusic, Mode=TwoWay}" />
+
+            <TextBlock Grid.Row="2" Style="{StaticResource PageLabelHeaderStyle}" Text="Enable Sound" />
+            <ToggleSwitch Grid.Row="3" Style="{StaticResource ToggleSwitchStyle}" IsOn="{Binding Options.EnableSound, Mode=TwoWay}" />
         </Grid>
 
         <Grid Grid.Row="2">
@@ -42,8 +47,11 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Style="{StaticResource BackButtonStyle}" Content="Back to Main Menu" Click="btnBack_Click" />
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.5" />
+            </Grid.Background>
 
+            <Button Grid.Column="0" Style="{StaticResource BackButtonStyle}" Content="Back to Main Menu" Click="btnBack_Click" />
             <Button Grid.Column="1" Style="{StaticResource NextButtonStyle}" Content="Save Options" Click="btnSave_Click" />
         </Grid>
     </Grid>

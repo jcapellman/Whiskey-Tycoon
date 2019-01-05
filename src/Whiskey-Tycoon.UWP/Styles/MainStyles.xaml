@@ -135,4 +135,8 @@
         <Setter Property="Height" Value="40" />
         <Setter Property="HorizontalAlignment" Value="Right" />
     </Style>
+
+    <Style x:Key="ToggleSwitchStyle" TargetType="ToggleSwitch">
+        <Setter Property="Margin" Value="10,0,0,10" />
+    </Style>
 </ResourceDictionary>
