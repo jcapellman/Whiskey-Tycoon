@@ -5,6 +5,8 @@ using System.Linq;
 using Whiskey_Tycoon.lib.Enums;
 using Whiskey_Tycoon.lib.JSONObjects;
 
+using Windows.UI.Xaml;
+
 namespace Whiskey_Tycoon.UWP.ViewModels
 {
     public class WarehouseManagementPageViewModel : BaseViewModel
@@ -92,7 +94,7 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             Game = game;
 
             WarehouseSizes = Enum.GetNames(typeof(WarehouseSizes)).ToList();
-
+            
             ClearForm();
         }
 
@@ -100,6 +102,8 @@ namespace Whiskey_Tycoon.UWP.ViewModels
         {
             WarehouseName = string.Empty;
             SelectedWarehouseSize = WarehouseSizes.FirstOrDefault();
+
+            ListViewVisibility = Game.Warehouses.Any() ? Visibility.Visible : Visibility.Collapsed;
 
             ValidateForm();
         }
@@ -116,6 +120,8 @@ namespace Whiskey_Tycoon.UWP.ViewModels
         public void RemoveWarehouse(WarehouseObject warehouse)
         {
             Game.Warehouses.Remove(warehouse);
+
+            ClearForm();
         }
     }
 }

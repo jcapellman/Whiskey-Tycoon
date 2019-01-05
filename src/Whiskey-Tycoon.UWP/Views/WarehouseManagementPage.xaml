@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Whiskey_Tycoon.UWP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:controls="using:Whiskey_Tycoon.UWP.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Grid>
@@ -17,7 +18,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Style="{StaticResource PageHeaderStyle}" Text="Warehouse Management" />
+        <controls:HeaderControl Grid.Row="0" HeaderText="WAREHOUSE MANAGEMENT" HeaderHelpText="Manage your warehouses below" />
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -48,19 +49,19 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Text="Create new Warehouse" Style="{StaticResource PageHeaderStyle}" />
+                <TextBlock Grid.Row="0" Text="Create new Warehouse" Style="{StaticResource PageSubHeaderStyle}" />
 
-                <TextBlock Grid.Row="1" Text="Warehouse Name" Style="{StaticResource PageLabelHeaderStyle}" />
+                <TextBlock Grid.Row="1" Text="WAREHOUSE NAME" Style="{StaticResource PageLabelHeaderStyle}" />
                 <TextBox Grid.Row="2" Style="{StaticResource TextBoxFieldStyle}" Text="{Binding WarehouseName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,0" />
 
-                <TextBlock Grid.Row="3" Text="Warehouse Size" Style="{StaticResource PageLabelHeaderStyle}" />
+                <TextBlock Grid.Row="3" Text="WAREHOUSE SIZE" Style="{StaticResource PageLabelHeaderStyle}" />
                 <ComboBox Grid.Row="4" ItemsSource="{Binding WarehouseSizes}" SelectedItem="{Binding SelectedWarehouseSize, Mode=TwoWay}" Width="350" Margin="10,10,0,10" />
 
-                <TextBlock Grid.Row="5" Text="Warehouse Cost" Style="{StaticResource PageLabelHeaderStyle}" />
-                <TextBlock Grid.Row="6" Text="{Binding WarehouseCost}" Style="{StaticResource PageHeaderStyle}" />
+                <TextBlock Grid.Row="5" Text="WAREHOUSE COST" Style="{StaticResource PageLabelHeaderStyle}" />
+                <TextBlock Grid.Row="6" Text="{Binding WarehouseCost}" Style="{StaticResource PageLabelValueStyle}" />
 
                 <TextBlock Grid.Row="7" Text="Money Available" Style="{StaticResource PageLabelHeaderStyle}" />
-                <TextBlock Grid.Row="8" Text="{Binding Game.MoneyAvailable}" Style="{StaticResource PageHeaderStyle}" />
+                <TextBlock Grid.Row="8" Text="{Binding Game.MoneyAvailable}" Style="{StaticResource PageLabelValueStyle}" />
 
                 <Button Grid.Row="9" Content="Create Warehouse" Style="{StaticResource BackButtonStyle}" IsEnabled="{Binding EnableCreateButton}" Margin="10,10,0,10" Click="btnCreateWarehouse_Click" />
             </Grid>
@@ -75,31 +76,35 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Style="{StaticResource PageHeaderStyle}" Text="Current Warehouses" />
+                <TextBlock Grid.Row="0" Style="{StaticResource PageSubHeaderStyle}" Text="Current Warehouses" />
 
-                <ListView Grid.Row="1" ItemsSource="{Binding Game.Warehouses}">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                        </Style>
-                    </ListView.ItemContainerStyle>
+                <Grid Grid.Row="1">
+                    <TextBlock Text="No warehouses have been created yet" Style="{StaticResource ListViewEmptyStyle}" Visibility="{Binding EmptyListViewVisibility, Mode=TwoWay}" />
 
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
+                    <ListView ItemsSource="{Binding Game.Warehouses}" Visibility="{Binding ListViewVisibility, Mode=TwoWay}">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
 
-                                <TextBlock Grid.Column="0" Text="{Binding Name}" Style="{StaticResource ListTextBlockSubStyle}" />
-                                <Button Grid.Column="1" Content="Manage" HorizontalAlignment="Right" Style="{StaticResource ListActionButtonStyle}" Click="btnManage_Click"  />
-                                <Button Grid.Column="2" Content="Demolish" HorizontalAlignment="Right" Style="{StaticResource ListActionButtonStyle}" Click="btnDemolish_Click" />
-                            </Grid>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" Text="{Binding Name}" Style="{StaticResource ListTextBlockSubStyle}" />
+                                    <Button Grid.Column="1" Content="Demolish" HorizontalAlignment="Right" Style="{StaticResource ListActionButtonStyle}" Click="btnDemolish_Click" />
+                                    <Button Grid.Column="2" Content="Manage" HorizontalAlignment="Right" Style="{StaticResource ListActionButtonStyle}" Click="btnManage_Click"  />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
             </Grid>
         </Grid>
 
@@ -108,6 +113,10 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.5" />
+            </Grid.Background>
+            
             <Button Grid.Column="0" Style="{StaticResource BackButtonStyle}" Content="Back to Game" Click="btnBack_Click" />
         </Grid>
     </Grid>
