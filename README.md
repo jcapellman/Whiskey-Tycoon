@@ -1,3 +1,4 @@
+![Screenshot](gfx/logos/mainlogo.png)
 # Whiskey Tycoon
 A tycoon simulation of running a Whiskey Distillery.
 
@@ -7,6 +8,8 @@ A tycoon simulation of running a Whiskey Distillery.
 * Marketing Management
 * Distribution Management
 * Loan Management
+
+![Screenshot](screenshot.png)
 
 ## Tentative Release Timeline
 
