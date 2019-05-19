@@ -168,7 +168,7 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             return (string.Join(Environment.NewLine, descriptions), rating);
         }
 
-        public void ReleaseBatch(BatchObject batch, ulong price, float selectedProof, ulong bottlesAvailable, uint demand, ulong bottlingCost)
+        public ReleasesObject ReleaseBatch(BatchObject batch, ulong price, float selectedProof, ulong bottlesAvailable, uint demand, ulong bottlingCost)
         {
             var reviewMetrics = calculateReview(batch, price, demand);
             
@@ -203,6 +203,8 @@ namespace Whiskey_Tycoon.lib.JSONObjects
             }
 
             MoneyAvailable -= bottlingCost;
+
+            return releaseObject;
         }
 
         private void UpdateDemandForReleases(uint modifier)

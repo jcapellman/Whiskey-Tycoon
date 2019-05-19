@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-
+using Windows.UI.Xaml;
 using Whiskey_Tycoon.lib.Common;
 using Whiskey_Tycoon.lib.Containers;
 using Whiskey_Tycoon.lib.JSONObjects;
@@ -112,7 +112,9 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             btnReleaseToPressEnable =
                 !Batch.PressSampleReviews.Any(a => a.Quarter == Game.CurrentQuarter && a.Year == Game.CurrentYear);
 
-           BottlingCost = Constants.BOTTLE_COST * NumberBottles;
+            BottlingCost = Constants.BOTTLE_COST * NumberBottles;
+            
+            ListViewVisibility = _batchObject.PressSampleReviews.Any() ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public string ReleaseBatchName => $"Release {Batch.Name}";
@@ -131,11 +133,12 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             _batchObject = container.SelectedBatch;
 
             SelectedProof = Constants.DEFAULT_BARREL_PROOF;
+            SelectedPrice = Constants.DEFAULT_BOTTLE_PRICE;
         }
 
-        public void ReleaseTheBatch()
+        public ReleasesObject ReleaseTheBatch()
         {
-            Game.ReleaseBatch(_batchObject, SelectedPrice, SelectedProof, NumberBottles, 0, BottlingCost);
+            return Game.ReleaseBatch(_batchObject, SelectedPrice, SelectedProof, NumberBottles, 0, BottlingCost);
         }
 
         public void ReleaseBatchToPress()

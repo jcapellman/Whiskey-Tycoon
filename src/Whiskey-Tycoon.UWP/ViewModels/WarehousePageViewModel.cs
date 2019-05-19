@@ -2,6 +2,9 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 
+using Windows.UI.Xaml;
+
+using Whiskey_Tycoon.lib.Common;
 using Whiskey_Tycoon.lib.Containers;
 using Whiskey_Tycoon.lib.Enums;
 using Whiskey_Tycoon.lib.JSONObjects;
@@ -133,6 +136,8 @@ namespace Whiskey_Tycoon.UWP.ViewModels
                 _batchName = value;
 
                 OnPropertyChanged();
+
+                ValidateForm();
             }
         }
 
@@ -158,8 +163,12 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             var qualityLevel =
                 (IngredientsQualityLevels) Enum.Parse(typeof(IngredientsQualityLevels), SelectedIngredientQualityLevel ?? AvailableIngredientQualityLevels.FirstOrDefault());
 
-            BatchCost = (ulong) ((int)(BatchTypes)Enum.Parse(typeof(BatchTypes), SelectedBatchType) * NumberBarrels * qualityLevel.ToQualityLevelMultiplier());
-
+            if (!string.IsNullOrEmpty(SelectedBatchType))
+            {
+                BatchCost = (ulong) ((int) (BatchTypes) Enum.Parse(typeof(BatchTypes), SelectedBatchType) *
+                                     NumberBarrels * qualityLevel.ToQualityLevelMultiplier());
+            }
+            
             EnableCreateButton = !string.IsNullOrEmpty(BatchName) && BatchCost <= Game.MoneyAvailable;
         }
 
@@ -167,8 +176,10 @@ namespace Whiskey_Tycoon.UWP.ViewModels
         {
             BatchName = string.Empty;
             SelectedBatchType = AvailableBatchTypes.FirstOrDefault();
-            NumberBarrels = 0;
+            NumberBarrels = Constants.DEFAULT_NUMBER_BARRELS;
             SelectedIngredientQualityLevel = AvailableIngredientQualityLevels.FirstOrDefault();
+            
+            ListViewVisibility = Warehouse.Batches.Any() ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public void AddBatch()
@@ -207,6 +218,8 @@ namespace Whiskey_Tycoon.UWP.ViewModels
         public bool DeleteBatch(BatchObject batchObject)
         {
             Warehouse.Batches.Remove(batchObject);
+
+            ClearForm();
 
             return true;
         }

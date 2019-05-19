@@ -5,6 +5,7 @@
     xmlns:local="using:Whiskey_Tycoon.UWP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Whiskey_Tycoon.UWP.Controls"
     mc:Ignorable="d">
 
     <Grid>
@@ -18,7 +19,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Style="{StaticResource PageHeaderStyle}" Text="{Binding ReleaseBatchName}" />
+        <controls:HeaderControl Grid.Row="0" HeaderText="{Binding ReleaseBatchName}" HeaderHelpText="Verify your batch before release below" />
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -51,7 +52,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Style="{StaticResource PageHeaderStyle}" Text="BATCH METRICS" />
+                <TextBlock Grid.Row="0" Style="{StaticResource PageSubHeaderStyle}" Text="BATCH METRICS" />
 
                 <TextBlock Grid.Row="1" Style="{StaticResource PageLabelHeaderStyle}" Text="RELEASE QUALITY" />
                 <TextBlock Grid.Row="2" Style="{StaticResource PageLabelValueStyle}" Text="{Binding Batch.Quality}" />
@@ -87,7 +88,7 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0" Text="ANGEL SHARE" Style="{StaticResource PageHeaderStyle}" />
+                    <TextBlock Grid.Row="0" Text="ANGEL SHARE" Style="{StaticResource PageSubHeaderStyle}" />
 
                     <TextBlock Grid.Row="1" Text="BARREL'S FILL VALUE (%)" Style="{StaticResource PageLabelHeaderStyle}" />
                     <TextBlock Grid.Row="2" Text="{Binding Batch.BarrelFillAmount}" Style="{StaticResource PageLabelValueStyle}" />
@@ -105,23 +106,27 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0" Text="PRESS PREVIEWS" Style="{StaticResource PageHeaderStyle}" />
+                    <TextBlock Grid.Row="0" Text="PRESS PREVIEWS" Style="{StaticResource PageSubHeaderStyle}" />
 
-                    <ListView Grid.Row="1" ItemsSource="{Binding Batch.PressSampleReviews}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Margin="0,0,0,10">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="1">
+                        <TextBlock Text="No previews have been released yet" Style="{StaticResource ListViewEmptyStyle}" Visibility="{Binding EmptyListViewVisibility, Mode=TwoWay}" />
 
-                                    <TextBlock Grid.Row="0" Margin="0,0,0,0" Style="{StaticResource ListTextBlockSubStyle}" Text="{Binding ReviewDate}" />
-                                    <TextBlock Grid.Row="1" Margin="0,0,0,0" Style="{StaticResource ListTextBlockStyle}" Text="{Binding Review}" />
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                        <ListView ItemsSource="{Binding Batch.PressSampleReviews}" Visibility="{Binding ListViewVisibility, Mode=TwoWay}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="0,0,0,10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Row="0" Margin="0,0,0,0" Style="{StaticResource ListTextBlockSubStyle}" Text="{Binding ReviewDate}" />
+                                        <TextBlock Grid.Row="1" Margin="0,0,0,0" Style="{StaticResource ListTextBlockStyle}" Text="{Binding Review}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
                 </Grid>
             </Grid>
 
@@ -146,7 +151,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0" Text="RELEASE OPTIONS" Style="{StaticResource PageHeaderStyle}" />
+                <TextBlock Grid.Row="0" Text="RELEASE OPTIONS" Style="{StaticResource PageSubHeaderStyle}" />
 
                 <TextBlock Grid.Row="1" Text="SET YOUR PROOF" Style="{StaticResource PageLabelHeaderStyle}" />
                 <TextBox Grid.Row="2" Text="{Binding SelectedProof, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Left" Width="100" Margin="10,0,10,0" />
@@ -168,6 +173,10 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+
+            <Grid.Background>
+                <SolidColorBrush Opacity="0.5" Color="Black" />
+            </Grid.Background>
 
             <Button Grid.Column="0" Style="{StaticResource BackButtonStyle}" Content="Back" Click="btnBack_Click" />
             <Button Grid.Column="1" Style="{StaticResource CenterButtonStyle}" Content="Release to Press" IsEnabled="{Binding btnReleaseToPressEnable, Mode=TwoWay}" Click="btnReleaseToPress_Click" />

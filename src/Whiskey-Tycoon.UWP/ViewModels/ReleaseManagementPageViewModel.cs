@@ -1,6 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 
+using Windows.UI.Xaml;
+
 using Whiskey_Tycoon.lib.JSONObjects;
 
 namespace Whiskey_Tycoon.UWP.ViewModels
@@ -17,6 +19,8 @@ namespace Whiskey_Tycoon.UWP.ViewModels
             {
                 _releases = value;
                 OnPropertyChanged();
+                
+                ListViewVisibility = value.Any() ? Visibility.Visible : Visibility.Collapsed;
             }
         }
 

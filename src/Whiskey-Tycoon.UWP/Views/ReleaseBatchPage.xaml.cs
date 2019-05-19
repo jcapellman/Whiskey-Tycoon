@@ -34,7 +34,11 @@ namespace Whiskey_Tycoon.UWP.Views
 
         private void btnRelease_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.ReleaseTheBatch();
+            var release = ViewModel.ReleaseTheBatch();
+
+            ShowMessage($"Your release review:{System.Environment.NewLine}" +
+                        $"{release.PressReviewDescription}{System.Environment.NewLine}{System.Environment.NewLine}" +
+                        $"Rating:{System.Environment.NewLine}{release.PressReviewRating}");
 
             Frame.Navigate(typeof(MainGamePage), ViewModel.Game);
         }
